@@ -17,6 +17,14 @@ get_user_strings <- function()
 #' @importFrom methods allNames
 set_user_strings <- function(x)
 {
+  check_user_strings()
+
+  set_global("user_strings", x)
+}
+
+# check_user_strings -----------------------------------------------------------
+check_user_strings <- function(x)
+{
   stopifnot(is.list(x))
   stopifnot(all(lengths(x) == 1L))
   stopifnot(all(sapply(x, mode) == "character"))
@@ -31,6 +39,6 @@ set_user_strings <- function(x)
       kwb.utils::stringList(common, collapse = "\n- ")
     )
   }
-
-  set_global("user_strings", x)
+  
+  invisible(x)
 }
