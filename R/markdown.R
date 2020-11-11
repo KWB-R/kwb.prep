@@ -13,7 +13,7 @@ md_header <- function(
   level, caption_key = "key?", caption = NULL, print = TRUE, msg = TRUE
 )
 {
-  #kwb.prep::assign_all()
+  #kwb.prep::assign_objects()
   #caption=NULL;print=TRUE;msg=TRUE
   caption <- kwb.utils::defaultIfNULL(caption, get_text(caption_key))
   

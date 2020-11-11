@@ -20,9 +20,16 @@ RoxygenNote: 7.1.1
 Suggests: 
     covr
 Imports: 
+    data.table,
+    dplyr,
     knitr,
+    kwb.code,
+    kwb.file,
     kwb.utils,
     methods,
-    yaml
+    yaml,
+    magrittr
 Remotes: 
+    github::kwb-r/kwb.code,
+    github::kwb-r/kwb.file,
     github::kwb-r/kwb.utils@dev
