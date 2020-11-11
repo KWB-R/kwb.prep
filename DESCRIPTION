@@ -22,6 +22,7 @@ Suggests:
 Imports: 
     knitr,
     kwb.utils,
+    methods,
     yaml
 Remotes: 
     github::kwb-r/kwb.utils@dev
