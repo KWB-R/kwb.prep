@@ -1,0 +1,66 @@
+# md_header --------------------------------------------------------------------
+md_header <- function(
+  level, caption_key = "key?", caption = NULL, print = TRUE, msg = TRUE
+)
+{
+  #kwb.prep::assign_all()
+  #caption=NULL;print=TRUE;msg=TRUE
+  caption <- kwb.utils::defaultIfNULL(caption, get_text(caption_key))
+  
+  if (level == 0L) {
+    return(NULL)
+  }
+  
+  header <- sprintf(
+    "%s%s %s",
+    get_text("new_line"), kwb.utils::repeated("#", level), caption
+  )
+  
+  message_if(msg, header)
+  cat_if(print, header, get_text("new_line"), get_text("new_line"))
+  
+  # For convenience: return the next debug level to allow for:
+  # dbg <- md_header(dbg, ...)
+  if (print) {
+    invisible(level + 1L)
+  } else {
+    invisible(header)
+  }
+}
+
+# to_markdown_chapter ----------------------------------------------------------
+to_markdown_chapter <- function(
+  x, caption_key = "key?", level = 3L, caption = NULL
+)
+{
+  c(
+    md_header(level, caption_key, caption = caption, print = FALSE),
+    "",
+    x,
+    ""
+  )
+}
+
+# to_markdown_enum -------------------------------------------------------------
+to_markdown_enum <- function(x, collapse = FALSE)
+{
+  nl <- get_text("new_line")
+  
+  md <- paste0("* ", x, collapse = nl)
+  
+  if (! collapse) {
+    return(md)
+  }
+  
+  paste(md, collapse = nl)
+}
+
+# write_markdown_chapter -------------------------------------------------------
+write_markdown_chapter <- function(
+  x, caption_key = "key?", level = 3L, caption = NULL
+)
+{
+  writeLines(to_markdown_chapter(
+    x = x, caption_key = caption_key, level = level, caption = caption
+  ))
+}
