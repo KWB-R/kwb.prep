@@ -11,7 +11,7 @@ kable_translated <- function(x, ...)
 }
 
 # translate_columns ------------------------------------------------------------
-translate_columns <- function(x, get_text)
+translate_columns <- function(x)
 {
   kwb.utils::renameColumns(x, get_text(names(x)))
 }
