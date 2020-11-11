@@ -1,4 +1,14 @@
 # md_header --------------------------------------------------------------------
+
+#' Print Markdown Section Header
+#' 
+#' @param level level
+#' @param caption_key caption_key
+#' @param caption caption
+#' @param print print
+#' @param msg msg
+#' @export
+#' @importFrom kwb.utils defaultIfNULL repeated
 md_header <- function(
   level, caption_key = "key?", caption = NULL, print = TRUE, msg = TRUE
 )
@@ -56,6 +66,14 @@ to_markdown_enum <- function(x, collapse = FALSE)
 }
 
 # write_markdown_chapter -------------------------------------------------------
+
+#' Write a Markdown Chapter
+#' 
+#' @param x x
+#' @param caption_key caption_key
+#' @param level level
+#' @param caption caption
+#' @export
 write_markdown_chapter <- function(
   x, caption_key = "key?", level = 3L, caption = NULL
 )

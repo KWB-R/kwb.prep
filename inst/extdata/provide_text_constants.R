@@ -10,7 +10,10 @@ paths <- kwb.utils::resolve(list(
 
 # Define text constants --------------------------------------------------------
 string_definition <- list(
-  hello = "sch<oe>ne Gr<ue>sse"
+  hello = "sch<oe>ne Gr<ue>sse",
+  new_line = "<nl>",
+  select_columns = "Spalten ausw<ae>hlen",
+  select_columns_from = "Spalten ausw<ae>hlen aus '%s'"
 )
 
 # Write yaml file and dictionary file ------------------------------------------
