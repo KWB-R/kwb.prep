@@ -4,7 +4,9 @@
 config_file <- function(..., must_exist = TRUE)
 {
   #system.file("extdata", "config", ..., package = "kwb.prep")
-  root <- kwb.utils::createDirectory(path.expand("~/tmp/kwb.prep/config"))
+  root <- kwb.utils::createDirectory(dbg = FALSE, path.expand(
+    "~/tmp/kwb.prep/config"
+  ))
 
   if (must_exist) {
     kwb.utils::safePath(root, ...)
