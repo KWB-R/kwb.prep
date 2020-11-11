@@ -4,7 +4,7 @@
 \alias{get_text}
 \title{Get Text Constant}
 \usage{
-get_text(key = NULL, ..., raw_strings = read_string_definition())
+get_text(key = NULL, ..., raw_strings = get_raw_strings())
 }
 \arguments{
 \item{key}{identifier}

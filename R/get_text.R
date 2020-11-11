@@ -33,7 +33,7 @@ create_text_getter <- function(raw_strings)
 #' @export
 #' @importFrom kwb.utils repeated resolve selectElements
 #' 
-get_text <- function(key = NULL, ..., raw_strings = read_string_definition())
+get_text <- function(key = NULL, ..., raw_strings = get_raw_strings())
 {
   strings <- kwb.utils::resolve(
     raw_strings,
@@ -56,6 +56,27 @@ get_text <- function(key = NULL, ..., raw_strings = read_string_definition())
   }
   
   sprintf(string, ...)
+}
+
+# get_raw_strings --------------------------------------------------------------
+get_raw_strings <- function()
+{
+  #kwb.prep::assign_all()
+  internal_strings <- read_string_definition()
+  user_strings <- get_user_strings()
+
+  common <- intersect(names(user_strings), names(internal_strings))
+  
+  if (length(common)) {
+    
+    stop_(
+      "The following string constant keys are not allowed. ", 
+      "They are for internal use only:\n- ", 
+      kwb.utils::stringList(common, collapse = "\n- ")
+    )
+  }
+  
+  c(user_strings, internal_strings)
 }
 
 # read_string_definition -------------------------------------------------------
