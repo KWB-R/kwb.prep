@@ -1,0 +1,32 @@
+#
+# Provide text constants in a yaml file
+#
+
+# Define paths -----------------------------------------------------------------
+paths <- kwb.utils::resolve(list(
+  config = kwb.utils::createDirectory("./inst/extdata/config"),
+  yml = "<config>/text_constants.yml"
+))
+
+# Define text constants --------------------------------------------------------
+string_definition <- list(
+  hello = "sch<oe>ne Gr<ue>sse"
+)
+
+# Write yaml file and dictionary file ------------------------------------------
+if (TRUE)
+{
+  # Write yaml file
+  yaml::write_yaml(string_definition, paths$yml)
+
+  file.copy(paths$yml, "~/tmp/kwb.prep/config", overwrite = TRUE)
+}
+
+# Check if the original list of strings can be reproduced ----------------------
+if (FALSE)
+{
+  strings <- kwb.prep:::read_string_definition()
+  
+  stopifnot(identical(strings, string_definition))
+}
+
