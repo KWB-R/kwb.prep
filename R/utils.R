@@ -356,7 +356,10 @@ run_cached <- function(name, expr, dbg = FALSE)
 
     write_enum_if(dbg, "not_in_file_cache", name)
 
-    object <- kwb.utils:::cache_and_return(eval(expr, envir = -1), name = name)
+    object <- kwb.utils:::cache_and_return(
+      try(eval(expr, envir = -1)), 
+      name = name
+    )
 
     write_enum_if(dbg, "object_cached_in_file", name)
 
