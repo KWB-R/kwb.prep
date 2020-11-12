@@ -116,7 +116,7 @@ left_join <- function(
   # Check (if requested): The number of rows must not change!
   n_x <- nrow(x)
   n_y <- nrow(y)
-  n_result <- nnrow(result)
+  n_result <- nrow(result)
   
   if (check && n_result != n_x) {
     stop_(get_text("merging_failed", name_x, name_y, n_result - n_x))
