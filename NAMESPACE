@@ -3,6 +3,7 @@
 export("%>%")
 export(applyFilter)
 export(applyFilterCriteria)
+export(assign_objects)
 export(create_text_getter)
 export(dataFramesToTextMatrix)
 export(find_string_constants)
