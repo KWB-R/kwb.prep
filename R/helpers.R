@@ -184,25 +184,6 @@ read_internal_types <- function(dbg = FALSE)
   result
 }
 
-# read_string_definition -------------------------------------------------------
-read_string_definition <- function(check = FALSE)
-{
-  strings <- yaml::read_yaml(
-    file = config_file("text_dictionary.yml")
-  )
-
-  if (! check) {
-    return(strings)
-  }
-
-  stopifnot(identical(strings, kwb.utils::readDictionary(
-    file = config_file("text_dictionary.txt"),
-    fileEncoding = "UTF-8"
-  )))
-
-  strings
-}
-
 # replace_by_condition ---------------------------------------------------------
 #' @keywords internal
 replace_by_condition <- function(df, group, path = NULL, dbg = 1L)
