@@ -1,0 +1,19 @@
+csv_extension: _utf8.csv
+column_separator: ;
+warn_about_missing_table_fields: no
+# Path to the MS Access database or folder containing CSV files
+path_db_mdb: C:/Users/hsonne/Documents/tmp/sema-berlin_tool-prep/input/DatenCOd.accdb
+path_db_csv: ~/tmp/sema-berlin_db-export
+# If TRUE, missing construction years are updated with predictions, only for GIS
+predict_construction_year: yes
+# If TRUE, missing material is updated with predictions, for GIS and CCTV_GIS
+predict_material: yes
+# If TRUE the resulting GIS (CCTV) data frame is saved to an RData file
+save_gis: no
+save_cctv: no
+#mode: development
+mode: production
+# All most frequent values in one column (yes) or in columns value/frequency
+table_structure_wide: yes
+# Number of most frequent values
+table_structure_top_n: 3
