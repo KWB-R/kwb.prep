@@ -21,12 +21,11 @@ md_header <- function(
     return(NULL)
   }
   
-  header <- sprintf(
-    "%s%s %s",
-    get_text("new_line"), kwb.utils::repeated("#", level), caption
-  )
+  raw_header <- paste(kwb.utils::repeated("#", level), caption)
   
-  message_if(msg, header)
+  header <- paste0(get_text("new_line"), raw_header)
+  
+  message_if(msg, raw_header)
   cat_if(print, header, get_text("new_line"), get_text("new_line"))
   
   # For convenience: return the next debug level to allow for:
