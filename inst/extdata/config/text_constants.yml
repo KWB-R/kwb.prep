@@ -1,10 +1,11 @@
 hello: sch<oe>ne Gr<ue>sse
 join_by: Schl<ue>sselspalte(n)
 left_joining: Tabellen verbinden (Left Join)
-name_x: Linke Tabelle
-name_y: Rechte Tabelle
+left_table: Linke Tabelle
 new_line: <nl>
 nrow_x: Zeilen links
 nrow_y: Zeilen rechts
+result_table: Ergebnistabelle
+right_table: Rechte Tabelle
 select_columns: Spalten ausw<ae>hlen
 select_columns_from: Spalten ausw<ae>hlen aus '%s'

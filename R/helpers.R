@@ -89,18 +89,19 @@ in_development_mode <- function()
 
 # left_join --------------------------------------------------------------------
 left_join <- function(
-  x, y, by, use_dplyr = TRUE, message_anyway = TRUE, check = TRUE, dbg = dbg
+  x, y, by, use_dplyr = TRUE, message_anyway = TRUE, check = TRUE, 
+  dbg = get_dbg(), 
+  name_x = deparse(substitute(x)), 
+  name_y = deparse(substitute(y)),
+  name = paste0(name_x, "_", name_y)
 )
 {
-  name_x <- deparse(substitute(x))
-  name_y <- deparse(substitute(y))
-
   non_by <- function(df) setdiff(names(df), by)
     
-  if (length(common_names <- intersect(non_by(x), non_by(y)))) {
+  if (length(common <- intersect(non_by(x), non_by(y)))) {
     message_text(
       "common_columns", name_x, name_y,
-      kwb.utils::stringList(common_names, collapse = "\n- ")
+      kwb.utils::stringList(common, collapse = "\n- ")
     )
   }
 
@@ -125,11 +126,18 @@ left_join <- function(
   if (dbg) {
     
     metadata <- kwb.utils::noFactorDataFrame(
-      name_x, name_y, nrow_x = n_x, nrow_y = n_y, join_by = by
+      left_table = c(name_x, n_x),
+      join_by = c(list_with_comma(by), ""),
+      right_table = c(name_y, n_y),
+      result_table = c(name, n_result)
     )
     
+    rownames(metadata) <- c("name", "n_rows")
+
     write_markdown_chapter(
-      kable_translated(metadata), level = dbg, caption_key = "left_joining"
+      kable_translated(metadata, row.names = TRUE), 
+      level = dbg, 
+      caption_key = "left_joining"
     )
   }
   
@@ -139,12 +147,12 @@ left_join <- function(
 
   comparable <- function(df) kwb.utils::defaultIfNA(as.character(df[[1L]]), "")
 
-  for (name in common_names) {
+  for (name in common) {
 
     values_x <- fetch_with_postfix(name, ".x")
     values_y <- fetch_with_postfix(name, ".y")
 
-    differs <- (comparable(values_x) != comparable(values_y))
+    differs <- comparable(values_x) != comparable(values_y)
 
     if (message_anyway || any(differs)) {
       message_text(
