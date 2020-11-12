@@ -292,7 +292,7 @@ replaceByCondition <- function(
 )
 {
   if (is.null(file) && is.null(config)) {
-    stop(call. = FALSE, "Either 'file' or 'config' must be given.")
+    stop_("Either 'file' or 'config' must be given.")
   }
   
   if (is.null(config)) {
@@ -403,10 +403,10 @@ stopIfNotIn <- function(
 {
   if (! element %in% elements) {
     
-    stop(call. = FALSE, sprintf(
+    stopf(
       "No such %s: '%s'. Available %s: %s",
       singular, element, plural, kwb.utils::stringList(elements)
-    ))
+    )
   }
 }
 
@@ -428,10 +428,10 @@ stopOnDuplicates <- function(data, columns = names(data))
     
     print(changes)
     
-    stop(call. = FALSE, sprintf(
+    stopf(
       "There are duplicates in column(s) %s of %s (see above)!", 
       kwb.utils::stringList(columns), deparse(substitute(data))
-    ))
+    )
   }
 }
 

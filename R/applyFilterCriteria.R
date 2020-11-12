@@ -34,10 +34,8 @@
 #' 
 applyFilterCriteria <- function(x, criteria = NULL, lengthColumn = NULL, ...)
 {
-  if (! is.data.frame(x)) {
-    
-    stop("x must be a data frame!", call. = FALSE)
-  }
+  if (! is.data.frame(x))
+    stop_("x must be a data frame!")
   
   if (is.null(criteria)) {
     
