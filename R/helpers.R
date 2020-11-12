@@ -89,14 +89,14 @@ in_development_mode <- function()
 
 # left_join --------------------------------------------------------------------
 left_join <- function(
-  x, y, by, use_dplyr = TRUE, message_anyway = TRUE, check = TRUE
+  x, y, by, use_dplyr = TRUE, message_anyway = TRUE, check = TRUE, dbg = dbg
 )
 {
   name_x <- deparse(substitute(x))
   name_y <- deparse(substitute(y))
 
   non_by <- function(df) setdiff(names(df), by)
-
+    
   if (length(common_names <- intersect(non_by(x), non_by(y)))) {
     message_text(
       "common_columns", name_x, name_y,
@@ -114,24 +114,37 @@ left_join <- function(
   }
 
   # Check (if requested): The number of rows must not change!
-  if (check && (n2 <- nrow(result)) != (n1 <- nrow(x))) {
-    stop(call. = FALSE, get_text("merging_failed", name_x, name_y, n2 - n1))
+  n_x <- nrow(x)
+  n_y <- nrow(y)
+  n_result <- nnrow(result)
+  
+  if (check && n_result != n_x) {
+    stop_(get_text("merging_failed", name_x, name_y, n_result - n_x))
   }
 
+  if (dbg) {
+    
+    metadata <- kwb.utils::noFactorDataFrame(
+      name_x, name_y, nrow_x = n_x, nrow_y = n_y, join_by = by
+    )
+    
+    write_markdown_chapter(
+      kable_translated(metadata), level = dbg, caption_key = "left_joining"
+    )
+  }
+  
   fetch_with_postfix <- function(name, postfix) {
     kwb.utils::selectColumns(result, paste0(name, postfix), drop = FALSE)
   }
 
-  comparable_values <- function(df) {
-    kwb.utils::defaultIfNA(as.character(df[[1L]]), "")
-  }
+  comparable <- function(df) kwb.utils::defaultIfNA(as.character(df[[1L]]), "")
 
   for (name in common_names) {
 
     values_x <- fetch_with_postfix(name, ".x")
     values_y <- fetch_with_postfix(name, ".y")
 
-    differs <- (comparable_values(values_x) != comparable_values(values_y))
+    differs <- (comparable(values_x) != comparable(values_y))
 
     if (message_anyway || any(differs)) {
       message_text(
@@ -140,7 +153,7 @@ left_join <- function(
     }
   }
 
-  result
+  structure(result, metadata = metadata)
 }
 
 # msaccess_to_r_type -----------------------------------------------------------

@@ -11,7 +11,13 @@ paths <- kwb.utils::resolve(list(
 # Define text constants --------------------------------------------------------
 string_definition <- list(
   hello = "sch<oe>ne Gr<ue>sse",
+  join_by = "Schl<ue>sselspalte(n)",
+  left_joining = "Tabellen verbinden (Left Join)",
+  name_x = "Linke Tabelle", 
+  name_y = "Rechte Tabelle", 
   new_line = "<nl>",
+  nrow_x = "Zeilen links",
+  nrow_y = "Zeilen rechts",
   select_columns = "Spalten ausw<ae>hlen",
   select_columns_from = "Spalten ausw<ae>hlen aus '%s'"
 )
