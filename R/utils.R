@@ -195,7 +195,7 @@ print_to_string <- function(x)
 # run_cached -------------------------------------------------------------------
 run_cached <- function(name, expr = NULL, dbg = FALSE)
 {
-  object <- kwb.utils:::get_cached(name)
+  object <- kwb.utils:::get_cached(name, dbg = FALSE)
 
   if (is.null(object)) {
 
