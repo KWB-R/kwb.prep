@@ -12,12 +12,15 @@ paths <- kwb.utils::resolve(list(
 string_definition <- list(
   applying_filter = "Filterschritte '%s' anwenden",
   applying_filter_to = "Filterschritte '%s' anwenden auf '%s'",
+  by = "verkn<ue>pft",
   calculating_new_columns = "Berechnen neuer Spalten",
   calculating_new_columns_in = "Berechnen neuer Spalten in '%s'",
   columns_removed = "Die folgenden %d Spalten wurden entfernt:<nl><nl>%s<nl>",
   columns_removed_reason = paste0(
     "Die folgenden %d Spalten wurden entfernt (%s):<nl><nl>%s<nl>"
   ),
+  column_x = "Spalte links",
+  column_y = "Spalte rechts",
   common_columns = paste0(
     "The following columns are in '%s' as well as in '%s':<nl>- %s"
   ),
@@ -27,6 +30,7 @@ string_definition <- list(
   key_columns = "Schl<ue>sselspalte(n)",
   left_joining = "Tabellen verbinden (Left Join)",
   left_table = "Linke Tabelle",
+  merging = "Verbinden zweier Tabellen: '%s' x '%s'",
   merging_failed = "Merging %s with %s led to %d more rows!",
   n_rows = "Anzahl Zeilen",
   name = "Name",
@@ -51,6 +55,8 @@ string_definition <- list(
   ),
   structure_of = "Struktur von '%s'",
   table_dimesion = "Tabelle mit %d Zeilen und %d Spalten<nl>",
+  type_x = "Typ links",
+  type_y = "Typ rechts",
   unique_rows = "Duplikatzeilen entfernen",
   writing_csv = "Schreiben von `%s`"
 )

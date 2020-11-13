@@ -30,7 +30,13 @@ check_indices <- function(indices, max_index, max_length = max_index)
   stopifnot(! anyDuplicated(indices))
 }
 
-# current_year ------------------------------------------------------------------
+# cross_if ---------------------------------------------------------------------
+cross_if <- function(check)
+{
+  ifelse(check, "x", "")
+}
+
+# current_year -----------------------------------------------------------------
 # copy of kwb.datetime::currentYear
 current_year <- function()
 {
