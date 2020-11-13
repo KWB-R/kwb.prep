@@ -348,7 +348,7 @@ rename_columns <- function(
 }
 
 # run_cached -------------------------------------------------------------------
-run_cached <- function(name, expr, dbg = FALSE)
+run_cached <- function(name, expr = NULL, dbg = FALSE)
 {
   object <- kwb.utils:::get_cached(name)
 
@@ -356,12 +356,15 @@ run_cached <- function(name, expr, dbg = FALSE)
 
     write_enum_if(dbg, "not_in_file_cache", name)
 
-    object <- kwb.utils:::cache_and_return(
-      try(eval(expr, envir = -1)), 
-      name = name
-    )
-
-    write_enum_if(dbg, "object_cached_in_file", name)
+    if (! is.null(expr)) {
+      
+      object <- kwb.utils:::cache_and_return(
+        try(eval(expr, envir = -1)), 
+        name = name
+      )
+      
+      write_enum_if(dbg, "object_cached_in_file", name)
+    }
 
   } else {
 
