@@ -13,18 +13,14 @@
 #' @param dbg if \code{TRUE} debug messages are shown
 read_csv_file <- function(
   file, sep = get_option("column_separator"), dec = ",", encoding = "UTF-8",
-  na.strings = "", ..., dbg = TRUE
+  na.strings = "", ..., dbg = 1L
 )
 {
   #kwb.prep::assign_objects()
   #file <- "~/tmp/sema-berlin_db-export/LinerBWB_utf8.csv"
   metadata <- get_file_metadata(file)
 
-  if (dbg) {
-    write_markdown_chapter(
-      kable_translated(metadata), "read_csv_file"
-    )
-  }
+  write_markdown_chapter(kable_translated(metadata), "read_csv_file", dbg)
 
   # See fakin.path.app:::read_csv_fread
   result <- as.data.frame(data.table::fread(

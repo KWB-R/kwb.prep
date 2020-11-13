@@ -11,7 +11,7 @@ read_csv_file(
   encoding = "UTF-8",
   na.strings = "",
   ...,
-  dbg = TRUE
+  dbg = 1L
 )
 }
 \arguments{
