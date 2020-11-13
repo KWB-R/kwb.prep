@@ -127,7 +127,7 @@ left_join <- function(
     
     metadata <- kwb.utils::noFactorDataFrame(
       left_table = c(name_x, n_x),
-      join_by = c(list_with_comma(by), ""),
+      key_columns = c(list_with_comma(by), ""),
       right_table = c(name_y, n_y),
       result_table = c(name, n_result)
     )
@@ -161,7 +161,7 @@ left_join <- function(
     }
   }
 
-  structure(result, metadata = metadata)
+  structure(result, metadata = if (dbg) metadata)
 }
 
 # msaccess_to_r_type -----------------------------------------------------------
