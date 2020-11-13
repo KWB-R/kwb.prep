@@ -253,6 +253,13 @@ remove_columns <- function(
     )
   )
 
+  if (FALSE) {
+    file <- kwb.prep:::config_file("args_remove_column.yml", must_exist = FALSE)
+    yaml::write_yaml(configs, file)
+    kwb.utils::hsOpenWindowsExplorer(dirname(file))
+    stopifnot(identical(yaml::read_yaml(file), configs))
+  }
+  
   if (! is.null(key)) {
 
     config <- kwb.utils::selectElements(configs, key)
