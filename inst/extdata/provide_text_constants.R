@@ -19,6 +19,7 @@ string_definition <- list(
   new_line = "<nl>",
   nrow_x = "Zeilen links",
   nrow_y = "Zeilen rechts",
+  reading_args = "Argumente f<ue>r Funktion %s() lesen aus: '%s'",
   result_table = "Ergebnistabelle" ,
   right_table = "Rechte Tabelle", 
   select_columns = "Spalten ausw<ae>hlen",

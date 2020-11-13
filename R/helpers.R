@@ -177,6 +177,18 @@ msaccess_to_r_type <- function()
   )
 }
 
+# read_args --------------------------------------------------------------------
+read_args <- function(name, dbg = TRUE)
+{
+  file <- kwb.prep:::config_file(sprintf("args_%s.yml", name))
+  
+  kwb.utils::catAndRun(
+    get_text("reading_args", name, file),
+    dbg = dbg,
+    yaml::read_yaml(file)
+  )
+}
+
 # read_filter_criteria ---------------------------------------------------------
 #' @importFrom yaml read_yaml
 read_filter_criteria <- function(
