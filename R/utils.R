@@ -521,7 +521,8 @@ unique_rows <- function(x, dbg = 2L)
       rows_before = before,
       rows_after = after,
       rows_removed = removed,
-      rows_removed_percent = round(kwb.utils::percentage(removed, before), 1L)
+      rows_removed_percent = round(kwb.utils::percentage(removed, before), 1L),
+      key_columns = list_with_comma(names(x))
     )
 
     metadata %>%
