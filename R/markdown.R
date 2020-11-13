@@ -97,6 +97,10 @@ write_markdown_chapter <- function(
   x, caption_key = "key?", level = 3L, caption = NULL
 )
 {
+  if (level <= 0L) {
+    return()
+  }
+  
   writeLines(to_markdown_chapter(
     x = x, caption_key = caption_key, level = level, caption = caption
   ))
