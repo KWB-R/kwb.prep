@@ -129,9 +129,9 @@ main_class <- function(x)
 }
 
 # message_if -------------------------------------------------------------------
-message_if <- function(condition, ...)
+message_if <- function(check, ...)
 {
-  if (condition) {
+  if (check) {
     message(...)
   }
 }
