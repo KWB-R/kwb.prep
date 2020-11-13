@@ -180,7 +180,7 @@ msaccess_to_r_type <- function()
 # read_args --------------------------------------------------------------------
 read_args <- function(name, dbg = TRUE)
 {
-  file <- kwb.prep:::config_file(sprintf("args_%s.yml", name))
+  file <- config_file(sprintf("args_%s.yml", name))
   
   kwb.utils::catAndRun(
     get_text("reading_args", name, file),
