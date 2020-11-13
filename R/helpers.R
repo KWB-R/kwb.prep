@@ -1,33 +1,3 @@
-# apply_filter -----------------------------------------------------------------
-apply_filter <- function(
-  x, element, length_column = NULL, dbg = 2L, name = deparse(substitute(x)),
-  config = read_filter_criteria(dbg = FALSE)
-)
-{
-  output <- utils::capture.output(
-    result <- applyFilter(x, config, element, length_column)
-  )
-
-  write_markdown_chapter(
-    to_rcode_snippet(output),
-    level = dbg,
-    caption = if (name == ".") {
-      get_text("applying_filter", element)
-    } else {
-      get_text("applying_filter_to", element, name)
-    }
-  )
-
-  if (! is.null(length_column)) {
-
-    writeLines(printFilterTable(
-      kwb.utils::getAttribute(result, "details.filter")
-    ))
-  }
-
-  result
-}
-
 # field_renamings_to_lookup_table ----------------------------------------------
 field_renamings_to_lookup_table <- function(x)
 {
@@ -52,6 +22,12 @@ check_number_of_unique_if <- function(x, check, columns)
   }
 
   x
+}
+
+# copy_column ------------------------------------------------------------------
+copy_column <- function(df, to, from, indices = NULL, ...)
+{
+  set_column(df, to, from = from, indices = indices, ...)
 }
 
 # get_option -------------------------------------------------------------------
@@ -249,6 +225,12 @@ replace_by_condition <- function(df, group, path = NULL, dbg = 1L)
 set_origin <- function(data, origin = kwb.utils::getAttribute(data, "origin"))
 {
   cbind(data, origin = origin, stringsAsFactors = FALSE)
+}
+
+# split_by_columns -------------------------------------------------------------
+split_by_columns <- function(df, columns, ...)
+{
+  split(df, kwb.utils::selectColumns(df, columns, drop = FALSE), ...)
 }
 
 # summary_with_forced_na -------------------------------------------------------
