@@ -43,7 +43,8 @@ string_definition <- list(
   no_duplicates = "Keine Duplikate in (Wertekombinationen der) Spalte(n): %s",
   reading_args = "Argumente f<ue>r Funktion %s() lesen aus: '%s'",
   reading_filter_criteria = "Reading filter criteria from",
-  removing_columns = "Spalten aus '%s' entfernen",
+  removing_columns = "Spalten entfernen",
+  removing_columns_from = "Spalten aus '%s' entfernen",
   renaming_columns = "Spalten in '%s' umbenennen:<nl>",
   replacements_invalid_csv = paste0(
     "Ersetzungen gem<ae><ss> replace_invalid.csv, Gruppe '%s'"

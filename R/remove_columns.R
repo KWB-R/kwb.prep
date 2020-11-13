@@ -49,11 +49,11 @@ remove_columns <- function(
     get_text("no_columns_removed")
   }
   
-  write_markdown_chapter(
-    content, level = dbg., caption = get_text(
-      "removing_columns", newline_collapsed(name)
-    )
-  )
+  write_markdown_chapter(content, level = dbg., caption = if (name == "."){
+    get_text("removing_columns")
+  } else {
+    get_text("removing_columns_from", name)
+  })
   
   x
 }
