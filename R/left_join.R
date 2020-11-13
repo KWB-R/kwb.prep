@@ -1,12 +1,14 @@
 # left_join --------------------------------------------------------------------
 left_join <- function(
   x, y, by, use_dplyr = TRUE, message_anyway = TRUE, check = TRUE, 
-  dbg = get_dbg(), 
-  name_x = deparse(substitute(x)), 
-  name_y = deparse(substitute(y)),
-  name = paste0(name_x, "_", name_y)
+  dbg = get_dbg(), name_x = NULL, name_y = NULL, name = NULL
 )
 {
+  name_x <- getname(name_x, substitute(x))
+  name_y <- getname(name_y, substitute(y))
+  
+  name <- kwb.utils::defaultIfNULL(name, paste0(name_x, "_", name_y))
+  
   non_by <- function(df) setdiff(names(df), by)
   
   if (length(common <- intersect(non_by(x), non_by(y)))) {
@@ -22,7 +24,7 @@ left_join <- function(
     
   } else {
     
-    merge(x, y, by = by, all.x = TRUE)
+    safe_merge(x, y, by = by, all.x = TRUE)
   }
   
   # Check (if requested): The number of rows must not change!
