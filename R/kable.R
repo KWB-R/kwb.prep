@@ -7,13 +7,27 @@
 #' @export
 kable_translated <- function(x, ...)
 {
-  kable_no_rows(translate_columns(x), ...)
+  kable_no_rows(translate_rows(translate_columns(x)), ...)
 }
 
 # translate_columns ------------------------------------------------------------
 translate_columns <- function(x)
 {
   kwb.utils::renameColumns(x, get_text(names(x)))
+}
+
+# translate_rows ------------------------------------------------------------
+translate_rows <- function(x)
+{
+  texts <- get_text()
+  
+  found_at <- match(row.names(x), names(texts))
+  
+  not_na <- ! is.na(found_at)
+  
+  rownames(x)[not_na] <- as.character(texts[found_at[not_na]])
+  
+  x
 }
 
 # kable_no_rows ----------------------------------------------------------------
