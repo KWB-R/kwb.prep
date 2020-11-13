@@ -30,44 +30,11 @@ check_indices <- function(indices, max_index, max_length = max_index)
   stopifnot(! anyDuplicated(indices))
 }
 
-# copy_column ------------------------------------------------------------------
-copy_column <- function(df, to, from, indices = NULL, ...)
-{
-  set_column(df, to, from = from, indices = indices, ...)
-}
-
-# create_missing_column --------------------------------------------------------
-# TODO: Merge with kwb.utils::hsAddMissingCols() and use that one
-create_missing_column <- function(df, column, value = NA)
-{
-  stopifnot(is.data.frame(df), is.character(column), length(column) == 1L)
-
-  if (column %in% colnames(df)) {
-    return(df)
-  }
-
-  kwb.utils::catAndRun(
-    get_text("creating_missing_column", column),
-    df[[column]] <- value
-  )
-
-  df
-}
-
 # current_year ------------------------------------------------------------------
 # copy of kwb.datetime::currentYear
 current_year <- function()
 {
   as.integer(format(Sys.Date(), "%Y"))
-}
-
-# delete_one_value_columns -----------------------------------------------------
-delete_one_value_columns <- function(df)
-{
-  kwb.utils::catAndRun(
-    get_text("deleting_constant_columns"),
-    Filter(function(x) n_unique(x) > 1L, df)
-  )
 }
 
 # get_dbg ----------------------------------------------------------------------
@@ -162,14 +129,6 @@ main_class <- function(x)
 }
 
 # message_if -------------------------------------------------------------------
-message_if <- function(check, ...)
-{
-  if (check) {
-    message(...)
-  }
-}
-
-# message_if -------------------------------------------------------------------
 message_if <- function(condition, ...)
 {
   if (condition) {
@@ -218,117 +177,10 @@ newline_collapsed <- function(x)
 #' @importFrom kwb.utils printIf
 print_if <- kwb.utils::printIf
 
-# print_kable ------------------------------------------------------------------
-print_kable <- function(...)
-{
-  print(knitr::kable(...))
-}
-
 # print_to_string --------------------------------------------------------------
 print_to_string <- function(x)
 {
   newline_collapsed(utils::capture.output(print(x)))
-}
-
-# remove_columns ---------------------------------------------------------------
-remove_columns <- function(
-  x, columns = NULL, reason = NULL, ..., dbg. = TRUE, key = NULL
-)
-{
-  configs <- read_args("remove_columns", dbg = FALSE)
-  
-  if (! is.null(key)) {
-
-    config <- kwb.utils::selectElements(configs, key)
-
-    return(remove_columns(
-      x,
-      columns = config$columns,
-      reason = config$reason,
-      pattern = config$pattern
-    ))
-  }
-
-  before <- names(x)
-
-  x <- kwb.utils::removeColumns(x, columns, ..., dbg = FALSE)
-
-  removed <- setdiff(before, after <- names(x))
-
-  if (! dbg. || ! length(removed) && ! in_development_mode()) {
-    return(x)
-  }
-
-  content <- if (n_removed <- length(removed)) {
-
-    md_enum <- to_markdown_enum(removed, collapse = TRUE)
-
-    if (is.null(reason)) {
-      get_text("columns_removed", n_removed, md_enum)
-    } else {
-      get_text("columns_removed_reason", n_removed, get_text(reason), md_enum)
-    }
-
-  } else {
-
-    get_text("no_columns_removed")
-  }
-
-  write_markdown_chapter(content, "removing_columns", level = dbg.)
-
-  x
-}
-
-# rename_and_select ------------------------------------------------------------
-#' @keywords internal
-rename_and_select <- function(
-  x, renamings, columns = as.character(renamings), dbg = 1L,
-  name = deparse(substitute(x))
-)
-{
-  if (dbg) {
-
-    metadata <- kwb.utils::noFactorDataFrame(
-      selected_column = columns,
-      original_column = names(renamings)
-    )
-
-    metadata %>%
-      kable_translated() %>%
-      write_markdown_chapter(
-        caption = if (name == ".") {
-          get_text("select_rename_columns")
-        } else {
-          get_text("select_rename_columns_from", name)
-        },
-        level = dbg
-      )
-  }
-
-  x %>%
-    rename_columns(renamings, dbg = FALSE) %>%
-    select_columns(columns, dbg = FALSE)
-}
-
-# rename_columns ---------------------------------------------------------------
-rename_columns <- function(
-  x, renamings = NULL, dbg = 3L, name = deparse(substitute(x))
-)
-{
-  before <- names(x)
-
-  x <- kwb.utils::renameColumns(x, renamings)
-
-  if (dbg && any(differs <- before != (after <- names(x)))) {
-
-    write_markdown_chapter(
-      knitr::kable(cbind(von = before[differs], nach = after[differs])),
-      caption = get_text("renaming_columns", newline_collapsed(name)),
-      level = dbg
-    )
-  }
-
-  x
 }
 
 # run_cached -------------------------------------------------------------------
@@ -374,72 +226,10 @@ save_as <- function(x, name, file = NULL)
   structure(invisible(x), file = file)
 }
 
-# safe_row_bind ----------------------------------------------------------------
-#' @keywords internal
-safe_row_bind <- function(
-  x, y,
-  name_x = deparse(substitute(x)),
-  name_y = deparse(substitute(y)),
-  dbg = 3L
-)
-{
-  if (dbg) {
-
-    metadata <- kwb.utils::noFactorDataFrame(
-      table_name = c(name_x, name_y),
-      n_rows = c(nrow(x), nrow(y)),
-      n_cols = c(ncol(x), ncol(y))
-    )
-
-    write_markdown_chapter(
-      kable_translated(metadata),
-      caption_key = "row_bind",
-      level = dbg
-    )
-  }
-
-  kwb.utils::safeRowBind(x, y)
-}
-
-# set_columns ------------------------------------------------------------------
-set_columns <- function(x, ..., dbg = 1L, name = deparse(substitute(x)))
-{
-  if (dbg) {
-
-    write_markdown_chapter(
-      to_markdown_enum(names(list(...))),
-      caption = if (name == ".") {
-        get_text("calculating_new_columns")
-      } else {
-        get_text("calculating_new_columns_in", name)
-      },
-      level = dbg
-    )
-  }
-
-  kwb.utils::setColumns(x, ..., dbg = FALSE)
-}
-
-
 # set_dbg ----------------------------------------------------------------------
 set_dbg <- function(dbg = 1L)
 {
   options(sema_prep_app_dbg = dbg)
-}
-
-# stop_on_duplicates -----------------------------------------------------------
-stop_on_duplicates <- function(data, columns, dbg = 3L)
-{
-  if (dbg) {
-
-    write_markdown_chapter(
-      get_text("no_duplicates", list_with_comma(columns)),
-      caption_key = "duplicate_check",
-      level = dbg
-    )
-  }
-
-  invisible(data)
 }
 
 # find_string_constants --------------------------------------------------------
@@ -455,12 +245,6 @@ find_string_constants <- function()
       root = "./R", FUN = kwb.code:::fetch_string_constants_2
     )
   )
-}
-
-# split_by_columns -------------------------------------------------------------
-split_by_columns <- function(df, columns, ...)
-{
-  split(df, kwb.utils::selectColumns(df, columns, drop = FALSE), ...)
 }
 
 # stop_ ------------------------------------------------------------------------
@@ -488,38 +272,6 @@ to_rcode_snippet <- function(x)
   )
 }
 
-# unique_rows ------------------------------------------------------------------
-#' @keywords internal
-unique_rows <- function(x, dbg = 2L)
-{
-  #kwb.prep::assign_objects()
-  #x = iris; dbg = 2L
-  stopifnot(is.data.frame(x))
-
-  before <- nrow(x)
-  x <- unique(x)
-  after <- nrow(x)
-
-  if (dbg) {
-
-    removed <- before - after
-
-    metadata <- kwb.utils::noFactorDataFrame(
-      rows_before = before,
-      rows_after = after,
-      rows_removed = removed,
-      rows_removed_percent = round(kwb.utils::percentage(removed, before), 1L),
-      key_columns = list_with_comma(names(x))
-    )
-
-    metadata %>%
-      kable_translated() %>%
-      write_markdown_chapter("unique_rows", level = dbg)
-  }
-
-  x
-}
-
 # write_csv_file ---------------------------------------------------------------
 write_csv_file <- function(x, file, dbg = TRUE)
 {
@@ -528,39 +280,6 @@ write_csv_file <- function(x, file, dbg = TRUE)
     dbg = dbg,
     writeStandardCsv(x, file, na = "")
   )
-}
-
-# write_data_frame_info --------------------------------------------------------
-write_data_frame_info <- function(
-  x, level = 3L, name = deparse(substitute(x)),
-  wide = get_option("table_structure_wide"),
-  top_n = get_option("table_structure_top_n")
-)
-{
-  write_markdown_chapter(
-    c(
-      get_text("table_dimesion", nrow(x), ncol(x)),
-      kable_data_frame_structure(x, wide = wide, top_n = top_n)
-    ),
-    caption = get_text("structure_of", name),
-    level = level
-  )
-
-  invisible(x)
-}
-
-# write_enum -------------------------------------------------------------------
-write_enum <- function(x, ...)
-{
-  writeLines(to_markdown_enum(get_text(x, ...)))
-}
-
-# write_enum_if ----------------------------------------------------------------
-write_enum_if <- function(check, x, ...)
-{
-  if (check) {
-    write_enum(x, ...)
-  }
 }
 
 # write_lines_utf8 -------------------------------------------------------------

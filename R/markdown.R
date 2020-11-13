@@ -37,6 +37,12 @@ md_header <- function(
   }
 }
 
+# print_kable ------------------------------------------------------------------
+print_kable <- function(...)
+{
+  print(knitr::kable(...))
+}
+
 # to_markdown_chapter ----------------------------------------------------------
 to_markdown_chapter <- function(
   x, caption_key = "key?", level = 3L, caption = NULL
@@ -62,6 +68,20 @@ to_markdown_enum <- function(x, collapse = FALSE)
   }
   
   paste(md, collapse = nl)
+}
+
+# write_enum -------------------------------------------------------------------
+write_enum <- function(x, ...)
+{
+  writeLines(to_markdown_enum(get_text(x, ...)))
+}
+
+# write_enum_if ----------------------------------------------------------------
+write_enum_if <- function(check, x, ...)
+{
+  if (check) {
+    write_enum(x, ...)
+  }
 }
 
 # write_markdown_chapter -------------------------------------------------------
