@@ -235,30 +235,7 @@ remove_columns <- function(
   x, columns = NULL, reason = NULL, ..., dbg. = TRUE, key = NULL
 )
 {
-  configs <- list(
-    duplicated_in_cctv = list(
-      columns = c("n_rehab", "n_repairs", "ConstructionDate_raw")
-    ),
-    intermediate = list(
-      pattern = "((Ground|Invert)Level(Up|Down)stream)|LENGTH_FROM_COORDS",
-      reason = "reason_intermediate"
-    ),
-    intermediate_lookup = list(
-      pattern = "Insp$",
-      reason = "reason_intermediate_lookup"
-    ),
-    this_year = list(
-      columns = "THIS_YEAR",
-      reason = "reason_this_year"
-    )
-  )
-
-  if (FALSE) {
-    file <- kwb.prep:::config_file("args_remove_column.yml", must_exist = FALSE)
-    yaml::write_yaml(configs, file)
-    kwb.utils::hsOpenWindowsExplorer(dirname(file))
-    stopifnot(identical(yaml::read_yaml(file), configs))
-  }
+  configs <- read_args("remove_columns", dbg = FALSE)
   
   if (! is.null(key)) {
 
