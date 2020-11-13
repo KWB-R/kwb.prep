@@ -18,18 +18,21 @@ string_definition <- list(
   columns_removed_reason = paste0(
     "Die folgenden %d Spalten wurden entfernt (%s):<nl><nl>%s<nl>"
   ),
+  common_columns = paste0(
+    "The following columns are in '%s' as well as in '%s':<nl>- %s"
+  ),
   creating_missing_column = "Creating missing column '%s'",
   deleting_constant_columns = "Deleting 'constant' columns",
   hello = "sch<oe>ne Gr<ue>sse",
   key_columns = "Schl<ue>sselspalte(n)",
   left_joining = "Tabellen verbinden (Left Join)",
   left_table = "Linke Tabelle",
+  merging_failed = "Merging %s with %s led to %d more rows!",
   n_rows = "Anzahl Zeilen",
   name = "Name",
   new_line = "<nl>",
   nrow_x = "Zeilen links",
   nrow_y = "Zeilen rechts",
-  merging_failed = "Merging %s with %s led to %d more rows!",
   no_columns_removed = "Es wurden keine Spalten entfernt.",
   no_duplicates = "Keine Duplikate in (Wertekombinationen der) Spalte(n): %s",
   reading_args = "Argumente f<ue>r Funktion %s() lesen aus: '%s'",
