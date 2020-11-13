@@ -37,9 +37,11 @@ remove_columns <- function(
     md_enum <- to_markdown_enum(removed, collapse = TRUE)
     
     if (is.null(reason)) {
-      get_text("columns_removed", n_removed, md_enum)
+      get_text("columns_removed", n_removed, name, md_enum)
     } else {
-      get_text("columns_removed_reason", n_removed, get_text(reason), md_enum)
+      get_text(
+        "columns_removed_reason", n_removed, name, get_text(reason), md_enum
+      )
     }
     
   } else {
@@ -47,7 +49,11 @@ remove_columns <- function(
     get_text("no_columns_removed")
   }
   
-  write_markdown_chapter(content, "removing_columns", level = dbg.)
+  write_markdown_chapter(
+    content, level = dbg., caption = get_text(
+      "removing_columns", newline_collapsed(name)
+    )
+  )
   
   x
 }

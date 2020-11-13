@@ -15,9 +15,11 @@ string_definition <- list(
   by = "verkn<ue>pft",
   calculating_new_columns = "Berechnen neuer Spalten",
   calculating_new_columns_in = "Berechnen neuer Spalten in '%s'",
-  columns_removed = "Die folgenden %d Spalten wurden entfernt:<nl><nl>%s<nl>",
+  columns_removed = paste0(
+    "Die folgenden %d Spalten wurden aus '%s' entfernt:<nl><nl>%s<nl>"
+  ),
   columns_removed_reason = paste0(
-    "Die folgenden %d Spalten wurden entfernt (%s):<nl><nl>%s<nl>"
+    "Die folgenden %d Spalten wurden aus '%s' entfernt (%s):<nl><nl>%s<nl>"
   ),
   column_x = "Spalte links",
   column_y = "Spalte rechts",
@@ -41,6 +43,7 @@ string_definition <- list(
   no_duplicates = "Keine Duplikate in (Wertekombinationen der) Spalte(n): %s",
   reading_args = "Argumente f<ue>r Funktion %s() lesen aus: '%s'",
   reading_filter_criteria = "Reading filter criteria from",
+  removing_columns = "Spalten aus '%s' entfernen",
   renaming_columns = "Spalten in '%s' umbenennen:<nl>",
   replacements_invalid_csv = paste0(
     "Ersetzungen gem<ae><ss> replace_invalid.csv, Gruppe '%s'"
