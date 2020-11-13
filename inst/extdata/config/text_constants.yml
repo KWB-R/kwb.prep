@@ -1,3 +1,11 @@
+applying_filter: Filterschritte '%s' anwenden
+applying_filter_to: Filterschritte '%s' anwenden auf '%s'
+calculating_new_columns: Berechnen neuer Spalten
+calculating_new_columns_in: Berechnen neuer Spalten in '%s'
+columns_removed: Die folgenden %d Spalten wurden entfernt:<nl><nl>%s<nl>
+columns_removed_reason: Die folgenden %d Spalten wurden entfernt (%s):<nl><nl>%s<nl>
+creating_missing_column: Creating missing column '%s'
+deleting_constant_columns: Deleting 'constant' columns
 hello: sch<oe>ne Gr<ue>sse
 key_columns: Schl<ue>sselspalte(n)
 left_joining: Tabellen verbinden (Left Join)
@@ -7,9 +15,20 @@ name: Name
 new_line: <nl>
 nrow_x: Zeilen links
 nrow_y: Zeilen rechts
+merging_failed: Merging %s with %s led to %d more rows!
+no_columns_removed: Es wurden keine Spalten entfernt.
+no_duplicates: 'Keine Duplikate in (Wertekombinationen der) Spalte(n): %s'
 reading_args: 'Argumente f<ue>r Funktion %s() lesen aus: ''%s'''
+reading_filter_criteria: Reading filter criteria from
+renaming_columns: Spalten in '%s' umbenennen:<nl>
+replacements_invalid_csv: Ersetzungen gem<ae><ss> replace_invalid.csv, Gruppe '%s'
 result_table: Ergebnistabelle
 right_table: Rechte Tabelle
 select_columns: Spalten ausw<ae>hlen
 select_columns_from: Spalten ausw<ae>hlen aus '%s'
+select_rename_columns: Spalten ausw<ae>hlen (und umbenennen)
+select_rename_columns_from: Spalten ausw<ae>hlen (und umbenennen) aus '%s'
+structure_of: Struktur von '%s'
+table_dimesion: Tabelle mit %d Zeilen und %d Spalten<nl>
 unique_rows: Duplikatzeilen entfernen
+writing_csv: Schreiben von `%s`
