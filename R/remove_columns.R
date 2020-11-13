@@ -1,19 +1,24 @@
 # remove_columns ---------------------------------------------------------------
 remove_columns <- function(
-  x, columns = NULL, reason = NULL, ..., dbg. = TRUE, key = NULL
+  x, columns = NULL, reason = NULL, ..., dbg. = TRUE, key = NULL, 
+  name = NULL
 )
 {
-  configs <- read_args("remove_columns", dbg = FALSE)
+  name <- getname(name, substitute(x))
   
   if (! is.null(key)) {
-    
-    config <- kwb.utils::selectElements(configs, key)
+  
+    config <- kwb.utils::selectElements(
+      read_args("remove_columns", dbg = FALSE), key
+    )
     
     return(remove_columns(
       x,
       columns = config$columns,
       reason = config$reason,
-      pattern = config$pattern
+      pattern = config$pattern,
+      dbg. = dbg.,
+      name = name
     ))
   }
   

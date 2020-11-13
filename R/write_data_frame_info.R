@@ -1,10 +1,12 @@
 # write_data_frame_info --------------------------------------------------------
 write_data_frame_info <- function(
-  x, level = 3L, name = deparse(substitute(x)),
+  x, level = 3L, name = NULL,
   wide = get_option("table_structure_wide"),
   top_n = get_option("table_structure_top_n")
 )
 {
+  name <- getname(name, substitute(x))
+  
   write_markdown_chapter(
     c(
       get_text("table_dimesion", nrow(x), ncol(x)),

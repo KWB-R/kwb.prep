@@ -2,10 +2,12 @@
 #' @keywords internal
 rename_and_select <- function(
   x, renamings, columns = as.character(renamings), dbg = 1L,
-  name = deparse(substitute(x))
+  name = NULL
 )
 {
   if (dbg) {
+    
+    name <- getname(name, substitute(x))
     
     metadata <- kwb.utils::noFactorDataFrame(
       selected_column = columns,

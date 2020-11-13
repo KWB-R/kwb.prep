@@ -4,13 +4,15 @@
 \alias{stopOnDuplicates}
 \title{Stop If There Are Duplicates over given Columns}
 \usage{
-stopOnDuplicates(data, columns = names(data))
+stopOnDuplicates(data, columns = names(data), name = NULL)
 }
 \arguments{
 \item{data}{data frame}
 
 \item{columns}{names of columns over which to look for duplicates. By
 default, all columns in \code{data} are used.}
+
+\item{name}{name of data}
 }
 \description{
 Stop If There Are Duplicates over given Columns

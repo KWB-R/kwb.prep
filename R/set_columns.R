@@ -1,7 +1,9 @@
 # set_columns ------------------------------------------------------------------
-set_columns <- function(x, ..., dbg = 1L, name = deparse(substitute(x)))
+set_columns <- function(x, ..., dbg = 1L, name = NULL)
 {
   if (dbg) {
+    
+    name <- getname(name, substitute(x))
     
     write_markdown_chapter(
       to_markdown_enum(names(list(...))),

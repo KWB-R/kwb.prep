@@ -1,9 +1,11 @@
 # apply_filter -----------------------------------------------------------------
 apply_filter <- function(
-  x, element, length_column = NULL, dbg = 2L, name = deparse(substitute(x)),
+  x, element, length_column = NULL, dbg = 2L, name = NULL,
   config = read_filter_criteria(dbg = FALSE)
 )
 {
+  name <- getname(name, substitute(x))
+  
   output <- utils::capture.output(
     result <- applyFilter(x, config, element, length_column)
   )

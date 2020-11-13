@@ -57,6 +57,9 @@ get_year_number <- function(x)
   as.integer(format(x, "%Y"))
 }
 
+# getname ----------------------------------------------------------------------
+getname <- function(name, x) kwb.utils::defaultIfNULL(name, deparse(x))
+
 # grep_value -------------------------------------------------------------------
 grep_value <- function(pattern, x)
 {

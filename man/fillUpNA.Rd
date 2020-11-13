@@ -4,7 +4,7 @@
 \alias{fillUpNA}
 \title{Fill NA in First Vector With Values From Second Vector}
 \usage{
-fillUpNA(x, y, dbg = TRUE)
+fillUpNA(x, y, dbg = TRUE, name_x = NULL, name_y = NULL)
 }
 \arguments{
 \item{x}{first vector}
@@ -12,6 +12,10 @@ fillUpNA(x, y, dbg = TRUE)
 \item{y}{second vector}
 
 \item{dbg}{if \code{TRUE} a debug message is shown}
+
+\item{name_x}{name of x}
+
+\item{name_y}{name of y}
 }
 \value{
 \code{x} with \code{NA} replaced by the values in \code{y} at the

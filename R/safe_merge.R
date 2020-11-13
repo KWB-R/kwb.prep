@@ -6,8 +6,8 @@ safe_merge <- function(
   by.y = by, 
   ..., 
   dbg = 1L, 
-  name_x = deparse(substitute(x)),
-  name_y = deparse(substitute(y))
+  name_x = NULL,
+  name_y = NULL
 )
 {
   checkForMissingColumns(x, by.x)
@@ -17,6 +17,9 @@ safe_merge <- function(
   #kwb.utils::assignArgumentDefaults(kwb.prep:::safe_merge)
   #kwb.prep::assign_objects()
   if (dbg) {
+    
+    name_x <- getname(name_x, substitute(x))
+    name_y <- getname(name_y, substitute(y))
     
     names_x <- setdiff(names(x), by.x)
     names_y <- setdiff(names(y), by.y)

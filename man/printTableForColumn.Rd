@@ -4,12 +4,14 @@
 \alias{printTableForColumn}
 \title{Print Result of table() for Given Column}
 \usage{
-printTableForColumn(data, column)
+printTableForColumn(data, column, name = NULL)
 }
 \arguments{
 \item{data}{data frame}
 
 \item{column}{column name}
+
+\item{name}{name of data}
 }
 \description{
 Print Result of table() for Given Column

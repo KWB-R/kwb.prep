@@ -4,12 +4,14 @@
 \alias{printNumberOfNA}
 \title{Print Number of NA Values in Given Column}
 \usage{
-printNumberOfNA(data, column)
+printNumberOfNA(data, column, name = NULL)
 }
 \arguments{
 \item{data}{data frame}
 
 \item{column}{column name}
+
+\item{name}{name of data}
 }
 \description{
 Print Number of NA Values in Given Column

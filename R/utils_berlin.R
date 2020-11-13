@@ -100,15 +100,16 @@ dataFramesToTextMatrix <- function(data_frames)
 #' @param x first vector
 #' @param y second vector
 #' @param dbg if \code{TRUE} a debug message is shown
-#' 
+#' @param name_x name of x
+#' @param name_y name of y
 #' @return \code{x} with \code{NA} replaced by the values in \code{y} at the
 #'   same positions
 #' 
-fillUpNA <- function(x, y, dbg = TRUE)
+fillUpNA <- function(x, y, dbg = TRUE, name_x = NULL, name_y = NULL)
 {
-  name_x <- deparse(substitute(x))
-  name_y <- deparse(substitute(y))
-
+  name_x <- getname(name_x, substitute(x))
+  name_y <- getname(name_y, substitute(y))
+  
   stopifnot(length(x) == length(y))
   
   is_na <- is.na(x)
@@ -417,11 +418,13 @@ stopIfNotIn <- function(
 #' @param data data frame
 #' @param columns names of columns over which to look for duplicates. By 
 #'   default, all columns in \code{data} are used.
-#' 
+#' @param name name of data 
 #' @export
 #' 
-stopOnDuplicates <- function(data, columns = names(data))
+stopOnDuplicates <- function(data, columns = names(data), name = NULL)
 {
+  name <- getname(name, substitute(data))
+  
   changes <- getChangesOfDuplicates(data, columns)
   
   if (length(changes) > 0) {
@@ -430,7 +433,7 @@ stopOnDuplicates <- function(data, columns = names(data))
     
     stopf(
       "There are duplicates in column(s) %s of %s (see above)!", 
-      kwb.utils::stringList(columns), deparse(substitute(data))
+      kwb.utils::stringList(columns), name
     )
   }
 }
@@ -490,12 +493,15 @@ removeRowsThatAreNaInColumn <- function(data, column, dbg = TRUE)
 #' 
 #' @param data data frame
 #' @param column column name
-#' 
+#' @param name name of data
 #' @export
 #' 
-printNumberOfNA <- function(data, column)
+printNumberOfNA <- function(data, column, name = NULL)
 {
-  cat(sprintf("\nis.na(%s$%s):\n", deparse(substitute(data)), column))
+  name <- getname(name, substitute(data))
+  
+  cat(sprintf("\nis.na(%s$%s):\n", name, column))
+  
   print(table(is.na(kwb.utils::selectColumns(data, column))))
 }
 
@@ -505,12 +511,15 @@ printNumberOfNA <- function(data, column)
 #' 
 #' @param data data frame
 #' @param column column name
-#' 
+#' @param name name of data
 #' @export
 #' 
-printTableForColumn <- function(data, column)
+printTableForColumn <- function(data, column, name = NULL)
 {
-  cat(sprintf("\ntable(%s$%s):\n", deparse(substitute(data)), column))
+  name <- getname(name, substitute(data))
+  
+  cat(sprintf("\ntable(%s$%s):\n", name, column))
+  
   print(table(kwb.utils::selectColumns(data, column), useNA = "always"))
 }
 
