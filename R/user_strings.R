@@ -17,9 +17,7 @@ get_user_strings <- function()
 #' @importFrom methods allNames
 set_user_strings <- function(x)
 {
-  check_user_strings()
-
-  set_global("user_strings", x)
+  set_global("user_strings", check_user_strings(x))
 }
 
 # check_user_strings -----------------------------------------------------------
@@ -30,7 +28,7 @@ check_user_strings <- function(x)
   stopifnot(all(sapply(x, mode) == "character"))
   stopifnot(all(methods::allNames(x) != ""))
   
-  #kwb.prep::assign_all()
+  #kwb.prep::assign_objects()
   if (length(common <- intersect(names(x), names(read_string_definition())))) {
     
     stop_(

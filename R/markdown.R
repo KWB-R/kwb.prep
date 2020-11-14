@@ -13,7 +13,7 @@ md_header <- function(
   level, caption_key = "key?", caption = NULL, print = TRUE, msg = TRUE
 )
 {
-  #kwb.prep::assign_all()
+  #kwb.prep::assign_objects()
   #caption=NULL;print=TRUE;msg=TRUE
   caption <- kwb.utils::defaultIfNULL(caption, get_text(caption_key))
   
@@ -21,12 +21,11 @@ md_header <- function(
     return(NULL)
   }
   
-  header <- sprintf(
-    "%s%s %s",
-    get_text("new_line"), kwb.utils::repeated("#", level), caption
-  )
+  raw_header <- paste(kwb.utils::repeated("#", level), caption)
   
-  message_if(msg, header)
+  header <- paste0(get_text("new_line"), raw_header)
+  
+  message_if(msg, raw_header)
   cat_if(print, header, get_text("new_line"), get_text("new_line"))
   
   # For convenience: return the next debug level to allow for:
@@ -36,6 +35,12 @@ md_header <- function(
   } else {
     invisible(header)
   }
+}
+
+# print_kable ------------------------------------------------------------------
+print_kable <- function(...)
+{
+  print(knitr::kable(...))
 }
 
 # to_markdown_chapter ----------------------------------------------------------
@@ -65,6 +70,20 @@ to_markdown_enum <- function(x, collapse = FALSE)
   paste(md, collapse = nl)
 }
 
+# write_enum -------------------------------------------------------------------
+write_enum <- function(x, ...)
+{
+  writeLines(to_markdown_enum(get_text(x, ...)))
+}
+
+# write_enum_if ----------------------------------------------------------------
+write_enum_if <- function(check, x, ...)
+{
+  if (check) {
+    write_enum(x, ...)
+  }
+}
+
 # write_markdown_chapter -------------------------------------------------------
 
 #' Write a Markdown Chapter
@@ -78,6 +97,10 @@ write_markdown_chapter <- function(
   x, caption_key = "key?", level = 3L, caption = NULL
 )
 {
+  if (level <= 0L) {
+    return()
+  }
+  
   writeLines(to_markdown_chapter(
     x = x, caption_key = caption_key, level = level, caption = caption
   ))

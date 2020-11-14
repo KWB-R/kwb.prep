@@ -1,1 +1,132 @@
-hello: sch<oe>ne Gr<ue>sse
+hello: hello
+add_calculated_gis_variables: Neue Spalten aus existierenden Spalten berechnen
+after_regroup: After regroup()
+append_liner_info_to_cctv: Liner-Information an erweiterte Inspektionsdaten anf<ue>gen
+clear_caches: Clearing caches (.RData files and global variable TABLES)
+column: Spalte
+column_name: Spaltenname
+column_names: Spaltennamen
+comparison_age_summaries: <nl>Comparison of network age summaries before and after
+  update with predictions:<nl><nl>
+condition: wenn
+convert_from: Datentyp vorher
+convert_to: Datentyp nachher
+converting: Converting column '%s' from '%s' to '%s
+count: Anzahl
+count_rows_by_inspection_id: Nach InspectionID gruppieren und Zeilen z<ae>hlen
+current_type: aktueller Typ
+data_type: Datentyp
+differences_found: 'Differences found: %d<nl>'
+duplicate_check: Duplikatpr<ue>fung
+empty_columns_removed: Die folgenden %d leeren Spalten wurden entfernt:<nl><nl>%s<nl>
+file: Datei
+fill_gaps: F<ue>llen von L<ue>cken mit Informationen aus Inspektionsdaten
+fill_gaps_from_inspections: L<ue>cken f<ue>llen mit Inspektionsdaten
+filled_gaps_construction_year: '<nl>Filled gaps in construction year: %d<nl>'
+frequency: H<ae>ufigkeit
+get_cached_or_load: Rohdaten aus Textdatei oder Cache lesen/laden
+get_liner_data: Laden und Vorverarbeiten von Linerdaten
+get_liner_info: Laden von Informationen <ue>ber Liningma<ss>nahmen
+get_number_of_repairs: Anzahl 'K'-Sch<ae>den je Inspektion z<ae>hlen
+get_pipe_id_mapping: Zuordnung PipeID => PipeNr (Haltungsnummer) erzeugen
+get_san_data: Laden von Informationen <ue>ber Sanierungsma<ss>nahmen
+getting_left_joined_tables: Getting LEFT-JOINED tables from the database
+getting_table: Getting table '%s' from database
+gis_load: Laden der GIS-Daten
+init_cache: Initialising a cache in '%s'
+inspected_pipes: 'Inspected pipes: %d (%0.1f%%)<nl>'
+inspections_cctv: 'Inspections (CCTV data sets): %d<nl>'
+length_from_coordinates: Alternative Haltungsl<ae>ngen aus Schachtkoordinaten ermitteln
+loading_from_file_cache: Laden von '%s' aus dem Datei-Cache (.RData-Datei)
+loading_rehab_info: Laden von Informationen <ue>ber Sanierungsma<ss>nahmen
+loading_repair_info: Laden von Informationen <ue>ber Reparaturma<ss>nahmen
+main_1_gis: Aufbereiten der Haltungs-Stammdaten
+main_2_cctv: Aufbereiten der Inspektionsdaten
+main_3_cctv_gis: Inspektionsdaten um Haltungsdaten erweitern
+main_4_classify_prettify: Daten versch<oe>nern
+missing_fields: <nl>### The following fields are missing and thus not provided:<nl><nl>
+modified: zuletzt ge<ae>ndert
+most_frequent: h<ae>ufigste Werte
+multi_inspections: 'Multi-inspections on same day (2nd, 3rd, ...): %d<nl>'
+multiple_inspections: 'Muliple inspections: %d (%0.1f%% of all inspections)<nl>'
+n_added_construction_years: 'Anzahl erg<ae>nzter Baujahre: %d'
+n_cols: Anzahl Spalten
+n_differences: There are %d differences between %s and %s!
+n_distinct: distinkt
+n_na: NA
+n_na_after: NA nachher
+n_na_before: NA vorher
+n_na_before_after: '- NAs before / filled-up / after in %s: %d / %d / %d<nl>'
+n_na_before_after_median: 'Anzahl NA vor und nach F<ue>llen fehlender numerischer
+  Werte mit dem Median f<ue>r folgende Spalten: %s'
+n_na_replaced: NA ersetzt
+n_pipes_with_info_in_cctv: '- Number of pipes with available information in cctv$%s:
+  %d<nl>'
+n_rehab: 'Number of rehabilitations: %d<nl>'
+n_rehab_without_date: '- without rehabilitation date: %d<nl>'
+n_replaced: Anzahl
+no_conversions: Es haben keine Typkonvertierungen stattgefunden.
+no_type_conversion_required: Keine Typumwandlung erforderlich
+no_type_info_found: Keine Typinformation gefunden
+not_in_file_cache: Objekt '%s' ist noch nicht im Datei-Cache (.RData-Datei) vorhanden
+  und wird nun eingelesen/berechnet.
+not_specified: Keine Angabe
+object_cached_in_file: Speichern von '%s' im Datei-Cache (.RData-Datei).
+original_column: (umbenannt von)
+original_output: Original output of '%s':<nl>=====<nl>%s<nl>=====<nl>
+output_does_not_match: output does not match '%s':<nl>*****<nl>%s<nl>*****<nl>
+partial_change: Teilweise Auswechslung
+partial_renewal: Neubau eines Teilst<ue>ckes
+partial_renewal_clean: Teilerneuerung
+pattern_converting: Converting column '([^']+)' from '([^']+)' to '([^' ]+) .*$
+pattern_data_correction: 'Data correction: (\d+) values with "([^"]+)" set to ''([^'']+)'''
+pattern_empty_columns_removed: '^.*(\d+) empty columns removed: (.*)$'
+pipes_discarded: <nl>%d Haltungen wurden entfernt, da das Jahr der Renovierung (Lining)
+  gleich dem Baujahr (d.h. dem Jahr der letzten Erneuerung) ist oder vor diesem liegt.
+  Das kann zwei Gr<ue>nde haben:<nl><nl>* Baujahr wurde f<ae>lschlicherweise <ue>berschrieben
+  mit dem Jahr der Renovierung; Abstand von einem Jahr zwischen tats<ae>chlichem Jahr
+  der Renovierung und Ende der Bauma<ss>nahme m<oe>glich.<nl>* Fehler in der Sch<ae>tzung
+  eines fehlenden Baujahrs.<nl><nl>Die entfernten Haltungen sind in der Datei 'output/%s'
+  dokumentiert.<nl><nl>
+pipes_gis: 'Pipes (GIS data sets): %d<nl>'
+predict_constr_year: Fehlendes Konstruktionsjahr mit Modellsch<ae>tzung erg<ae>nzen
+predict_material: Fehlendes Material mit Modellsch<ae>tzung erg<ae>nzen
+read_csv_file: CSV-Datei einlesen
+read_raw_data_gis_csv: Einlesen der GIS-Daten aus CSV-Dateien
+reading_csv_file: Einlesen der CSV-Datei '%s'
+reason_intermediate: Hilfsspalten, die nur f<ue>r die Berechnung neuer Spalten ben<oe>tigt
+  wurden
+reason_intermediate_lookup: Inspektionsspalten, die zum F<ue>llen von L<ue>cken verwendet
+  wurden
+reason_this_year: Hilfsspalte, die das aktuelle Jahr enth<ae>lt, zur Auswertung der
+  G<ue>ltigkeitsbedingungen
+records_after_filtering: 'df sets after filtering: %d<nl>'
+records_before_filtering: 'df sets before filtering: %d<nl>'
+removing_columns: Spalten entfernen
+removing_empty_columns: Leere Spalten entfernen
+repair: Reparatur
+replace_specials: Spezielle (ung<ue>ltige) Werte ersetzen
+replacement: wird gesetzt auf
+replacing_with_median: Ersetzen fehlender numerischer Werte mit dem Median
+returning_table_from_global: Laden der Tabelle '%s' aus der globalen Liste 'TABLES'
+row_bind: Tabellen zeilenweise verbinden
+rows_after: Zeilen nachher
+rows_before: Zeilen vorher
+rows_removed: Zeilen entfernt
+rows_removed_percent: (%)
+selected_column: Ausgew<ae>hlt
+size: Gr<oe><ss>e
+source_column: Quellspalte
+stats_before_after: Statistische Kennzahlen des Haltungsalters vor und nach Baujahrssch<ae>tzung
+summary_heading: <nl>Summary:<nl>--------<nl>
+table: Tabelle
+table_name: Tabellenname
+table_with_name: 'Tabelle: %s'
+target_column: Spalte
+type_conversions: Typkonvertierungen
+uninspected_pipes: 'Uninspected pipes: %d (%0.1f%%)<nl>'
+unknown_material: Unbekannt
+updating_age: <nl>Die Altersspalte wird neu berechnet.<nl><nl>
+updating_age_caption: Aktualisieren der Altersspalte
+using_option_value: Using option value %s = '%s'
+value: Wert

@@ -16,7 +16,9 @@
 #' 
 create_text_getter <- function(raw_strings)
 {
-  raw_strings <- get_raw_strings(user_strings = check_user_strings(raw_strings))
+  user_strings <- check_user_strings(raw_strings)
+  
+  raw_strings <- get_raw_strings(user_strings)
     
   function(key = NULL, ...) {
     get_text(key, ..., raw_strings = raw_strings)

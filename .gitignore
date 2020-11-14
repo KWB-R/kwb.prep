@@ -3,3 +3,4 @@
 .RData
 .Ruserdata
 docs
+inst/extdata/config/text_dictionary.txt

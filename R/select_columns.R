@@ -1,9 +1,12 @@
 # select_columns ---------------------------------------------------------------
 select_columns <- function(
-  df, columns, indices = NULL, dbg = 0L, name = deparse(substitute(df))
+  df, columns, indices = NULL, dbg = 0L, name = NULL
 )
 {
   if (dbg) {
+    
+    name <- getname(name, substitute(df))
+    
     write_markdown_chapter(
       x = to_markdown_enum(columns),
       caption = if (name == ".") {
