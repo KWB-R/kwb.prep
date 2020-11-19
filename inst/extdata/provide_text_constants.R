@@ -60,7 +60,9 @@ string_definition <- list(
     "Spalten ausw<ae>hlen (und umbenennen) aus '%s'"
   ),
   structure_of = "Struktur von '%s'",
+  table = "Tabelle",
   table_dimesion = "Tabelle mit %d Zeilen und %d Spalten<nl>",
+  table_name = "Tabellenname",
   type_x = "Typ links",
   type_y = "Typ rechts",
   unique_rows = "Duplikatzeilen entfernen",
