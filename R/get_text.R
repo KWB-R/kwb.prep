@@ -46,7 +46,10 @@ get_text <- function(key = NULL, ..., raw_strings = get_raw_strings())
     ae = "\u00E4",
     oe = "\u00F6",
     ue = "\u00FC",
-    ss = "\u00DF"
+    ss = "\u00DF",
+    Ae = "\u00C4",
+    Oe = "\u00D6",
+    Ue = "\u00DC"
   )
   
   if (is.null(key)) {
