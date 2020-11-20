@@ -124,10 +124,9 @@ replace_by_condition <- function(df, group, path = NULL, dbg = 1L)
 {
   #path=NULL
   #kwb.prep::assign_objects()
-
   result <- suppressMessages(replaceByCondition(
     df = df, group = group, dbg = FALSE, file = kwb.utils::defaultIfNULL(
-      path, config_file("replace_invalid.csv", must_exist = TRUE)
+      path, config_file("replace_invalid.csv", in_package = FALSE)
     )
   ))
 
