@@ -103,7 +103,9 @@ read_filter_criteria <- function(
 # read_internal_types ----------------------------------------------------------
 read_internal_types <- function(dbg = FALSE)
 {
-  result <- read_csv_file(config_file("internal-types.csv"), dbg = dbg)
+  file <- config_file("internal-types.csv", in_package = FALSE)
+  
+  result <- read_csv_file(file, dbg = dbg)
 
   fetch <- kwb.utils::createAccessor(result)
 
