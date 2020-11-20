@@ -103,7 +103,9 @@ read_filter_criteria <- function(
 # read_internal_types ----------------------------------------------------------
 read_internal_types <- function(dbg = FALSE)
 {
-  result <- read_csv_file(config_file("internal-types.csv"), dbg = dbg)
+  file <- config_file("internal-types.csv", in_package = FALSE)
+  
+  result <- read_csv_file(file, dbg = dbg)
 
   fetch <- kwb.utils::createAccessor(result)
 
@@ -122,10 +124,9 @@ replace_by_condition <- function(df, group, path = NULL, dbg = 1L)
 {
   #path=NULL
   #kwb.prep::assign_objects()
-
   result <- suppressMessages(replaceByCondition(
     df = df, group = group, dbg = FALSE, file = kwb.utils::defaultIfNULL(
-      path, config_file("replace_invalid.csv", must_exist = TRUE)
+      path, config_file("replace_invalid.csv", in_package = FALSE)
     )
   ))
 
