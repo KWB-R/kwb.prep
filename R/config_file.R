@@ -4,9 +4,14 @@
 config_file <- function(..., must_exist = TRUE, in_package = TRUE)
 {
   root <- if (in_package) {
+    
     system.file("extdata", "config", package = "kwb.prep")
+    
   } else {
-    kwb.utils::createDirectory(dbg = FALSE, path.expand("~/tmp/kwb.prep/config"))
+    
+    default_path <- path.expand("~/tmp/kwb.prep/config")
+    
+    get_global("user_config_dir", default_path)
   }
   
   if (must_exist) {
