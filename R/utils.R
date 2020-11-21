@@ -176,6 +176,12 @@ named_seq_along <- function(x)
   stats::setNames(seq_along(x), x)
 }
 
+# names_which ------------------------------------------------------------------
+names_which <- function(x)
+{
+  names(which(x))
+}
+
 # newline_collapsed ------------------------------------------------------------
 newline_collapsed <- function(x)
 {
