@@ -241,6 +241,16 @@ save_as <- function(x, name, file = NULL)
   structure(invisible(x), file = file)
 }
 
+# save_as_if -------------------------------------------------------------------
+save_as_if <- function(x, do_save, name, file = NULL)
+{
+  if (do_save) {
+    save_as(x, name = name, file = file)
+  }
+  
+  x
+}
+
 # set_dbg ----------------------------------------------------------------------
 set_dbg <- function(dbg = 1L)
 {
