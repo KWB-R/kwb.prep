@@ -1,5 +1,5 @@
-[![R-CMD-check](https://github.com/KWB-R/urbanAnnualRunoff/workflows/R-CMD-check/badge.svg)](https://github.com/KWB-R/urbanAnnualRunoff/actions?query=workflow%3AR-CMD-check)
-[![pkgdown](https://github.com/KWB-R/urbanAnnualRunoff/workflows/pkgdown/badge.svg)](https://github.com/KWB-R/urbanAnnualRunoff/actions?query=workflow%3Apkgdown)
+[![R-CMD-check](https://github.com/KWB-R/kwb.prep/workflows/R-CMD-check/badge.svg)](https://github.com/KWB-R/kwb.prep/actions?query=workflow%3AR-CMD-check)
+[![pkgdown](https://github.com/KWB-R/kwb.prep/workflows/pkgdown/badge.svg)](https://github.com/KWB-R/kwb.prep/actions?query=workflow%3Apkgdown)
 [![codecov](https://codecov.io/github/KWB-R/kwb.prep/branch/master/graphs/badge.svg)](https://codecov.io/github/KWB-R/kwb.prep)
 [![Project Status](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/kwb.prep)]()
