@@ -72,7 +72,9 @@ get_raw_strings <- function(user_strings = get_user_strings())
 }
 
 # read_string_definition -------------------------------------------------------
-read_string_definition <- function(file = config_file("text_constants.yml"))
+read_string_definition <- function(file = NULL)
 {
-  yaml::read_yaml(file)
+  yaml::read_yaml(file = kwb.utils::defaultIfNULL(file, config_file(
+    "text_constants.yml", in_package = TRUE
+  )))
 }
