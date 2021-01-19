@@ -1,6 +1,6 @@
 # select_columns ---------------------------------------------------------------
 select_columns <- function(
-  df, columns, indices = NULL, dbg = 0L, name = NULL
+  df, columns, indices = NULL, dbg = 0L, name = NULL, drop = FALSE
 )
 {
   if (dbg) {
@@ -18,7 +18,7 @@ select_columns <- function(
     )
   }
 
-  result <- kwb.utils::selectColumns(df, columns)
+  result <- kwb.utils::selectColumns(df, columns, drop = drop)
 
   if (is.null(indices)) {
     return(result)
