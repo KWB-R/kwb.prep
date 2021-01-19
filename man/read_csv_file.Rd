@@ -6,7 +6,7 @@
 \usage{
 read_csv_file(
   file,
-  sep = get_option("column_separator"),
+  sep = get_column_separator(),
   dec = ",",
   encoding = "UTF-8",
   na.strings = "",

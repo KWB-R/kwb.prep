@@ -12,7 +12,7 @@
 #'   \code{\link[data.table]{fread}}
 #' @param dbg if \code{TRUE} debug messages are shown
 read_csv_file <- function(
-  file, sep = get_option("column_separator"), dec = ",", encoding = "UTF-8",
+  file, sep = get_column_separator(), dec = ",", encoding = "UTF-8",
   na.strings = "", ..., dbg = 1L
 )
 {

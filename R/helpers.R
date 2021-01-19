@@ -30,6 +30,22 @@ copy_column <- function(df, to, from, indices = NULL, ...)
   set_column(df, to, from = from, indices = indices, ...)
 }
 
+# get_column_separator ---------------------------------------------------------
+get_column_separator <- function(id = NULL)
+{
+  sep <- get_option("column_separator")
+  
+  if (is.character(sep)) {
+    return(sep)
+  }
+  
+  if (is.null(id) || is.null(sep[[id]])) {
+    return(kwb.utils::selectElements(sep, "default"))
+  }
+  
+  sep[[id]]
+}
+
 # get_option -------------------------------------------------------------------
 get_option <- function(
   name = NULL, file = config_file("options.yml"), dbg = FALSE
