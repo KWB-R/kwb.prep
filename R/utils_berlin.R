@@ -162,33 +162,30 @@ fillUpNA <- function(x, y, dbg = TRUE, name_x = NULL, name_y = NULL)
 #' 
 getChangesOfDuplicates <- function(df, columns, add_columns = columns)
 {
-  candidates <- kwb.utils::selectColumns(df, columns, drop = FALSE)
+  fetch <- function(df, cols) kwb.utils::selectColumns(df, cols, drop = FALSE)
   
-  duplicate_indices <- which(duplicated(candidates))
+  candidates <- fetch(df, columns)
   
-  groups <- unique(candidates[duplicate_indices, , drop = FALSE])
+  groups <- unique(candidates[duplicated(candidates), , drop = FALSE])
   
   groups <- kwb.utils::fullySorted(groups)
   
-  group_column <- kwb.utils::hsSafeName("group", names(df))
+  groups[[".group"]] <- seq_len(nrow(groups))
   
-  groups[[group_column]] <- seq_len(nrow(groups))
+  y <- merge(df, groups, by = columns)
   
-  df <- merge(df, groups, by = setdiff(names(groups), group_column))
+  if (any(is.na(y[[".group"]]))) {
+    stop("Unexpected error in getChangesOfDuplicates(): .group is NA!")
+  }
   
-  df <- df[! is.na(df[[group_column]]), , drop = FALSE]
+  #y <- y[! is.na(y[[".group"]]), , drop = FALSE]
   
-  pipe_sets <- split(df, df[[group_column]])
+  nm <- names(y)
   
-  all_columns <- names(df)
+  cols <- c(columns, add_columns)
   
-  lapply(unname(pipe_sets), function(pipe_set) {
-    
-    diff_columns <- all_columns[! sapply(pipe_set, kwb.utils::allAreEqual)]
-    
-    columns_to_select <- unique(c(columns, add_columns, diff_columns))
-    
-    kwb.utils::selectColumns(pipe_set, columns_to_select, drop = FALSE)
+  lapply(unname(split(y, y[[".group"]])), function(x) {
+    fetch(x, unique(c(cols, nm[! sapply(x, kwb.utils::allAreEqual)])))
   })
 }
 
