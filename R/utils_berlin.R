@@ -184,9 +184,11 @@ getChangesOfDuplicates <- function(df, columns, add_columns = columns)
   
   cols <- c(columns, add_columns)
   
-  lapply(unname(split(y, y[[".group"]])), function(x) {
+  result <- lapply(split(y, y[[".group"]]), function(x) {
     fetch(x, unique(c(cols, nm[! sapply(x, kwb.utils::allAreEqual)])))
   })
+  
+  lapply(unname(result), count_unique)
 }
 
 # getYearFromColumn ------------------------------------------------------------
