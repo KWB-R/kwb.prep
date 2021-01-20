@@ -30,6 +30,12 @@ check_indices <- function(indices, max_index, max_length = max_index)
   stopifnot(! anyDuplicated(indices))
 }
 
+# count_unique -----------------------------------------------------------------
+count_unique <- function(x)
+{
+  stats::aggregate(.n ~ ., data = cbind(x, .n = 1L), FUN = length)
+}
+
 # cross_if ---------------------------------------------------------------------
 cross_if <- function(check)
 {
