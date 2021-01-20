@@ -1,6 +1,8 @@
 # stop_on_duplicates -----------------------------------------------------------
 stop_on_duplicates <- function(data, columns, dbg = 3L)
 {
+  stop("stop_on_duplicates() needs to be reimplemented!")
+  
   if (dbg) {
     
     write_markdown_chapter(
