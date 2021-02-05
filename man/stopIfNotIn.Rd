@@ -8,7 +8,8 @@ stopIfNotIn(
   element,
   elements,
   singular = "option",
-  plural = paste0(singular, "s")
+  plural = paste0(singular, "s"),
+  do_stop = TRUE
 )
 }
 \arguments{

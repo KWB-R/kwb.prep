@@ -398,15 +398,22 @@ reportNA <- function(data, column, subject = "in data")
 #' @export
 #' 
 stopIfNotIn <- function(
-  element, elements, singular = "option", plural = paste0(singular, "s")
+  element, elements, singular = "option", plural = paste0(singular, "s"),
+  do_stop = TRUE
 )
 {
   if (! element %in% elements) {
     
-    stopf(
+    msg <- sprintf(
       "No such %s: '%s'. Available %s: %s",
       singular, element, plural, kwb.utils::stringList(elements)
     )
+    
+    if (do_stop) {
+      stop_(msg)
+    } else {
+      message(msg)
+    }
   }
 }
 
