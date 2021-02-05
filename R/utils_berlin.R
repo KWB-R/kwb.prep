@@ -304,11 +304,15 @@ replaceByCondition <- function(
   if (! is.null(group)) {
     
     groups <- fetch("group")
-    stopIfNotIn(group, unique(groups), singular = "group")
+    stopIfNotIn(group, unique(groups), singular = "group", do_stop = FALSE)
     config <- config[groups == group, , drop = FALSE]
     fetch <- kwb.utils::createAccessor(config)
   }
 
+  if (nrow(config) == 0L) {
+    return(structure(df, metadata = list()))
+  }
+  
   #stopifnot(! anyDuplicated(fetch("target_column")))
   
   # Evaluate all criteria at once
