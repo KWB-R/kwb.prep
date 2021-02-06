@@ -310,7 +310,12 @@ replaceByCondition <- function(
   }
 
   if (nrow(config) == 0L) {
-    return(structure(df, metadata = list()))
+    return(structure(df, metadata = data.frame(
+      target_column = character(0),
+      n_replaced = integer(0), 
+      condition = character(0), 
+      replacement = character(0)
+    )))
   }
   
   #stopifnot(! anyDuplicated(fetch("target_column")))
