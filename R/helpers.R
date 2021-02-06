@@ -153,9 +153,7 @@ replace_by_condition <- function(df, group, path = NULL, dbg = 1L)
     ))
 
   metadata %>%
-    kable_translated(
-      caption = get_text("replacements_invalid_csv", group)
-    ) %>%
+    kable_translated(caption = get_text("replacements_invalid_csv", group)) %>%
     write_markdown_chapter("replace_specials", level = dbg)
 
   structure(result, metadata = metadata)
