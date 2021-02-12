@@ -404,6 +404,8 @@ reportNA <- function(data, column, subject = "in data")
 #'   \code{"option"}
 #' @param plural name of object (plural) to appear in error message. Default: 
 #'   \code{paste0(singular, "s")}
+#' @param do_stop if \code{FALSE} (the default is \code{TRUE}) program execution
+#'  does not stop. Instead a message is shown.
 #' @export
 #' 
 stopIfNotIn <- function(

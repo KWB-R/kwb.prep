@@ -22,6 +22,9 @@ stopIfNotIn(
 
 \item{plural}{name of object (plural) to appear in error message. Default:
 \code{paste0(singular, "s")}}
+
+\item{do_stop}{if \code{FALSE} (the default is \code{TRUE}) program execution
+does not stop. Instead a message is shown.}
 }
 \description{
 Stop with info message if element is not in expected set of elements
