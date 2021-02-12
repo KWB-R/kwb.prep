@@ -15,6 +15,8 @@ compare_ids <- function(old, new) {
     n_added = length(added),
     n_removed = length(removed),
     n_common = length(common),
+    old = old,
+    new = new,
     added = added, 
     removed = removed, 
     common = common
