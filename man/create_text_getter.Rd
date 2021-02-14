@@ -4,10 +4,12 @@
 \alias{create_text_getter}
 \title{Create a get_text() Function}
 \usage{
-create_text_getter(raw_strings)
+create_text_getter(raw_strings = NULL, FUN = NULL)
 }
 \arguments{
 \item{raw_strings}{list of string definitions (key = value) pairs}
+
+\item{FUN}{function to be called to get the string definitions}
 }
 \value{
 a function that can be used to lookup the string constant(s)

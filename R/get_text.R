@@ -3,6 +3,7 @@
 #' Create a get_text() Function
 #' 
 #' @param raw_strings list of string definitions (key = value) pairs
+#' @param FUN function to be called to get the string definitions
 #' @return a function that can be used to lookup the string constant(s)
 #' @export
 #' @examples
@@ -14,13 +15,18 @@
 #' get_text("hello_de")
 #' #get_text("no_such_key") # error with clear error message
 #' 
-create_text_getter <- function(raw_strings)
+create_text_getter <- function(raw_strings = NULL, FUN = NULL)
 {
-  user_strings <- check_user_strings(raw_strings)
+  get_checked <- function(x) get_raw_strings(check_user_strings(x))
   
-  raw_strings <- get_raw_strings(user_strings)
+  if (is.null(FUN)) {
+    raw_strings <- get_checked(raw_strings)
+  }
     
   function(key = NULL, ...) {
+    if (! is.null(FUN)) {
+      raw_strings <- get_checked(FUN())
+    }
     get_text(key, ..., raw_strings = raw_strings)
   }
 }
