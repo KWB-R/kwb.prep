@@ -117,9 +117,11 @@ read_filter_criteria <- function(
 }
 
 # read_internal_types ----------------------------------------------------------
-read_internal_types <- function(dbg = FALSE)
+read_internal_types <- function(file = NULL, dbg = FALSE)
 {
-  file <- config_file("internal-types.csv", in_package = FALSE)
+  if (is.null(file)) {
+    file <- config_file("internal-types.csv", in_package = FALSE)
+  }
   
   result <- read_csv_file(file, dbg = dbg)
 
