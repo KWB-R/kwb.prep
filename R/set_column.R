@@ -15,6 +15,7 @@ set_column <- function(
 )
 {
   stopifnot(is.data.frame(df))
+  stopifnot(is.character(column), length(column) == 1L)
 
   if (must_exist) {
     kwb.utils::checkForMissingColumns(df, column)
@@ -22,9 +23,9 @@ set_column <- function(
 
   if (is.null(value)) {
 
-    stopifnot(! is.null(from))
+    stopifnot(is.character(from), length(from) == 1L)
 
-    value <- select_columns(df, from, indices)
+    value <- unname(select_columns(df, from, indices))
   }
 
   if (is.null(indices)) {
