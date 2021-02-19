@@ -23,11 +23,15 @@ apply_filter <- function(
     }
   )
   
-  if (! is.null(length_column)) {
+  details <- attr(x, "details.filter")
+
+  if (! is.null(length_column) && ! is.null(details)) {
     
-    writeLines(printFilterTable(
-      kwb.utils::getAttribute(result, "details.filter")
-    ))
+    writeLines(printFilterTable(details))
+    
+  } else {
+    
+    writeLines("Es waren keine Filterkriterien definiert.")
   }
   
   result
