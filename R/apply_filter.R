@@ -3,6 +3,7 @@ apply_filter <- function(
   x, element, length_column = NULL, dbg = 2L, name = NULL, config = NULL
 )
 {
+  #kwb.utils::assignPackageObjects("kwb.prep")
   name <- getname(name, substitute(x))
  
   if (is.null(config)) {
@@ -14,7 +15,7 @@ apply_filter <- function(
   )
   
   write_markdown_chapter(
-    to_rcode_snippet(output),
+    if (length(output)) to_rcode_snippet(output) else "",
     level = dbg,
     caption = if (name == ".") {
       get_text("applying_filter", element)
