@@ -24,15 +24,28 @@ apply_filter <- function(
     }
   )
   
-  details <- attr(x, "details.filter")
+  details <- attr(result, "details.filter")
 
-  if (! is.null(length_column) && ! is.null(details)) {
+  if (is.null(details) || is.null(length_column)) {
     
-    writeLines(printFilterTable(details))
+    text <- paste0(
+      "Eine Uebersicht ueber die entfernten Haltungen und deren Laengen kann", 
+      "nicht erzeugt werden, da\n\n"
+    )
+    
+    if (is.null(details)) {
+      text <- paste0(text, "- ", "keine Filterkriterien definiert waren\n")
+    }
+    
+    if (is.null(length_column)) {
+      text <- paste0(text, "- ", "keine Laengenangaben uebergeben wurden\n")
+    }
+    
+    writeLines(text)
     
   } else {
     
-    writeLines("Es waren keine Filterkriterien definiert.")
+    writeLines(printFilterTable(details))
   }
   
   result
