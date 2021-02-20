@@ -73,5 +73,9 @@ applyFilterCriteria <- function(x, criteria = NULL, lengthColumn = NULL, ...)
   
   details.filter <- kwb.utils::rbindAll(outList)
   
-  structure(x[matches, ], details.filter = details.filter, matches = matches)
+  structure(
+    x[matches, , drop = FALSE], 
+    details.filter = details.filter, 
+    matches = matches
+  )
 }
