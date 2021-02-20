@@ -1,17 +1,17 @@
 # apply_filter -----------------------------------------------------------------
 apply_filter <- function(
-  x, element, length_column = NULL, dbg = 2L, name = NULL, config = NULL
+  x, element, length_column = NULL, dbg = 2L, name = NULL, criteria = NULL
 )
 {
   #kwb.utils::assignPackageObjects("kwb.prep")
   name <- getname(name, substitute(x))
  
-  if (is.null(config)) {
-    config <- read_filter_criteria(dbg = FALSE)
+  if (is.null(criteria)) {
+    criteria <- read_filter_criteria(dbg = FALSE)
   }
   
   output <- utils::capture.output(
-    result <- applyFilter(x, config, element, length_column)
+    result <- applyFilter(x, criteria, element, length_column)
   )
   
   write_markdown_chapter(
