@@ -7,13 +7,6 @@
 
 test_that("get_column_separator() works", {
 
-  expect_error(
-    kwb.prep:::get_column_separator()
-    # No such file: 'options.yml' in
-#   'C:/Users/hsonne/Documents/tmp/kwb.prep/config'.
-# Available files:
-#   ''
-  )
+  expect_identical(kwb.prep:::get_column_separator(), ";")
 
 })
-

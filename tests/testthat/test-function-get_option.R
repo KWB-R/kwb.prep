@@ -7,13 +7,7 @@
 
 test_that("get_option() works", {
 
-  expect_error(
-    kwb.prep:::get_option()
-    # No such file: 'options.yml' in
-#   'C:/Users/hsonne/Documents/tmp/kwb.prep/config'.
-# Available files:
-#   ''
-  )
+  expect_silent(y <- kwb.prep:::get_option())
+  expect_is(y, "list")
 
 })
-
