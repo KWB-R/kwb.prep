@@ -1,6 +1,6 @@
-test_that(".getNames() works", {
+test_that("getNames() works", {
 
-  f <- kwb.prep:::.getNames
+  f <- kwb.prep:::getNames
   
   expect_error(f())
 

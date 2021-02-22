@@ -110,8 +110,8 @@ countAndShowNAsIfSpecified <- function(Data, columns = NULL)
   }
 }
 
-# .getNames --------------------------------------------------------------------
-.getNames <- function(x, defaultNames = paste0("x_", seq_along(x)))
+# getNames ---------------------------------------------------------------------
+getNames <- function(x, defaultNames = paste0("x_", seq_along(x)))
 {
   names.x <- kwb.utils::defaultIfNULL(names(x), defaultNames)
   isEmpty <- names.x == ""

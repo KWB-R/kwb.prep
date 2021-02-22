@@ -65,10 +65,9 @@ applyFilterCriteria <- function(x, criteria = NULL, lengthColumn = NULL, ...)
     lengthColumn = lengthColumn, 
     x.base = x.base, 
     y.base = y.base,
-    criteriaNames = .getNames(
-      criteria, 
-      defaultNames = sprintf("Keep '%s'", as.character(criteria))
-    )
+    criteriaNames = getNames(criteria, defaultNames = sprintf(
+      "Keep '%s'", as.character(criteria)
+    ))
   )
   
   details.filter <- kwb.utils::rbindAll(outList)
