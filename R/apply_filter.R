@@ -3,7 +3,7 @@ apply_filter <- function(
   x, element, length_column = NULL, dbg = 2L, name = NULL, criteria = NULL
 )
 {
-  #kwb.utils::assignPackageObjects("kwb.prep")
+  #kwb.utils::assignPackageObjects("kwb.prep");name=NULL;criteria=NULL
   name <- getname(name, substitute(x))
  
   if (is.null(criteria)) {
@@ -11,7 +11,12 @@ apply_filter <- function(
   }
   
   output <- utils::capture.output(
-    result <- applyFilter(x, criteria, element, length_column)
+    result <- applyFilter(
+      data = x, 
+      criteria_list = criteria, 
+      element, 
+      length_column
+    )
   )
   
   write_markdown_chapter(

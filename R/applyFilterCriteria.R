@@ -34,8 +34,9 @@
 #' 
 applyFilterCriteria <- function(x, criteria = NULL, lengthColumn = NULL, ...)
 {
-  if (! is.data.frame(x))
+  if (! is.data.frame(x)) {
     stop_("x must be a data frame!")
+  }
   
   if (is.null(criteria)) {
     
@@ -45,6 +46,7 @@ applyFilterCriteria <- function(x, criteria = NULL, lengthColumn = NULL, ...)
   }
   
   matches <- kwb.utils::matchesCriteria(x, criteria, add.details = TRUE, ...)
+  #matches <- kwb.utils::matchesCriteria(x, criteria, add.details = TRUE)
   
   details <- kwb.utils::getAttribute(matches, "details")
   
