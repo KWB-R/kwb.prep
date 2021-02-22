@@ -13,17 +13,23 @@ cumulateMatchMatrix <- function(matchMatrix)
 # keepOrGoSummary --------------------------------------------------------------
 keepOrGoSummary <- function(i, lengthColumn, x.base, y.base, criteriaNames)
 {
+  #i <- 1L
   conditionID <- paste0("C", i)
   
   if (is.null(lengthColumn)) {
+    
     lengthColumn2 <- ""
+    
   } else {
+    
     lengthColumn2 <- "Length"
     
     # aggregate() within fieldSummary() does not work as expected if all Lengths
     # are NA. So we temporarily set NA to 0.0
-    x.base$Length <- kwb.utils::defaultIfNA(kwb.utils::selectColumns(x.base, lengthColumn2), 0.0)
-    y.base$Length <- kwb.utils::defaultIfNA(kwb.utils::selectColumns(y.base, lengthColumn2), 0.0)
+    get <- kwb.utils::selectColumns
+    default <- kwb.utils::defaultIfNA
+    x.base$Length <- default(get(x.base, lengthColumn2), 0.0)
+    y.base$Length <- default(get(y.base, lengthColumn2), 0.0)
   }
   
   x.out <- fieldSummary(x = x.base, groupBy = conditionID, lengthColumn2)
