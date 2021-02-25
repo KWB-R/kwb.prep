@@ -33,7 +33,7 @@ apply_filter <- function(
 
   if (is.null(details) || is.null(length_column)) {
     
-    text <- paste0(
+    text <- paste(
       "Eine Uebersicht ueber die entfernten Haltungen und deren Laengen kann", 
       "nicht erzeugt werden, da\n\n"
     )
