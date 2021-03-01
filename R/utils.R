@@ -173,7 +173,7 @@ n_unique <- function(x)
 # n_unique_in_column: Number of unique values in a data frame column -----------
 n_unique_in_column <- function(df, column)
 {
-  n_unique(select_columns(df, column))
+  n_unique(kwb.utils::selectColumns(df, column))
 }
 
 # named_seq_along --------------------------------------------------------------
