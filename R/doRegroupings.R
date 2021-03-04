@@ -31,6 +31,8 @@ doRegroupings <- function(
   i <- 1
   
   #i<-13;actual <- regroup.actual[[i]]
+
+  skipped <- character()
   
   for (actual in regroup.actual) {
     
@@ -42,15 +44,20 @@ doRegroupings <- function(
       
     } else {
       
-      message(
-        "Column ", kwb.utils::hsQuoteChr(actual$from), " does not exist. ", 
-        "I skip this actual regrouping."
-      )
+      skipped <- c(skipped, kwb.utils::hsQuoteChr(actual$from))
     }
     
     i <- i + 1
     
   } # end of for (actual in regroup.actual)
+  
+  if (n <- length(skipped)) {
+    message(
+      sprintf("%d actual regroupings have been skipped ", n),
+      "since the following columns were missing:\n- ", 
+      paste(skipped, collapse = "\n- ")
+    )
+  }
   
   Data
 }
