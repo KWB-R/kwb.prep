@@ -37,7 +37,10 @@ read_csv_file <- function(
   # Replace empty strings in character columns with NA
   if (set_empty_string_to_na) {
     is_char <- sapply(result, is.character)
-    result[is_char] <- lapply(result[is_char], function(x) x[x == ""] <- NA)
+    result[is_char] <- lapply(result[is_char], function(x) {
+      x[x == ""] <- NA
+      x
+    })
   }
   
   structure(result, metadata = metadata)
