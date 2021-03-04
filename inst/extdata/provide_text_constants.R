@@ -28,6 +28,7 @@ string_definition <- list(
   ),
   creating_missing_column = "Creating missing column '%s'",
   deleting_constant_columns = "Deleting 'constant' columns",
+  file = "Datei",
   hello = "sch<oe>ne Gr<ue>sse",
   internal_field = "Spaltenname intern",
   key_columns = "Schl<ue>sselspalte(n)",
@@ -35,6 +36,7 @@ string_definition <- list(
   left_table = "Linke Tabelle",
   merging = "Verbinden zweier Tabellen: '%s' x '%s'",
   merging_failed = "Merging %s with %s led to %d more rows!",
+  modified = "zuletzt ge<ae>ndert",
   n_rows = "Anzahl Zeilen",
   name = "Name",
   new_line = "<nl>",
@@ -43,6 +45,7 @@ string_definition <- list(
   no_columns_removed = "Es wurden keine Spalten entfernt.",
   no_duplicates = "Keine Duplikate in (Wertekombinationen der) Spalte(n): %s",
   original_field = "Spaltenname original",
+  read_csv_file = "CSV-Datei einlesen",
   reading_args = "Argumente f<ue>r Funktion %s() lesen aus: '%s'",
   reading_filter_criteria = "Reading filter criteria from",
   removing_columns = "Spalten entfernen",
@@ -59,6 +62,7 @@ string_definition <- list(
   select_rename_columns_from = paste0(
     "Spalten ausw<ae>hlen (und umbenennen) aus '%s'"
   ),
+  size = "Gr<oe><ss>e",
   structure_of = "Struktur von '%s'",
   table = "Tabelle",
   table_dimesion = "Tabelle mit %d Zeilen und %d Spalten<nl>",
