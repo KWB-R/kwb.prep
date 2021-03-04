@@ -127,6 +127,7 @@
   encoding <span class='op'>=</span> <span class='st'>"UTF-8"</span>,
   na.strings <span class='op'>=</span> <span class='st'>""</span>,
   <span class='va'>...</span>,
+  set_empty_string_to_na <span class='op'>=</span> <span class='cn'>FALSE</span>,
   dbg <span class='op'>=</span> <span class='fl'>1L</span>
 <span class='op'>)</span></pre>
 
@@ -159,6 +160,11 @@ available). Default: ""</p></td>
       <th>...</th>
       <td><p>further arguments passed to
 <code><a href='https://Rdatatable.gitlab.io/data.table/reference/fread.html'>fread</a></code></p></td>
+    </tr>
+    <tr>
+      <th>set_empty_string_to_na</th>
+      <td><p>if <code>TRUE</code> (the default is <code>FALSE</code>)
+empty strings in character columns are replaced with <code>NA</code></p></td>
     </tr>
     <tr>
       <th>dbg</th>
