@@ -173,7 +173,7 @@ n_unique <- function(x)
 # n_unique_in_column: Number of unique values in a data frame column -----------
 n_unique_in_column <- function(df, column)
 {
-  n_unique(select_columns(df, column))
+  n_unique(kwb.utils::selectColumns(df, column))
 }
 
 # named_seq_along --------------------------------------------------------------
@@ -232,18 +232,25 @@ run_cached <- function(name, expr = NULL, dbg = FALSE)
 }
 
 # save_as ----------------------------------------------------------------------
-save_as <- function(x, name, file = NULL)
+save_as <- function(x, name, file = NULL, dbg = TRUE)
 {
   file <- kwb.utils::defaultIfNULL(file, file.path(
     tempdir(), sprintf("object_%s.RData", name)
   ))
 
-  save(
-    list = name,
-    envir = list2env(stats::setNames(list(x), name)),
-    file = file
+  kwb.utils::catAndRun(
+    dbg = dbg,
+    sprintf(
+      "Saving '%s' as '%s' to\n  '%s'", 
+      deparse(substitute(x)), name, file
+    ), 
+    expr = save(
+      list = name,
+      envir = list2env(stats::setNames(list(x), name)),
+      file = file
+    )
   )
-
+  
   structure(invisible(x), file = file)
 }
 
