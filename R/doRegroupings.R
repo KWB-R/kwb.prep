@@ -36,10 +36,9 @@ doRegroupings <- function(
     
     actual <- regroup.actual[[i]]
     
-    message(sprintf("%02d. %s", i, actual$to))
-    
     if (actual$from %in% names(Data)) {
       
+      message(sprintf("%02d. %s", i, actual$to))
       Data <- applyRegrouping(Data, actual, regroup.config, to.factor, dbg)
       
     } else {
