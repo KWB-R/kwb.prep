@@ -28,13 +28,13 @@ doRegroupings <- function(
     message("No regroupings specified -> nothing to do.")
   }
   
-  i <- 1
-  
   #i<-13;actual <- regroup.actual[[i]]
 
   skipped <- character()
   
-  for (actual in regroup.actual) {
+  for (i in seq_along(regroup.actual)) {
+    
+    actual <- regroup.actual[[i]]
     
     message(sprintf("%02d. %s", i, actual$to))
     
@@ -46,8 +46,6 @@ doRegroupings <- function(
       
       skipped <- c(skipped, kwb.utils::hsQuoteChr(actual$from))
     }
-    
-    i <- i + 1
     
   } # end of for (actual in regroup.actual)
   
