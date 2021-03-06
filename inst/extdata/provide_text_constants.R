@@ -15,6 +15,7 @@ string_definition <- list(
   by = "verkn<ue>pft",
   calculating_new_columns = "Berechnen neuer Spalten",
   calculating_new_columns_in = "Berechnen neuer Spalten in '%s'",
+  column = "Spalte",
   columns_removed = paste0(
     "Die folgenden %d Spalten wurden aus '%s' entfernt:<nl><nl>%s<nl>"
   ),
@@ -26,17 +27,23 @@ string_definition <- list(
   common_columns = paste0(
     "The following columns are in '%s' as well as in '%s':<nl>- %s"
   ),
+  condition = "wenn",  
   creating_missing_column = "Creating missing column '%s'",
   deleting_constant_columns = "Deleting 'constant' columns",
+  duplicate_check = "Duplikatpr<ue>fung",
   file = "Datei",
+  frequency = "H<ae>ufigkeit",
   hello = "sch<oe>ne Gr<ue>sse",
   internal_field = "Spaltenname intern",
   key_columns = "Schl<ue>sselspalte(n)",
   left_joining = "Tabellen verbinden (Left Join)",
   left_table = "Linke Tabelle",
+  loading_from_file_cache = "Laden von '%s' aus dem Datei-Cache (.RData-Datei)",
   merging = "Verbinden zweier Tabellen: '%s' x '%s'",
   merging_failed = "Merging %s with %s led to %d more rows!",
   modified = "zuletzt ge<ae>ndert",
+  n_differences = "There are %d differences between %s and %s!",
+  n_replaced = "Anzahl",
   n_rows = "Anzahl Zeilen",
   name = "Name",
   new_line = "<nl>",
@@ -44,6 +51,11 @@ string_definition <- list(
   nrow_y = "Zeilen rechts",
   no_columns_removed = "Es wurden keine Spalten entfernt.",
   no_duplicates = "Keine Duplikate in (Wertekombinationen der) Spalte(n): %s",
+  not_in_file_cache = paste0(
+    "Objekt '%s' ist noch nicht im Datei-Cache (.RData-Datei) vorhanden und ", 
+    "wird nun eingelesen/berechnet."
+  ),
+  object_cached_in_file = "Speichern von '%s' im Datei-Cache (.RData-Datei).",
   original_field = "Spaltenname original",
   read_csv_file = "CSV-Datei einlesen",
   reading_args = "Argumente f<ue>r Funktion %s() lesen aus: '%s'",
@@ -51,10 +63,13 @@ string_definition <- list(
   removing_columns = "Spalten entfernen",
   removing_columns_from = "Spalten aus '%s' entfernen",
   renaming_columns = "Spalten in '%s' umbenennen:<nl>",
+  replace_specials = "Spezielle (ung<ue>ltige) Werte ersetzen",
+  replacement = "wird gesetzt auf",
   replacements_invalid_csv = paste0(
     "Ersetzungen gem<ae><ss> replace_invalid.csv, Gruppe '%s'"
   ),
   result_table = "Ergebnistabelle" ,
+  row_bind = "Tabellen zeilenweise verbinden",
   right_table = "Rechte Tabelle", 
   select_columns = "Spalten ausw<ae>hlen",
   select_columns_from = "Spalten ausw<ae>hlen aus '%s'",
@@ -67,9 +82,12 @@ string_definition <- list(
   table = "Tabelle",
   table_dimesion = "Tabelle mit %d Zeilen und %d Spalten<nl>",
   table_name = "Tabellenname",
+  target_column = "Spalte",
   type_x = "Typ links",
   type_y = "Typ rechts",
   unique_rows = "Duplikatzeilen entfernen",
+  using_option_value = "Using option value %s = '%s'",
+  value = "Wert",
   writing_csv = "Schreiben von `%s`"
 )
 
