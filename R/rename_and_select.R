@@ -1,10 +1,11 @@
 # rename_and_select ------------------------------------------------------------
 #' @keywords internal
 rename_and_select <- function(
-  x, renamings, columns = as.character(renamings), dbg = 1L,
-  name = NULL
+  x, renamings, columns = as.character(renamings), dbg = 1L, name = NULL
 )
 {
+  #kwb.utils::assignPackageObjects("kwb.prep")
+  #columns = as.character(renamings)
   if (dbg) {
     
     name <- getname(name, substitute(x))
@@ -13,6 +14,8 @@ rename_and_select <- function(
       selected_column = columns,
       original_column = names(renamings)
     )
+    
+    #get_text(names(metadata))
     
     metadata %>%
       kable_translated() %>%
