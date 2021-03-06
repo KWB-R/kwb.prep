@@ -14,7 +14,9 @@ test_that("read_csv_file() works", {
   #kwb.utils::hsOpenWindowsExplorer(tempdir())
   #writeLines(readLines(file))
   
-  result <- f(file, set_empty_string_to_na = TRUE)
+  expect_message(capture.output(
+    result <- f(file, set_empty_string_to_na = TRUE)
+  ))
+  
   expect_identical(result$b, c("a", NA, "c"))
 })
-
