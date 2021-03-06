@@ -56,6 +56,7 @@ string_definition <- list(
     "wird nun eingelesen/berechnet."
   ),
   object_cached_in_file = "Speichern von '%s' im Datei-Cache (.RData-Datei).",
+  original_column = "(umbenannt von)",
   original_field = "Spaltenname original",
   read_csv_file = "CSV-Datei einlesen",
   reading_args = "Argumente f<ue>r Funktion %s() lesen aus: '%s'",
@@ -77,6 +78,7 @@ string_definition <- list(
   select_rename_columns_from = paste0(
     "Spalten ausw<ae>hlen (und umbenennen) aus '%s'"
   ),
+  selected_column = "Ausgew<ae>hlt",
   size = "Gr<oe><ss>e",
   structure_of = "Struktur von '%s'",
   table = "Tabelle",
