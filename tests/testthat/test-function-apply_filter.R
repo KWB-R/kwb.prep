@@ -8,7 +8,7 @@ test_that("apply_filter() works", {
   data <- data.frame(x = 1:10)
   
   expect_error(f())
-  expect_error(y <- f(data, element = "missing"), "No such list elements")
+  expect_error(y <- f(data, element = "missing"), "No such element in list")
   
   out <- capture(y <- f(data, element = "empty_criteria"))
   expect_length(grep("keine Filterkriterien", out), 1L)
