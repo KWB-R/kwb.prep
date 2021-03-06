@@ -98,8 +98,6 @@ if (TRUE)
 {
   # Write yaml file
   yaml::write_yaml(string_definition, paths$yml)
-
-  file.copy(paths$yml, "~/tmp/kwb.prep/config", overwrite = TRUE)
 }
 
 # Check if the original list of strings can be reproduced ----------------------
