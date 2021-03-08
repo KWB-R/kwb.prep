@@ -52,8 +52,7 @@ string_definition <- list(
   no_columns_removed = "Es wurden keine Spalten entfernt.",
   no_duplicates = "Keine Duplikate in (Wertekombinationen der) Spalte(n): %s",
   not_in_file_cache = paste0(
-    "Objekt '%s' ist noch nicht im Datei-Cache (.RData-Datei) vorhanden und ", 
-    "wird nun eingelesen/berechnet."
+    "Ermitteln von '%s' (nicht im .RData-Datei-Cache gefunden)..."
   ),
   object_cached_in_file = "Speichern von '%s' im Datei-Cache (.RData-Datei).",
   original_column = "(umbenannt von)",
