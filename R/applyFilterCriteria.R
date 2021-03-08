@@ -80,3 +80,62 @@ applyFilterCriteria <- function(x, criteria = NULL, lengthColumn = NULL, ...)
     matches = matches
   )
 }
+
+# cumulateMatchMatrix ----------------------------------------------------------
+cumulateMatchMatrix <- function(matchMatrix)
+{
+  out <- matchMatrix
+  
+  for (i in seq_len(ncol(out) - 1) + 1) {
+    out[, i] <- out[, i-1] & matchMatrix[, i]
+  }
+  
+  out  
+}
+
+# keepOrGoSummary --------------------------------------------------------------
+keepOrGoSummary <- function(i, lengthColumn, x.base, y.base, criteriaNames)
+{
+  #i <- 1L
+  conditionID <- paste0("C", i)
+  
+  if (is.null(lengthColumn)) {
+    
+    lengthColumn2 <- ""
+    
+  } else {
+    
+    lengthColumn2 <- "Length"
+    
+    # aggregate() within fieldSummary() does not work as expected if all Lengths
+    # are NA. So we temporarily set NA to 0.0
+    get <- kwb.utils::selectColumns
+    default <- kwb.utils::defaultIfNA
+    x.base$Length <- default(get(x.base, lengthColumn2), 0.0)
+    y.base$Length <- default(get(y.base, lengthColumn2), 0.0)
+  }
+  
+  x.out <- fieldSummary(x = x.base, groupBy = conditionID, lengthColumn2)
+  y.out <- fieldSummary(x = y.base, groupBy = conditionID, lengthColumn2)
+  
+  # Select the information on the excluded and of the remaining
+  x.out <- x.out[x.out[, conditionID] == FALSE, ]
+  y.out <- y.out[y.out[, conditionID] == TRUE,  ]
+  
+  # If the condition was always met generate a zero-entry
+  if (nrow(x.out) == 0) {
+    x.out <- rbind(x.out, kwb.utils::toLookupTable(names(x.out), rep(0, ncol(x.out))))
+  }
+  
+  # If the condition was never met generate a zero-entry
+  if (nrow(y.out) == 0) {
+    y.out <- rbind(y.out, kwb.utils::toLookupTable(names(y.out), rep(0, ncol(y.out))))
+  }
+  
+  names(x.out)[-1] <- paste0(names(x.out)[-1], ".go")
+  names(y.out)[-1] <- paste0(names(y.out)[-1], ".keep")
+  
+  out <- cbind(CleaningStep = criteriaNames[i], x.out, y.out)
+  
+  kwb.utils::removeColumns(out, conditionID)
+}
