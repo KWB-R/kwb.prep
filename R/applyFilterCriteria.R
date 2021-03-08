@@ -39,9 +39,7 @@ applyFilterCriteria <- function(x, criteria = NULL, lengthColumn = NULL, ...)
   }
   
   if (is.null(criteria)) {
-    
     message("No filter criteria to apply. Returning the data frame unchanged.")
-    
     return(x)
   }
   
@@ -61,7 +59,7 @@ applyFilterCriteria <- function(x, criteria = NULL, lengthColumn = NULL, ...)
     y.base <- cbind(Length = lengths, y.base)
   }
   
-  outList <- lapply(
+  details.filter <- kwb.utils::rbindAll(lapply(
     X = seq_len(ncol(details)), 
     FUN = keepOrGoSummary, 
     lengthColumn = lengthColumn, 
@@ -70,9 +68,7 @@ applyFilterCriteria <- function(x, criteria = NULL, lengthColumn = NULL, ...)
     criteriaNames = getNames(criteria, defaultNames = sprintf(
       "Keep '%s'", as.character(criteria)
     ))
-  )
-  
-  details.filter <- kwb.utils::rbindAll(outList)
+  ))
   
   structure(
     x[matches, , drop = FALSE], 
@@ -121,21 +117,26 @@ keepOrGoSummary <- function(i, lengthColumn, x.base, y.base, criteriaNames)
   # Select the information on the excluded and of the remaining
   x.out <- x.out[x.out[, conditionID] == FALSE, ]
   y.out <- y.out[y.out[, conditionID] == TRUE,  ]
-  
-  # If the condition was always met generate a zero-entry
-  if (nrow(x.out) == 0) {
-    x.out <- rbind(x.out, kwb.utils::toLookupTable(names(x.out), rep(0, ncol(x.out))))
+
+  # Helper function to generate zero-entry if condition was always/never met
+  add_zero_if_no_rows <- function(x) {
+    if (nrow(x) > 0L){
+      return(x)
+    }
+    rbind(x, kwb.utils::toLookupTable(names(x), rep(0L, ncol(x))))
   }
   
-  # If the condition was never met generate a zero-entry
-  if (nrow(y.out) == 0) {
-    y.out <- rbind(y.out, kwb.utils::toLookupTable(names(y.out), rep(0, ncol(y.out))))
+  # Helper function to add a suffix to all but the first column name
+  add_suffix <- function(x, suffix) {
+    names(x)[-1] <- paste0(names(x)[-1], suffix)
+    x
   }
-  
-  names(x.out)[-1] <- paste0(names(x.out)[-1], ".go")
-  names(y.out)[-1] <- paste0(names(y.out)[-1], ".keep")
-  
-  out <- cbind(CleaningStep = criteriaNames[i], x.out, y.out)
+
+  out <- cbind(
+    CleaningStep = criteriaNames[i], 
+    add_suffix(add_zero_if_no_rows(x.out), ".go"), 
+    add_suffix(add_zero_if_no_rows(y.out), ".keep")
+  )
   
   kwb.utils::removeColumns(out, conditionID)
 }
