@@ -144,12 +144,13 @@ keepOrGoSummary <- function(i, lengthColumn, x.base, y.base, criteriaNames)
 # fieldSummary -----------------------------------------------------------------
 fieldSummary <- function(x, groupBy, lengthColumn = "", na = "Unknown")
 {
+  stopifnot(is.data.frame(x))
+  kwb.utils::checkForMissingColumns(x, groupBy)
+  
   #column=groupBy[1L];lengthColumn=lengthColumn2;na="Unknown"
   if (nrow(x) == 0L) {
     
-    message(
-      "The data frame given to fieldSummary() has no rows!"
-    )
+    message("The data frame given to fieldSummary() has no rows!")
     
     return(do.call(data.frame, args = c(as.list(x[groupBy]), list(
       Count = integer(), Percentage = numeric()
