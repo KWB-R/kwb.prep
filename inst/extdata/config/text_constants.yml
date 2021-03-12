@@ -45,7 +45,8 @@ removing_columns_from: Spalten aus '%s' entfernen
 renaming_columns: Spalten in '%s' umbenennen:<nl>
 replace_specials: Spezielle (ung<ue>ltige) Werte ersetzen
 replacement: wird gesetzt auf
-replacements_invalid_csv: Ersetzungen gem<ae><ss> replace_invalid.csv, Gruppe '%s'
+replacements_by_condition: Ersetzungen gem<ae><ss> replace-by-condition.csv, Gruppe
+  '%s'
 result_table: Ergebnistabelle
 row_bind: Tabellen zeilenweise verbinden
 right_table: Rechte Tabelle
@@ -59,7 +60,7 @@ structure_of: Struktur von '%s'
 table: Tabelle
 table_dimesion: Tabelle mit %d Zeilen und %d Spalten<nl>
 table_name: Tabellenname
-target_column: Spalte
+target: Spalte
 type_x: Typ links
 type_y: Typ rechts
 unique_rows: Duplikatzeilen entfernen

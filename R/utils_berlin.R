@@ -268,7 +268,7 @@ overwriteIfNotNA <- function(data, target_column, source_column)
 #' 
 #' # Create a very simple configuration
 #' config <- read.table(sep = ",", header = TRUE, text = c(
-#'   "group,target_column,condition,replacement",
+#'   "group,target,condition,replacement",
 #'   "g1,a,a==2,22",
 #'   "g2,a,a==3,33"
 #' ))
@@ -311,7 +311,7 @@ replaceByCondition <- function(
 
   if (nrow(config) == 0L) {
     return(structure(df, metadata = data.frame(
-      target_column = character(0),
+      target = character(0),
       n_replaced = integer(0), 
       condition = character(0), 
       replacement = character(0)
@@ -330,12 +330,12 @@ replaceByCondition <- function(
   ))
 
   # Provide column vectors of "config"
-  columns <- as.character(fetch("target_column"))
+  columns <- as.character(fetch("target"))
   replacements <- fetch("replacement")
   
   # Apply the replacements  
   for (i in seq_along(columns)) {
-    df[which(matches[, i]), columns[i]]<- replacements[i]
+    df[which(matches[, i]), columns[i]] <- replacements[i]
   }
 
   # Provide metadata on the results of the applied replacements  
@@ -347,7 +347,7 @@ replaceByCondition <- function(
   # Print the metadata
   kwb.utils::catIf(dbg, paste(collapse = "", sprintf(
     "Data correction in '%s': %d values with \"%s\" set to '%s'\n",
-    metadata$target_column,
+    metadata$target,
     metadata$n_replaced, 
     metadata$condition, 
     metadata$replacement

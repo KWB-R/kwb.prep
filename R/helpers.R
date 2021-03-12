@@ -138,24 +138,26 @@ read_internal_types <- function(file = NULL, dbg = FALSE)
 
 # replace_by_condition ---------------------------------------------------------
 #' @keywords internal
-replace_by_condition <- function(df, group, path = NULL, dbg = 1L)
+replace_by_condition <- function(
+  df, group, path = NULL, dbg = 1L, 
+  filename = "replace-by-condition.csv"
+  #filename = "replace_invalid.csv"
+)
 {
   #path=NULL
   #kwb.prep::assign_objects()
   result <- suppressMessages(replaceByCondition(
     df = df, group = group, dbg = FALSE, file = kwb.utils::defaultIfNULL(
-      path, config_file("replace_invalid.csv", in_package = FALSE)
+      path, config_file(filename, in_package = FALSE)
     )
   ))
 
   metadata <- result %>%
     kwb.utils::getAttribute("metadata") %>%
-    kwb.utils::moveColumnsToFront(c(
-      "n_replaced", "target_column", "replacement"
-    ))
+    kwb.utils::moveColumnsToFront(c("n_replaced", "target", "replacement"))
 
   metadata %>%
-    kable_translated(caption = get_text("replacements_invalid_csv", group)) %>%
+    kable_translated(caption = get_text("replacements_by_condition", group)) %>%
     write_markdown_chapter("replace_specials", level = dbg)
 
   structure(result, metadata = metadata)

@@ -65,8 +65,8 @@ string_definition <- list(
   renaming_columns = "Spalten in '%s' umbenennen:<nl>",
   replace_specials = "Spezielle (ung<ue>ltige) Werte ersetzen",
   replacement = "wird gesetzt auf",
-  replacements_invalid_csv = paste0(
-    "Ersetzungen gem<ae><ss> replace_invalid.csv, Gruppe '%s'"
+  replacements_by_condition = paste0(
+    "Ersetzungen gem<ae><ss> replace-by-condition.csv, Gruppe '%s'"
   ),
   result_table = "Ergebnistabelle" ,
   row_bind = "Tabellen zeilenweise verbinden",
@@ -83,7 +83,7 @@ string_definition <- list(
   table = "Tabelle",
   table_dimesion = "Tabelle mit %d Zeilen und %d Spalten<nl>",
   table_name = "Tabellenname",
-  target_column = "Spalte",
+  target = "Spalte",
   type_x = "Typ links",
   type_y = "Typ rechts",
   unique_rows = "Duplikatzeilen entfernen",
