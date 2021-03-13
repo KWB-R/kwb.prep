@@ -188,10 +188,10 @@ names_which <- function(x)
   names(which(x))
 }
 
-# newline_collapsed ------------------------------------------------------------
-newline_collapsed <- function(x)
+# eol_collapsed ----------------------------------------------------------------
+eol_collapsed <- function(...)
 {
-  paste(x, collapse = "\n")
+  paste0(..., collapse = "\n")
 }
 
 # print_if ---------------------------------------------------------------------
@@ -201,7 +201,7 @@ print_if <- kwb.utils::printIf
 # print_to_string --------------------------------------------------------------
 print_to_string <- function(x)
 {
-  newline_collapsed(utils::capture.output(print(x)))
+  eol_collapsed(utils::capture.output(print(x)))
 }
 
 # run_cached -------------------------------------------------------------------
