@@ -27,9 +27,10 @@ Imports:
     kwb.code,
     kwb.file,
     kwb.utils,
+    magrittr,
     methods,
-    yaml,
-    magrittr
+    rmarkdown,
+    yaml
 Remotes: 
     github::kwb-r/kwb.code,
     github::kwb-r/kwb.file,
