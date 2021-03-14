@@ -87,6 +87,10 @@ string_definition <- list(
   type_x = "Typ links",
   type_y = "Typ rechts",
   unique_rows = "Duplikatzeilen entfernen",
+  unknown_columns_in_selection = paste0(
+    "Folgende Spalten der Auswahl '%s' (spezifiziert in '%s'), sind nicht im ",
+    "data frame enthalten, der an reorder_columns() <ue>bergeben wurde:\n%s"
+  ),
   using_option_value = "Using option value %s = '%s'",
   value = "Wert",
   writing_csv = "Schreiben von `%s`"
