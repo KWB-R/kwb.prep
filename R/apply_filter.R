@@ -3,7 +3,7 @@ apply_filter <- function(
   x, element, length_column = NULL, dbg = 2L, name = NULL, criteria = NULL
 )
 {
-  #kwb.utils::assignPackageObjects("kwb.prep");name=NULL;criteria=NULL
+  #kwb.prep::assignObjects();name=NULL;criteria=NULL
   name <- getname(name, substitute(x))
  
   if (is.null(criteria)) {

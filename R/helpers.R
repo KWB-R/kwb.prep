@@ -1,3 +1,13 @@
+# assign_objects ---------------------------------------------------------------
+
+#' Provide all Objects of kwb.prep in the Global Environment
+#' 
+#' @export
+assign_objects <- function()
+{
+  kwb.utils::assignPackageObjects("kwb.prep")
+}
+
 # field_renamings_to_lookup_table ----------------------------------------------
 field_renamings_to_lookup_table <- function(x)
 {

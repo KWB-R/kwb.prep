@@ -1,9 +1,3 @@
-# assign_objects ---------------------------------------------------------------
-
-#' Assign all Objects of This Package in the Global Environment
-#' @export
-assign_objects <- function() kwb.utils::assignPackageObjects("kwb.prep")
-
 # cat_if -----------------------------------------------------------------------
 cat_if <- kwb.utils::catIf
 

@@ -4,7 +4,7 @@ rename_and_select <- function(
   x, renamings, columns = as.character(renamings), dbg = 1L, name = NULL
 )
 {
-  #kwb.utils::assignPackageObjects("kwb.prep")
+  #kwb.prep::assignObjects()
   #columns = as.character(renamings)
   if (dbg) {
     
