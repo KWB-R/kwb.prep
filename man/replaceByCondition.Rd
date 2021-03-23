@@ -29,7 +29,7 @@ df <- data.frame(a = 1:3)
 
 # Create a very simple configuration
 config <- read.table(sep = ",", header = TRUE, text = c(
-  "group,target_column,condition,replacement",
+  "group,target,condition,replacement",
   "g1,a,a==2,22",
   "g2,a,a==3,33"
 ))

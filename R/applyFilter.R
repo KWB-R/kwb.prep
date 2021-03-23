@@ -28,5 +28,5 @@ applyFilter <- function(data, criteria_list, element, length_column = NULL)
 {
   criteria <- kwb.utils::selectElements(criteria_list, element)
   
-  applyFilterCriteria(data, criteria, length_column)
+  applyFilterCriteria(x = data, criteria, lengthColumn = length_column)
 }

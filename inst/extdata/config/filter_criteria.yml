@@ -1,0 +1,8 @@
+empty_criteria: ~ # NULL
+x_greater_0:
+  x greater than zero: 'x > 0'
+x_greater_3:
+  x greater than three: 'x > 3L'
+x_greater_3_less_5:
+  x greater than three: 'x > 3L'
+  x less than five: 'x < 5L'

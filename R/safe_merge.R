@@ -7,7 +7,8 @@ safe_merge <- function(
   ..., 
   dbg = 1L, 
   name_x = NULL,
-  name_y = NULL
+  name_y = NULL,
+  metadata = dbg > 0L
 )
 {
   checkForMissingColumns(x, by.x)
@@ -16,33 +17,15 @@ safe_merge <- function(
   #x <- iris;y <- iris[c(2, 4)]
   #kwb.utils::assignArgumentDefaults(kwb.prep:::safe_merge)
   #kwb.prep::assign_objects()
+  meta <- safe_merge_metadata(
+    x, y, by.x, by.y,
+    name_x = getname(name_x, substitute(x)),
+    name_y = getname(name_y, substitute(y))
+  ) 
+  
   if (dbg) {
-    
-    name_x <- getname(name_x, substitute(x))
-    name_y <- getname(name_y, substitute(y))
-    
-    names_x <- setdiff(names(x), by.x)
-    names_y <- setdiff(names(y), by.y)
-    
-    all_names <- c(names_x, setdiff(names_y, names_x))
-    
-    in_x <- all_names %in% names_x
-    in_y <- all_names %in% names_y
-    
-    types <- function(x) unname(sapply(x, main_class))
-    type_if <- function(x, check) ifelse(check, types(x), "")
-    col_names <- function(by.i, in_i) c(by.i, ifelse(in_i, all_names, ""))
-    type_names <- function(xx, by.i, in_i) c(types(xx[by.i]), type_if(x, in_i))
-    
-    metadata <- kwb.utils::noFactorDataFrame(
-      type_x = type_names(x, by.x, in_x),
-      column_x = col_names(by.x, in_x),
-      by = c(rep("x", length(by.x)), rep("", length(all_names))),
-      column_y = col_names(by.y, in_y),
-      type_y = type_names(y, by.y, in_y)
-    )
-    
-    metadata %>%
+
+    meta %>%
       kable_translated() %>%
       write_markdown_chapter(
         caption = get_text("merging", name_x, name_y), 
@@ -58,5 +41,30 @@ safe_merge <- function(
     ...
   )
   
-  structure(result, metadata = if (dbg) metadata)
+  structure(result, metadata = if (metadata) meta)
+}
+
+# safe_merge_metadata ----------------------------------------------------------
+safe_merge_metadata <- function(x, y, by.x, by.y, name_x, name_y)
+{
+  names_x <- setdiff(names(x), by.x)
+  names_y <- setdiff(names(y), by.y)
+  
+  all_names <- c(names_x, setdiff(names_y, names_x))
+  
+  in.x <- all_names %in% names_x
+  in.y <- all_names %in% names_y
+  
+  types <- function(d) unname(sapply(d, main_class))
+  type_if <- function(d, check) ifelse(check, types(d), "")
+  col_names <- function(b, i) c(b, ifelse(i, all_names, ""))
+  type_names <- function(d, b, i) c(types(d[b]), type_if(x, i))
+  
+  kwb.utils::noFactorDataFrame(
+    type_x = type_names(x, by.x, in.x),
+    column_x = col_names(by.x, in.x),
+    by = c(rep("x", length(by.x)), rep("", length(all_names))),
+    column_y = col_names(by.y, in.y),
+    type_y = type_names(y, by.y, in.y)
+  )
 }

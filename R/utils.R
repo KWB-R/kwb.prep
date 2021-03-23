@@ -1,9 +1,3 @@
-# assign_objects ---------------------------------------------------------------
-
-#' Assign all Objects of This Package in the Global Environment
-#' @export
-assign_objects <- function() kwb.utils::assignPackageObjects("kwb.prep")
-
 # cat_if -----------------------------------------------------------------------
 cat_if <- kwb.utils::catIf
 
@@ -28,6 +22,12 @@ check_indices <- function(indices, max_index, max_length = max_index)
   stopifnot(all(indices <= max_index))
   stopifnot(length(indices) <= max_length)
   stopifnot(! anyDuplicated(indices))
+}
+
+# count_unique -----------------------------------------------------------------
+count_unique <- function(x)
+{
+  stats::aggregate(.n ~ ., data = cbind(x, .n = 1L), FUN = length)
 }
 
 # cross_if ---------------------------------------------------------------------
@@ -167,7 +167,7 @@ n_unique <- function(x)
 # n_unique_in_column: Number of unique values in a data frame column -----------
 n_unique_in_column <- function(df, column)
 {
-  n_unique(select_columns(df, column))
+  n_unique(kwb.utils::selectColumns(df, column))
 }
 
 # named_seq_along --------------------------------------------------------------
@@ -176,10 +176,16 @@ named_seq_along <- function(x)
   stats::setNames(seq_along(x), x)
 }
 
-# newline_collapsed ------------------------------------------------------------
-newline_collapsed <- function(x)
+# names_which ------------------------------------------------------------------
+names_which <- function(x)
 {
-  paste(x, collapse = "\n")
+  names(which(x))
+}
+
+# eol_collapsed ----------------------------------------------------------------
+eol_collapsed <- function(...)
+{
+  paste0(..., collapse = "\n")
 }
 
 # print_if ---------------------------------------------------------------------
@@ -189,7 +195,7 @@ print_if <- kwb.utils::printIf
 # print_to_string --------------------------------------------------------------
 print_to_string <- function(x)
 {
-  newline_collapsed(utils::capture.output(print(x)))
+  eol_collapsed(utils::capture.output(print(x)))
 }
 
 # run_cached -------------------------------------------------------------------
@@ -220,19 +226,36 @@ run_cached <- function(name, expr = NULL, dbg = FALSE)
 }
 
 # save_as ----------------------------------------------------------------------
-save_as <- function(x, name, file = NULL)
+save_as <- function(x, name, file = NULL, dbg = TRUE)
 {
   file <- kwb.utils::defaultIfNULL(file, file.path(
     tempdir(), sprintf("object_%s.RData", name)
   ))
 
-  save(
-    list = name,
-    envir = list2env(stats::setNames(list(x), name)),
-    file = file
+  kwb.utils::catAndRun(
+    dbg = dbg,
+    sprintf(
+      "Saving '%s' as '%s' to\n  '%s'", 
+      deparse(substitute(x)), name, file
+    ), 
+    expr = save(
+      list = name,
+      envir = list2env(stats::setNames(list(x), name)),
+      file = file
+    )
   )
-
+  
   structure(invisible(x), file = file)
+}
+
+# save_as_if -------------------------------------------------------------------
+save_as_if <- function(x, do_save, name, file = NULL)
+{
+  if (do_save) {
+    save_as(x, name = name, file = file)
+  }
+  
+  x
 }
 
 # set_dbg ----------------------------------------------------------------------

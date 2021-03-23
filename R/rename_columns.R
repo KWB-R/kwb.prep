@@ -11,7 +11,7 @@ rename_columns <- function(x, renamings = NULL, dbg = 3L, name = NULL)
     
     write_markdown_chapter(
       knitr::kable(cbind(von = before[differs], nach = after[differs])),
-      caption = get_text("renaming_columns", newline_collapsed(name)),
+      caption = get_text("renaming_columns", eol_collapsed(name)),
       level = dbg
     )
   }
