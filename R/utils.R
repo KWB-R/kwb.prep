@@ -201,6 +201,15 @@ print_to_string <- function(x)
 # run_cached -------------------------------------------------------------------
 run_cached <- function(name, expr = NULL, dbg = FALSE)
 {
+  # Globally disable caching
+  #Sys.setenv(KWB_PREP_DISABLE_CACHE = "TRUE")
+  
+  # If environment variable KWB_PREP_DISABLE_CACHE is "TRUE", return the 
+  # evaluated expression, without any caching
+  if (Sys.getenv("KWB_PREP_DISABLE_CACHE") == "TRUE") {
+    return(try(eval(expr, envir = -1)))
+  }
+  
   object <- kwb.utils:::get_cached(name, dbg = FALSE)
 
   if (is.null(object)) {
