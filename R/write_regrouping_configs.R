@@ -74,9 +74,13 @@ configs_to_data_frames <- function(configs, actual_df)
 # write_data_frames ------------------------------------------------------------
 write_data_frames <- function(dfs, path)
 {
+  stopifnot(is.list(dfs))
+  stopifnot(all(sapply(dfs, is.data.frame)))
+  
   lapply(names(dfs), function(name) {
     file <- file.path(path, paste0(name, ".csv"))
     utils::write.table(dfs[[name]], file, sep = ";", row.names = FALSE)
+    #writeStandardCsv(dfs[[name]], file)
     file
   })
 }
