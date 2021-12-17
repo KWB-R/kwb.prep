@@ -17,7 +17,8 @@
 #'   only \code{id_columns} that represent the records that have been removed in
 #'   the according filter step \code{i}.
 #' @export
-#' @importFrom kwb.utils getAttribute
+#' @importFrom kwb.utils getAttribute removeAttributes
+#' @importFrom stats setNames
 #' @examples 
 #' 
 #' # Define filter criteria
@@ -46,7 +47,7 @@
 #' str(result)
 #' 
 apply_filters <- function(
-  data, groups, length_column, id_columns = names(data)[1L]
+  data, groups, length_column = NULL, id_columns = names(data)[1L]
 )
 {
   filter_info <- list()
@@ -55,7 +56,7 @@ apply_filters <- function(
     
     # group <- "g1"
     
-    filtered <- kwb.prep:::apply_filter(
+    filtered <- apply_filter(
       x = data, 
       element = group, 
       length_column = length_column, 

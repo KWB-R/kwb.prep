@@ -4,7 +4,7 @@
 \alias{apply_filters}
 \title{Apply Groups of Filter Criteria from Configuration}
 \usage{
-apply_filters(data, groups, length_column, id_columns = names(data)[1L])
+apply_filters(data, groups, length_column = NULL, id_columns = names(data)[1L])
 }
 \arguments{
 \item{data}{data frame}
