@@ -43,6 +43,14 @@ current_year <- function()
   as.integer(format(Sys.Date(), "%Y"))
 }
 
+# flatten_data_frame_lists -----------------------------------------------------
+flatten_data_frame_lists <- function(x, prefix = NULL)
+{
+  result <- lapply(names(x), function(name) prefix_names(x[[name]], name))
+  
+  prefix_names(do.call(c, result), prefix)
+}
+
 # get_dbg ----------------------------------------------------------------------
 get_dbg <- function(default = 1L)
 {
@@ -186,6 +194,16 @@ names_which <- function(x)
 eol_collapsed <- function(...)
 {
   paste0(..., collapse = "\n")
+}
+
+# prefix_names -----------------------------------------------------------------
+prefix_names <- function(x, prefix = NULL)
+{
+  if (is.null(prefix)) {
+    return(x)
+  }
+  
+  stats::setNames(x, paste0(prefix, "_", names(x)))
 }
 
 # print_if ---------------------------------------------------------------------
@@ -333,4 +351,5 @@ write_lines_utf8 <- function(text, file, ...)
 
   writeLines(text, con, ...)
 }
+
 
