@@ -66,8 +66,12 @@ apply_filters <- function(
     overview <- kwb.utils::getAttribute(filtered, "details.filter")
     matches <- kwb.utils::getAttribute(filtered, "matches/details")
     
-    ids_removed <- apply(matches, 2L, function(kept) {
-      kwb.utils::resetRowNames(data[! kept, id_columns, drop = FALSE])
+    ids_removed <- apply(matches, 2L, function(is_kept) {
+      
+      # If the filter criterion evaluated to NA the record was removed!
+      is_removed <- is.na(is_kept) | ! is_kept
+      
+      kwb.utils::resetRowNames(data[is_removed, id_columns, drop = FALSE])
     })
     
     filter_info[[group]] <- c(
