@@ -20,4 +20,9 @@ test_that("applyFilterCriteria() works", {
   )
   
   expect_identical(remove_details(result), x[c(2, 4, 6, 8, 10), ])
+  
+  # Check that rows for which the condition evaluates to NA are not selected
+  x_with_na <- rbind(x, data.frame(a = NA, b = 99L))
+  result <- f(x_with_na, "a < 5L")
+  expect_true(! anyNA(result$a))
 })

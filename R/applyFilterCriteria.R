@@ -3,7 +3,9 @@
 #' Filter Rows from Data Frame Matching Criteria
 #' 
 #' Details about criteria applied and number of rows matching each criterion
-#' is returned in the attribute "details.filter"
+#' is returned in the attribute "details.filter". If a criterion evaluates to 
+#' \code{NA}, the corresponding row in the data frame is removed (just as if the
+#' criterion evaluated to \code{FALSE}). 
 #' 
 #' @param x data frame
 #' @param criteria vector of character defining filter criteria to be evaluated
@@ -43,9 +45,14 @@ applyFilterCriteria <- function(x, criteria = NULL, lengthColumn = NULL, ...)
     return(x)
   }
   
-  matches <- kwb.utils::matchesCriteria(x, criteria, add.details = TRUE, ...)
-  #matches <- kwb.utils::matchesCriteria(x, criteria, add.details = TRUE)
-  
+  matches <- kwb.utils::matchesCriteria(
+    Data = x, 
+    criteria = criteria, 
+    na.to.false = TRUE,
+    add.details = TRUE, 
+    ...
+  )
+
   details <- kwb.utils::getAttribute(matches, "details")
   
   cumMatrix <- cumulateMatchMatrix(details)
