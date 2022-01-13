@@ -36,9 +36,9 @@ write_filter_info <- function(x, target_dir, prefix = deparse(substitute(x)))
 # format_overview_table --------------------------------------------------------
 format_overview_table <- function(data)
 {
-  data <- kwb.utils::renameColumns(data, list(CleaningStep = "StepName"))
+  data <- kwb.utils::renameColumns(data, list(CleaningStep = "Step.name"))
   
-  STEP_NO <- "StepNo"
+  STEP_NO <- "Step.no"
   
   data[[STEP_NO]] <- seq_len(nrow(data))
   
