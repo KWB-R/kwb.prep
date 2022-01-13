@@ -75,7 +75,7 @@ apply_filters <- function(
     })
     
     filter_info[[group]] <- c(
-      list(overview = overview),
+      list(overview = add_step_number(overview)),
       stats::setNames(ids_removed, paste0("removed_", seq_along(ids_removed)))
     )
     
@@ -86,4 +86,16 @@ apply_filters <- function(
     kwb.utils::removeAttributes(filtered, c("details.filter", "matches")),
     filter_info = stats::setNames(filter_info, groups)
   )
+}
+
+# add_step_number --------------------------------------------------------------
+add_step_number <- function(data)
+{
+  data <- kwb.utils::renameColumns(data, list(CleaningStep = "StepName"))
+
+  STEP_NO <- "StepNo"
+  
+  data[[STEP_NO]] <- seq_len(nrow(data))
+
+  kwb.utils::moveColumnsToFront(data, STEP_NO)
 }
