@@ -5,11 +5,12 @@ reorder_columns <- function(
 {
   #kwb.prep:::assign_objects()
 
+  # All available column names
+  all_columns <- names(df)
+  
   # Group columns so that columns that belong together are next to each other
-  all_columns <- if (group_pairs) {
-    kwb.utils::pairwise(names(df))
-  } else {
-    names(df)
+  if (group_pairs) {
+    all_columns <- kwb.utils::pairwise(all_columns)
   }
 
   # Names of columns to appear first
