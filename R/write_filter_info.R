@@ -15,6 +15,12 @@ write_filter_info <- function(x, target_dir, prefix = deparse(substitute(x)))
   stopifnot(is.data.frame(x))
   
   filter_info <- kwb.utils::getAttribute(x, "filter_info")
+
+  # Modify the overview table for each entry in "filter_info"  
+  filter_info <- lapply(filter_info, function(x) {
+    x$overview <- format_overview_table(x$overview)
+    x
+  })
   
   dfs <- flatten_data_frame_lists(filter_info,  prefix = prefix)
 
@@ -25,4 +31,16 @@ write_filter_info <- function(x, target_dir, prefix = deparse(substitute(x)))
   )
   
   invisible(x)
+}
+
+# format_overview_table --------------------------------------------------------
+format_overview_table <- function(data)
+{
+  data <- kwb.utils::renameColumns(data, list(CleaningStep = "StepName"))
+  
+  STEP_NO <- "StepNo"
+  
+  data[[STEP_NO]] <- seq_len(nrow(data))
+  
+  kwb.utils::moveColumnsToFront(data, STEP_NO)
 }
