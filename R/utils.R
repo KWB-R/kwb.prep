@@ -216,6 +216,12 @@ print_to_string <- function(x)
   eol_collapsed(utils::capture.output(print(x)))
 }
 
+# remove_prefix ----------------------------------------------------------------
+remove_prefix <- function(x, prefix)
+{
+  gsub(paste0("^", prefix, "_"), "", x)
+}
+
 # run_cached -------------------------------------------------------------------
 run_cached <- function(name, expr = NULL, dbg = FALSE)
 {

@@ -16,9 +16,12 @@ write_filter_info <- function(x, target_dir, prefix = deparse(substitute(x)))
   
   filter_info <- kwb.utils::getAttribute(x, "filter_info")
   
+  dfs <- flatten_data_frame_lists(filter_info,  prefix = prefix)
+
+  # Write csv files into (newly created) sub-folder <target_dir>/<prefix>
   write_data_frames(
-    dfs = flatten_data_frame_lists(filter_info,  prefix = prefix), 
-    path = target_dir
+    dfs = stats::setNames(dfs, remove_prefix(names(dfs), prefix)), 
+    path = kwb.utils::createDirectory(file.path(target_dir, prefix))
   )
   
   invisible(x)
