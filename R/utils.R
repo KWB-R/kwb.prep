@@ -312,6 +312,16 @@ find_string_constants <- function()
   )
 }
 
+# read_yaml_file ---------------------------------------------------------------
+read_yaml_file <- function(file, dbg = TRUE)
+{
+  kwb.utils::catAndRun(
+    sprintf("Reading yaml file '%s'", file),
+    yaml::read_yaml(kwb.utils::safePath(file)),
+    dbg = dbg
+  )
+}
+
 # stop_ ------------------------------------------------------------------------
 stop_ <- function(...) stop(..., call. = FALSE)
 

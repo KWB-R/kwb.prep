@@ -56,6 +56,19 @@ get_column_separator <- function(id = NULL)
   sep[[id]]
 }
 
+# get_lower_extension ----------------------------------------------------------
+
+#' Lower Case Extension of a File
+#' 
+#' @param file file path or file name
+#' @export
+#' @examples 
+#' get_lower_extension("abc.XYZ")
+get_lower_extension <- function(file)
+{
+  tolower(kwb.utils::fileExtension(file))
+}
+
 # get_option -------------------------------------------------------------------
 get_option <- function(
   name = NULL, file = config_file("options.yml"), dbg = FALSE
@@ -114,6 +127,28 @@ read_args <- function(name, dbg = TRUE)
   )
 }
 
+# read_config ------------------------------------------------------------------
+read_config <- function(file_name, dbg = FALSE, file = NULL)
+{
+  file <- kwb.utils::defaultIfNULL(file, config_file(file_name))
+  
+  extension <- get_lower_extension(file)
+  
+  if (extension == "yml") {
+    
+    read_yaml_file(file, dbg = dbg)
+    
+  } else if (extension == "csv") {
+    
+    read_csv_file(file, dbg = dbg, encoding = "Latin-1")
+    
+  } else stop_(
+    
+    "Configuration file does not have extension .yml or .csv:\n",
+    file
+  )
+}
+
 # read_filter_criteria ---------------------------------------------------------
 #' @importFrom yaml read_yaml
 read_filter_criteria <- function(
@@ -151,7 +186,6 @@ read_internal_types <- function(file = NULL, dbg = FALSE)
 replace_by_condition <- function(
   df, group, path = NULL, dbg = 1L, 
   filename = "replace-by-condition.csv"
-  #filename = "replace_invalid.csv"
 )
 {
   #path=NULL
