@@ -20,12 +20,12 @@ RoxygenNote: 7.1.2
 Suggests: 
     covr,
     kwb.code,
+    kwb.file,
     testthat
 Imports: 
     data.table,
     dplyr,
     knitr,
-    kwb.file,
     kwb.utils,
     magrittr,
     methods,
@@ -34,4 +34,4 @@ Imports:
 Remotes: 
     github::KWB-R/kwb.code,
     github::KWB-R/kwb.file,
-    github::KWB-R/kwb.utils@dev
+    github::KWB-R/kwb.utils
