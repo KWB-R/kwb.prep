@@ -18,7 +18,9 @@ in x}
 }
 \description{
 Details about criteria applied and number of rows matching each criterion
-is returned in the attribute "details.filter"
+is returned in the attribute "details.filter". If a criterion evaluates to
+\code{NA}, the corresponding row in the data frame is removed (just as if the
+criterion evaluated to \code{FALSE}).
 }
 \examples{
 # Create a very simple data frame

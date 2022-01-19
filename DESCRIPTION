@@ -16,20 +16,22 @@ BugReports: https://github.com/KWB-R/kwb.prep/issues
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Suggests: 
-    covr
+    covr,
+    kwb.code,
+    testthat
 Imports: 
     data.table,
     dplyr,
     knitr,
-    kwb.code,
     kwb.file,
     kwb.utils,
+    magrittr,
     methods,
-    yaml,
-    magrittr
+    rmarkdown,
+    yaml
 Remotes: 
-    github::kwb-r/kwb.code,
-    github::kwb-r/kwb.file,
-    github::kwb-r/kwb.utils@dev
+    github::KWB-R/kwb.code,
+    github::KWB-R/kwb.file,
+    github::KWB-R/kwb.utils@dev

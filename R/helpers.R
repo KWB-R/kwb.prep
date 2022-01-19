@@ -1,3 +1,13 @@
+# assign_objects ---------------------------------------------------------------
+
+#' Provide all Objects of kwb.prep in the Global Environment
+#' 
+#' @export
+assign_objects <- function()
+{
+  kwb.utils::assignPackageObjects("kwb.prep")
+}
+
 # field_renamings_to_lookup_table ----------------------------------------------
 field_renamings_to_lookup_table <- function(x)
 {
@@ -28,6 +38,35 @@ check_number_of_unique_if <- function(x, check, columns)
 copy_column <- function(df, to, from, indices = NULL, ...)
 {
   set_column(df, to, from = from, indices = indices, ...)
+}
+
+# get_column_separator ---------------------------------------------------------
+get_column_separator <- function(id = NULL)
+{
+  sep <- get_option("column_separator")
+  
+  if (is.character(sep)) {
+    return(sep)
+  }
+  
+  if (is.null(id) || is.null(sep[[id]])) {
+    return(kwb.utils::selectElements(sep, "default"))
+  }
+  
+  sep[[id]]
+}
+
+# get_lower_extension ----------------------------------------------------------
+
+#' Lower Case Extension of a File
+#' 
+#' @param file file path or file name
+#' @export
+#' @examples 
+#' get_lower_extension("abc.XYZ")
+get_lower_extension <- function(file)
+{
+  tolower(kwb.utils::fileExtension(file))
 }
 
 # get_option -------------------------------------------------------------------
@@ -88,6 +127,28 @@ read_args <- function(name, dbg = TRUE)
   )
 }
 
+# read_config ------------------------------------------------------------------
+read_config <- function(file_name, dbg = FALSE, file = NULL)
+{
+  file <- kwb.utils::defaultIfNULL(file, config_file(file_name))
+  
+  extension <- get_lower_extension(file)
+  
+  if (extension == "yml") {
+    
+    read_yaml_file(file, dbg = dbg)
+    
+  } else if (extension == "csv") {
+    
+    read_csv_file(file, dbg = dbg, encoding = "Latin-1")
+    
+  } else stop_(
+    
+    "Configuration file does not have extension .yml or .csv:\n",
+    file
+  )
+}
+
 # read_filter_criteria ---------------------------------------------------------
 #' @importFrom yaml read_yaml
 read_filter_criteria <- function(
@@ -101,9 +162,13 @@ read_filter_criteria <- function(
 }
 
 # read_internal_types ----------------------------------------------------------
-read_internal_types <- function(dbg = FALSE)
+read_internal_types <- function(file = NULL, dbg = FALSE)
 {
-  result <- read_csv_file(config_file("internal-types.csv"), dbg = dbg)
+  if (is.null(file)) {
+    file <- config_file("internal-types.csv", in_package = FALSE)
+  }
+  
+  result <- read_csv_file(file, dbg = dbg)
 
   fetch <- kwb.utils::createAccessor(result)
 
@@ -118,27 +183,25 @@ read_internal_types <- function(dbg = FALSE)
 
 # replace_by_condition ---------------------------------------------------------
 #' @keywords internal
-replace_by_condition <- function(df, group, path = NULL, dbg = 1L)
+replace_by_condition <- function(
+  df, group, path = NULL, dbg = 1L, 
+  filename = "replace-by-condition.csv"
+)
 {
   #path=NULL
   #kwb.prep::assign_objects()
-
   result <- suppressMessages(replaceByCondition(
     df = df, group = group, dbg = FALSE, file = kwb.utils::defaultIfNULL(
-      path, config_file("replace_invalid.csv", must_exist = TRUE)
+      path, config_file(filename, in_package = FALSE)
     )
   ))
 
   metadata <- result %>%
     kwb.utils::getAttribute("metadata") %>%
-    kwb.utils::moveColumnsToFront(c(
-      "n_replaced", "target_column", "replacement"
-    ))
+    kwb.utils::moveColumnsToFront(c("n_replaced", "target", "replacement"))
 
   metadata %>%
-    kable_translated(
-      caption = get_text("replacements_invalid_csv", group)
-    ) %>%
+    kable_translated(caption = get_text("replacements_by_condition", group)) %>%
     write_markdown_chapter("replace_specials", level = dbg)
 
   structure(result, metadata = metadata)

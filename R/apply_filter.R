@@ -1,17 +1,26 @@
 # apply_filter -----------------------------------------------------------------
 apply_filter <- function(
-  x, element, length_column = NULL, dbg = 2L, name = NULL,
-  config = read_filter_criteria(dbg = FALSE)
+  x, element, length_column = NULL, dbg = 2L, name = NULL, criteria = NULL
 )
 {
+  #kwb.prep::assignObjects();name=NULL;criteria=NULL
   name <- getname(name, substitute(x))
+ 
+  if (is.null(criteria)) {
+    criteria <- read_filter_criteria(dbg = FALSE)
+  }
   
   output <- utils::capture.output(
-    result <- applyFilter(x, config, element, length_column)
+    result <- applyFilter(
+      data = x, 
+      criteria_list = criteria, 
+      element, 
+      length_column
+    )
   )
   
   write_markdown_chapter(
-    to_rcode_snippet(output),
+    if (length(output)) to_rcode_snippet(output) else "",
     level = dbg,
     caption = if (name == ".") {
       get_text("applying_filter", element)
@@ -20,11 +29,28 @@ apply_filter <- function(
     }
   )
   
-  if (! is.null(length_column)) {
+  details <- attr(result, "details.filter")
+
+  if (is.null(details) || is.null(length_column)) {
     
-    writeLines(printFilterTable(
-      kwb.utils::getAttribute(result, "details.filter")
-    ))
+    text <- paste(
+      "Eine Uebersicht ueber die entfernten Haltungen und deren Laengen kann", 
+      "nicht erzeugt werden, da\n\n"
+    )
+    
+    if (is.null(details)) {
+      text <- paste0(text, "- ", "keine Filterkriterien definiert waren\n")
+    }
+    
+    if (is.null(length_column)) {
+      text <- paste0(text, "- ", "keine Laengenangaben uebergeben wurden\n")
+    }
+    
+    writeLines(text)
+    
+  } else {
+    
+    writeLines(printFilterTable(details))
   }
   
   result

@@ -6,11 +6,12 @@
 \usage{
 read_csv_file(
   file,
-  sep = get_option("column_separator"),
+  sep = get_column_separator(),
   dec = ",",
   encoding = "UTF-8",
   na.strings = "",
   ...,
+  set_empty_string_to_na = FALSE,
   dbg = 1L
 )
 }
@@ -29,6 +30,9 @@ available). Default: ""}
 
 \item{\dots}{further arguments passed to
 \code{\link[data.table]{fread}}}
+
+\item{set_empty_string_to_na}{if \code{TRUE} (the default is \code{FALSE})
+empty strings in character columns are replaced with \code{NA}}
 
 \item{dbg}{if \code{TRUE} debug messages are shown}
 }

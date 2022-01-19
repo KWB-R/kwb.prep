@@ -162,34 +162,33 @@ fillUpNA <- function(x, y, dbg = TRUE, name_x = NULL, name_y = NULL)
 #' 
 getChangesOfDuplicates <- function(df, columns, add_columns = columns)
 {
-  candidates <- kwb.utils::selectColumns(df, columns, drop = FALSE)
+  fetch <- function(df, cols) kwb.utils::selectColumns(df, cols, drop = FALSE)
   
-  duplicate_indices <- which(duplicated(candidates))
+  candidates <- fetch(df, columns)
   
-  groups <- unique(candidates[duplicate_indices, , drop = FALSE])
+  groups <- unique(candidates[duplicated(candidates), , drop = FALSE])
   
   groups <- kwb.utils::fullySorted(groups)
   
-  group_column <- kwb.utils::hsSafeName("group", names(df))
+  groups[[".group"]] <- seq_len(nrow(groups))
   
-  groups[[group_column]] <- seq_len(nrow(groups))
+  y <- merge(df, groups, by = columns)
   
-  df <- merge(df, groups, by = setdiff(names(groups), group_column))
+  if (any(is.na(y[[".group"]]))) {
+    stop("Unexpected error in getChangesOfDuplicates(): .group is NA!")
+  }
   
-  df <- df[! is.na(df[[group_column]]), , drop = FALSE]
+  #y <- y[! is.na(y[[".group"]]), , drop = FALSE]
   
-  pipe_sets <- split(df, df[[group_column]])
+  nm <- names(y)
   
-  all_columns <- names(df)
+  cols <- c(columns, add_columns)
   
-  lapply(unname(pipe_sets), function(pipe_set) {
-    
-    diff_columns <- all_columns[! sapply(pipe_set, kwb.utils::allAreEqual)]
-    
-    columns_to_select <- unique(c(columns, add_columns, diff_columns))
-    
-    kwb.utils::selectColumns(pipe_set, columns_to_select, drop = FALSE)
+  result <- lapply(split(y, y[[".group"]]), function(x) {
+    fetch(x, unique(c(cols, nm[! sapply(x, kwb.utils::allAreEqual)])))
   })
+  
+  lapply(unname(result), count_unique)
 }
 
 # getYearFromColumn ------------------------------------------------------------
@@ -269,7 +268,7 @@ overwriteIfNotNA <- function(data, target_column, source_column)
 #' 
 #' # Create a very simple configuration
 #' config <- read.table(sep = ",", header = TRUE, text = c(
-#'   "group,target_column,condition,replacement",
+#'   "group,target,condition,replacement",
 #'   "g1,a,a==2,22",
 #'   "g2,a,a==3,33"
 #' ))
@@ -305,11 +304,20 @@ replaceByCondition <- function(
   if (! is.null(group)) {
     
     groups <- fetch("group")
-    stopIfNotIn(group, unique(groups), singular = "group")
+    stopIfNotIn(group, unique(groups), singular = "group", do_stop = FALSE)
     config <- config[groups == group, , drop = FALSE]
     fetch <- kwb.utils::createAccessor(config)
   }
 
+  if (nrow(config) == 0L) {
+    return(structure(df, metadata = data.frame(
+      target = character(0),
+      n_replaced = integer(0), 
+      condition = character(0), 
+      replacement = character(0)
+    )))
+  }
+  
   #stopifnot(! anyDuplicated(fetch("target_column")))
   
   # Evaluate all criteria at once
@@ -322,12 +330,12 @@ replaceByCondition <- function(
   ))
 
   # Provide column vectors of "config"
-  columns <- as.character(fetch("target_column"))
+  columns <- as.character(fetch("target"))
   replacements <- fetch("replacement")
   
   # Apply the replacements  
   for (i in seq_along(columns)) {
-    df[which(matches[, i]), columns[i]]<- replacements[i]
+    df[which(matches[, i]), columns[i]] <- replacements[i]
   }
 
   # Provide metadata on the results of the applied replacements  
@@ -339,7 +347,7 @@ replaceByCondition <- function(
   # Print the metadata
   kwb.utils::catIf(dbg, paste(collapse = "", sprintf(
     "Data correction in '%s': %d values with \"%s\" set to '%s'\n",
-    metadata$target_column,
+    metadata$target,
     metadata$n_replaced, 
     metadata$condition, 
     metadata$replacement
@@ -396,18 +404,27 @@ reportNA <- function(data, column, subject = "in data")
 #'   \code{"option"}
 #' @param plural name of object (plural) to appear in error message. Default: 
 #'   \code{paste0(singular, "s")}
+#' @param do_stop if \code{FALSE} (the default is \code{TRUE}) program execution
+#'  does not stop. Instead a message is shown.
 #' @export
 #' 
 stopIfNotIn <- function(
-  element, elements, singular = "option", plural = paste0(singular, "s")
+  element, elements, singular = "option", plural = paste0(singular, "s"),
+  do_stop = TRUE
 )
 {
   if (! element %in% elements) {
     
-    stopf(
+    msg <- sprintf(
       "No such %s: '%s'. Available %s: %s",
       singular, element, plural, kwb.utils::stringList(elements)
     )
+    
+    if (do_stop) {
+      stop_(msg)
+    } else {
+      message(msg)
+    }
   }
 }
 

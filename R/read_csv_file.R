@@ -10,10 +10,12 @@
 #'   available). Default: ""
 #' @param \dots further arguments passed to
 #'   \code{\link[data.table]{fread}}
+#' @param set_empty_string_to_na if \code{TRUE} (the default is \code{FALSE}) 
+#'   empty strings in character columns are replaced with \code{NA}
 #' @param dbg if \code{TRUE} debug messages are shown
 read_csv_file <- function(
-  file, sep = get_option("column_separator"), dec = ",", encoding = "UTF-8",
-  na.strings = "", ..., dbg = 1L
+  file, sep = get_column_separator(), dec = ",", encoding = "UTF-8",
+  na.strings = "", ..., set_empty_string_to_na = FALSE, dbg = 1L
 )
 {
   #kwb.prep::assign_objects()
@@ -32,5 +34,14 @@ read_csv_file <- function(
     , ...
   ))
 
+  # Replace empty strings in character columns with NA
+  if (set_empty_string_to_na) {
+    is_char <- sapply(result, is.character)
+    result[is_char] <- lapply(result[is_char], function(x) {
+      x[x == ""] <- NA
+      x
+    })
+  }
+  
   structure(result, metadata = metadata)
 }
