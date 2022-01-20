@@ -10,12 +10,15 @@
 #'   available). Default: ""
 #' @param \dots further arguments passed to
 #'   \code{\link[data.table]{fread}}
+#' @param remove_comments Should rows starting with "#" be removed (the
+#'   default)?
 #' @param set_empty_string_to_na if \code{TRUE} (the default is \code{FALSE}) 
 #'   empty strings in character columns are replaced with \code{NA}
 #' @param dbg if \code{TRUE} debug messages are shown
 read_csv_file <- function(
   file, sep = get_column_separator(), dec = ",", encoding = "UTF-8",
-  na.strings = "", ..., set_empty_string_to_na = FALSE, dbg = 1L
+  na.strings = "", ..., remove_comments = TRUE, set_empty_string_to_na = FALSE, 
+  dbg = 1L
 )
 {
   #kwb.prep::assign_objects()
@@ -34,6 +37,12 @@ read_csv_file <- function(
     , ...
   ))
 
+  # Remove rows starting with "#"
+  if (remove_comments && ncol(result) > 0L) {
+    is_not_comment <- grep("^#", as.character(result[[1L]]), invert = TRUE)
+    result <- result[is_not_comment, , drop = FALSE]
+  }
+  
   # Replace empty strings in character columns with NA
   if (set_empty_string_to_na) {
     is_char <- sapply(result, is.character)
@@ -42,6 +51,6 @@ read_csv_file <- function(
       x
     })
   }
-  
+
   structure(result, metadata = metadata)
 }

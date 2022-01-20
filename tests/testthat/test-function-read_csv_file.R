@@ -19,4 +19,21 @@ test_that("read_csv_file() works", {
   ))
   
   expect_identical(result$b, c("a", NA, "c"))
+  
+  writeLines(con = file, c(
+    "key;value1;value2",
+    "a;1;2",
+    "b;3;4",
+    "#c;5;6"
+  ))
+  
+  # Check that comment lines are removed by default
+  expect_message(capture.output(result <- f(file)))
+  expect_identical(names(result), c("key", "value1", "value2"))
+  expect_identical(result$key, c("a", "b"))
+  
+  # Check that comment lines are kept if required
+  expect_message(capture.output(result <- f(file, remove_comments = FALSE)))
+  expect_identical(names(result), c("key", "value1", "value2"))
+  expect_identical(result$key, c("a", "b", "#c"))
 })
