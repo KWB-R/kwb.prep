@@ -1,6 +1,7 @@
 # reorder_columns --------------------------------------------------------------
 reorder_columns <- function(
-  df, selection = "first", filename = "selections.csv", group_pairs = TRUE
+  df, selection = "first", filename = "selections.csv", group_pairs = TRUE,
+  dbg = TRUE
 )
 {
   #kwb.prep:::assign_objects()
@@ -18,7 +19,7 @@ reorder_columns <- function(
 
   if (length(missing <- setdiff(first, all_columns))) {
 
-    message(get_text(
+    message_if(dbg, get_text(
       "unknown_columns_in_selection", 
       selection, filename, eol_collapsed("- ", missing)
     ))
