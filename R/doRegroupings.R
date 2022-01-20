@@ -74,13 +74,11 @@ applyRegrouping <- function(Data, actual, regroup.config, to.factor, dbg)
   config <- regroup.config[[actual$name]]
   
   # Check for (and message about!) untreated values only if dbg is TRUE
-  config <- c(config, list(checkRemaining = dbg))
-  
   if (! is.null(config)) {
     
     values <- regroupedValues(
       values = values, 
-      config = config,
+      config = c(config, list(checkRemaining = dbg)),
       labels = actual$labels, 
       to.factor = to.factor, 
       dbg = dbg
