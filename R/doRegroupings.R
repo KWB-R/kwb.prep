@@ -38,7 +38,7 @@ doRegroupings <- function(
     
     if (actual$from %in% names(Data)) {
       
-      message(sprintf("%02d. %s", i, actual$to))
+      message_if(dbg, sprintf("%02d. %s", i, actual$to))
       Data <- applyRegrouping(Data, actual, regroup.config, to.factor, dbg)
       
     } else {
@@ -48,15 +48,12 @@ doRegroupings <- function(
     
   } # end of for (actual in regroup.actual)
 
-  n <- length(skipped)
-  
-  if (dbg && n > 0L) {
-    message(
-      sprintf("%d actual regroupings have been skipped ", n),
-      "since the following columns were missing:\n- ", 
-      paste(unique(skipped), collapse = "\n- ")
-    )
-  }
+  message_if(
+    dbg && (n <- length(skipped)) > 0L, 
+    sprintf("%d actual regroupings have been skipped ", n),
+    "since the following columns were missing:\n- ", 
+    paste(unique(skipped), collapse = "\n- ")
+  )
   
   Data
 }
@@ -76,16 +73,22 @@ applyRegrouping <- function(Data, actual, regroup.config, to.factor, dbg)
   
   config <- regroup.config[[actual$name]]
   
+  # Check for (and message about!) untreated values only if dbg is TRUE
+  config <- c(config, list(checkRemaining = dbg))
+  
   if (! is.null(config)) {
     
     values <- regroupedValues(
-      values = values, config = config, labels = actual$labels, 
-      to.factor = to.factor, dbg = dbg
+      values = values, 
+      config = config,
+      labels = actual$labels, 
+      to.factor = to.factor, 
+      dbg = dbg
     )
     
   } else {
     
-    message(sprintf(
+    message_if(dbg, sprintf(
       "No config '%s' available -> Just copying...", actual$name
     ))
   }
@@ -268,15 +271,13 @@ messageOnRemaining <- function(x, assignments)
 {
   remaining <- setdiff(x, unlist(assignments, use.names = FALSE))
   
-  ok <- (length(remaining) == 0)
+  ok <- (length(remaining) == 0L)
   
-  if (! ok) {
-    
-    message("Untreated value(s):")
-    
-    print(remaining)
-  }
-  
+  message_if(
+    ! ok, 
+    "Untreated value(s): ", kwb.utils::stringList(remaining, qchar = '"')
+  )
+
   ok
 }
 
