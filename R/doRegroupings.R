@@ -47,12 +47,14 @@ doRegroupings <- function(
     }
     
   } # end of for (actual in regroup.actual)
+
+  n <- length(skipped)
   
-  if (n <- length(skipped)) {
+  if (dbg && n > 0L) {
     message(
       sprintf("%d actual regroupings have been skipped ", n),
       "since the following columns were missing:\n- ", 
-      paste(skipped, collapse = "\n- ")
+      paste(unique(skipped), collapse = "\n- ")
     )
   }
   
