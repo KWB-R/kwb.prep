@@ -60,6 +60,7 @@
   encoding <span class="op">=</span> <span class="st">"UTF-8"</span>,
   na.strings <span class="op">=</span> <span class="st">""</span>,
   <span class="va">...</span>,
+  remove_comments <span class="op">=</span> <span class="cn">TRUE</span>,
   set_empty_string_to_na <span class="op">=</span> <span class="cn">FALSE</span>,
   dbg <span class="op">=</span> <span class="fl">1L</span>
 <span class="op">)</span></code></pre></div>
@@ -82,6 +83,9 @@ available). Default: ""</p></dd>
 <dt>...</dt>
 <dd><p>further arguments passed to
 <code><a href="https://Rdatatable.gitlab.io/data.table/reference/fread.html" class="external-link">fread</a></code></p></dd>
+<dt>remove_comments</dt>
+<dd><p>Should rows starting with "#" be removed (the
+default)?</p></dd>
 <dt>set_empty_string_to_na</dt>
 <dd><p>if <code>TRUE</code> (the default is <code>FALSE</code>)
 empty strings in character columns are replaced with <code>NA</code></p></dd>
