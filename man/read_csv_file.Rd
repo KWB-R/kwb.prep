@@ -11,6 +11,7 @@ read_csv_file(
   encoding = "UTF-8",
   na.strings = "",
   ...,
+  remove_comments = TRUE,
   set_empty_string_to_na = FALSE,
   dbg = 1L
 )
@@ -30,6 +31,9 @@ available). Default: ""}
 
 \item{\dots}{further arguments passed to
 \code{\link[data.table]{fread}}}
+
+\item{remove_comments}{Should rows starting with "#" be removed (the
+default)?}
 
 \item{set_empty_string_to_na}{if \code{TRUE} (the default is \code{FALSE})
 empty strings in character columns are replaced with \code{NA}}

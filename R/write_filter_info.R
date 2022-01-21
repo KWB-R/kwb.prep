@@ -6,11 +6,14 @@
 #'   attribute \code{filter_info} set.
 #' @param target_dir path to directory into which to write csv files
 #' @param prefix string by which to prefix all files
+#' @param dbg whether or not to show debug messages
 #' @return \code{x}, unchanged, invisibly
 #' @export
 #' @importFrom kwb.utils getAttribute
 #' 
-write_filter_info <- function(x, target_dir, prefix = deparse(substitute(x)))
+write_filter_info <- function(
+  x, target_dir, prefix = deparse(substitute(x)), dbg = TRUE
+)
 {
   stopifnot(is.data.frame(x))
   
@@ -27,7 +30,7 @@ write_filter_info <- function(x, target_dir, prefix = deparse(substitute(x)))
   # Write csv files into (newly created) sub-folder <target_dir>/<prefix>
   write_data_frames(
     dfs = stats::setNames(dfs, remove_prefix(names(dfs), prefix)), 
-    path = kwb.utils::createDirectory(file.path(target_dir, prefix))
+    path = kwb.utils::createDirectory(file.path(target_dir, prefix), dbg = dbg)
   )
   
   invisible(x)

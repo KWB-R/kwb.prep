@@ -4,7 +4,7 @@
 \alias{write_filter_info}
 \title{Write Information on Filtering to CSV files}
 \usage{
-write_filter_info(x, target_dir, prefix = deparse(substitute(x)))
+write_filter_info(x, target_dir, prefix = deparse(substitute(x)), dbg = TRUE)
 }
 \arguments{
 \item{x}{data frame as returned by \code{\link{apply_filters}}, with
@@ -13,6 +13,8 @@ attribute \code{filter_info} set.}
 \item{target_dir}{path to directory into which to write csv files}
 
 \item{prefix}{string by which to prefix all files}
+
+\item{dbg}{whether or not to show debug messages}
 }
 \value{
 \code{x}, unchanged, invisibly
