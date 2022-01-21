@@ -1,6 +1,6 @@
 Package: kwb.prep
 Title: Markdown-Documented Data Preparation
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: 
     c(person(given = "Hauke",
              family = "Sonnenberg",
