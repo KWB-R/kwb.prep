@@ -99,7 +99,7 @@ get_option <- function(
 # get_user_config_dir ----------------------------------------------------------
 get_user_config_dir <- function(default = NULL)
 {
-  kwb.utils::defaultIfNULL(get_global("user_config_dir"), default)
+  get_global("user_config_dir", default)
 }
 
 # in_development_mode ----------------------------------------------------------
