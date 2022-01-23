@@ -213,6 +213,12 @@ set_origin <- function(data, origin = kwb.utils::getAttribute(data, "origin"))
   cbind(data, origin = origin, stringsAsFactors = FALSE)
 }
 
+# set_user_config_dir ----------------------------------------------------------
+set_user_config_dir <- function(path)
+{
+  set_global("user_config_dir", kwb.utils::safePath(path))
+}
+
 # split_by_columns -------------------------------------------------------------
 split_by_columns <- function(df, columns, ...)
 {
