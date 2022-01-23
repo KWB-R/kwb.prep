@@ -222,6 +222,14 @@ remove_prefix <- function(x, prefix)
   gsub(paste0("^", prefix, "_"), "", x)
 }
 
+# round_numeric ----------------------------------------------------------------
+round_numeric <- function(x, digits = 2L)
+{
+  is_numeric <- sapply(x, inherits, "numeric")
+  x[is_numeric] <- lapply(x[is_numeric], round, digits)
+  x
+}
+
 # run_cached -------------------------------------------------------------------
 run_cached <- function(name, expr = NULL, dbg = FALSE)
 {
