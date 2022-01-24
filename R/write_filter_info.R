@@ -44,6 +44,6 @@ format_overview_table <- function(data)
   STEP_NO <- "Step.no"
   
   data[[STEP_NO]] <- seq_len(nrow(data))
-  
-  kwb.utils::moveColumnsToFront(data, STEP_NO)
+    
+  kwb.utils::moveColumnsToFront(round_numeric(data), STEP_NO)
 }

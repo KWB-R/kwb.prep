@@ -96,6 +96,12 @@ get_option <- function(
   value
 }
 
+# get_user_config_dir ----------------------------------------------------------
+get_user_config_dir <- function(default = NULL)
+{
+  get_global("user_config_dir", default)
+}
+
 # in_development_mode ----------------------------------------------------------
 in_development_mode <- function()
 {
@@ -211,6 +217,12 @@ replace_by_condition <- function(
 set_origin <- function(data, origin = kwb.utils::getAttribute(data, "origin"))
 {
   cbind(data, origin = origin, stringsAsFactors = FALSE)
+}
+
+# set_user_config_dir ----------------------------------------------------------
+set_user_config_dir <- function(path)
+{
+  set_global("user_config_dir", kwb.utils::safePath(path))
 }
 
 # split_by_columns -------------------------------------------------------------

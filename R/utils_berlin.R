@@ -468,7 +468,9 @@ stopOnDuplicates <- function(data, columns = names(data), name = NULL)
 writeStandardCsv <- function(x, file, ...)
 {
   utils::write.table(
-    x, file = file, col.names = TRUE, row.names = FALSE, dec = ".", sep = ";", 
+    x, file = file, col.names = TRUE, row.names = FALSE, 
+    dec = kwb.utils::argsCsv("en")$dec, 
+    sep = kwb.utils::argsCsv("de")$sep, 
     quote = FALSE, ...
   )
 }

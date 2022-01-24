@@ -72,14 +72,22 @@ configs_to_data_frames <- function(configs, actual_df)
 }
 
 # write_data_frames ------------------------------------------------------------
-write_data_frames <- function(dfs, path)
+write_data_frames <- function(dfs, path, lng = "de")
 {
   stopifnot(is.list(dfs))
   stopifnot(all(sapply(dfs, is.data.frame)))
   
+  args_csv <- kwb.utils::argsCsv(lng = lng)
+  
   lapply(names(dfs), function(name) {
     file <- file.path(path, paste0(name, ".csv"))
-    utils::write.table(dfs[[name]], file, sep = ";", row.names = FALSE)
+    utils::write.table(
+      dfs[[name]], 
+      file, 
+      sep = args_csv$sep, 
+      dec = args_csv$dec,
+      row.names = FALSE
+    )
     #writeStandardCsv(dfs[[name]], file)
     file
   })

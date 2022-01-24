@@ -11,7 +11,7 @@ config_file <- function(..., must_exist = TRUE, in_package = FALSE)
     
     default_path <- path.expand("~/tmp/kwb.prep/config")
     
-    get_global("user_config_dir", default_path)
+    get_user_config_dir(default_path)
   }
   
   if (must_exist) {
