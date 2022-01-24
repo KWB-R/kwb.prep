@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">kwb.prep</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -103,7 +103,7 @@ the according filter step <code>i</code>.</p>
 <span class="r-in"><span class="fu">yaml</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/yaml/man/write_yaml.html" class="external-link">write_yaml</a></span><span class="op">(</span><span class="va">criteria</span>, <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">tdir</span>, <span class="st">"filter_criteria.yml"</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Set path to temporary "config" folder so that kwb.prep knows about it</span></span>
-<span class="r-in"><span class="fu">kwb.prep</span><span class="fu">:::</span><span class="fu">set_global</span><span class="op">(</span><span class="st">"user_config_dir"</span>, <span class="va">tdir</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu">kwb.prep</span><span class="fu">:::</span><span class="fu">set_user_config_dir</span><span class="op">(</span><span class="va">tdir</span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Apply filter groups "sepal" and "petal" to the iris dataset</span></span>
 <span class="r-in"><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">apply_filters</span><span class="op">(</span><span class="va">iris</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"sepal"</span>, <span class="st">"petal"</span><span class="op">)</span><span class="op">)</span></span>
