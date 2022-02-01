@@ -42,7 +42,7 @@ reading_args: 'Argumente f<ue>r Funktion %s() lesen aus: ''%s'''
 reading_filter_criteria: Reading filter criteria from
 removing_columns: Spalten entfernen
 removing_columns_from: Spalten aus '%s' entfernen
-renaming_columns: Spalten in '%s' umbenennen:<nl>
+renaming_columns: Spalten in '%s' umbenennen
 replace_specials: Spezielle (ung<ue>ltige) Werte ersetzen
 replacement: wird gesetzt auf
 replacements_by_condition: Ersetzungen gem<ae><ss> replace-by-condition.csv, Gruppe
