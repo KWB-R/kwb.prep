@@ -1,5 +1,8 @@
 # Current developments
 
+* Add argument "to.numeric" to doRegroupings(), applyRegrouping(),
+  regroupedValues(), regroup(), typeConverted()
+
 # kwb.prep 0.2.0 (2022-01-24)
 
 Add private functions:

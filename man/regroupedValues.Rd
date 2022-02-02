@@ -9,6 +9,7 @@ regroupedValues(
   config = NULL,
   labels = "labels1",
   to.factor = FALSE,
+  to.numeric = TRUE,
   dbg = TRUE
 )
 }
@@ -27,6 +28,9 @@ performs a "value to label"-regrouping.}
 
 \item{to.factor}{if \code{TRUE} the new values are converted to
 \code{factor}. The default is \code{FALSE}.}
+
+\item{to.numeric}{(default: \code{TRUE}, overrides \code{to.factor}!), passed
+to \code{\link{regroup}}}
 
 \item{dbg}{if \code{TRUE} (default) debug messages are shown}
 }

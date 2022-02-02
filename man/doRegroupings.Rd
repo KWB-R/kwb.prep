@@ -11,6 +11,7 @@ doRegroupings(
   settings = NULL,
   checkRemaining = TRUE,
   to.factor = FALSE,
+  to.numeric = TRUE,
   dbg = TRUE
 )
 }
@@ -29,6 +30,9 @@ occurred in a column to be regrouped have been considered in the regrouping}
 
 \item{to.factor}{if \code{TRUE} the new values are converted to
 \code{factor}. The default is \code{FALSE}.}
+
+\item{to.numeric}{(default: \code{TRUE}, overrides \code{to.factor}!), passed
+to \code{\link{regroup}}}
 
 \item{dbg}{if \code{TRUE} (default) debug messages are shown}
 }
