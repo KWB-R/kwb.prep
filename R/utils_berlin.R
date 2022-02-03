@@ -296,7 +296,9 @@ replaceByCondition <- function(
   }
   
   if (is.null(config)) {
-    config <- utils::read.csv(file, stringsAsFactors = FALSE)
+    config <- utils::read.csv(
+      file, comment.char = "#", stringsAsFactors = FALSE
+    )
   }
 
   fetch <- kwb.utils::createAccessor(config)
