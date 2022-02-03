@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">kwb.prep</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
       </span>
     </div>
 
@@ -53,7 +53,13 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">regroup</span><span class="op">(</span><span class="va">x</span>, <span class="va">assignments</span>, ignore.case <span class="op">=</span> <span class="cn">NULL</span>, to.factor <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">regroup</span><span class="op">(</span>
+  <span class="va">x</span>,
+  <span class="va">assignments</span>,
+  ignore.case <span class="op">=</span> <span class="cn">NULL</span>,
+  to.factor <span class="op">=</span> <span class="cn">FALSE</span>,
+  to.numeric <span class="op">=</span> <span class="cn">TRUE</span>
+<span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -69,6 +75,11 @@ replaced with \&lt;key\&gt; in the output vector</p></dd>
 <dt>to.factor</dt>
 <dd><p>if <code>TRUE</code> the new values are converted to
 <code>factor</code>. The default is <code>FALSE</code>.</p></dd>
+<dt>to.numeric</dt>
+<dd><p>if <code>TRUE</code> (the default!) and independent of
+<code>to.factor</code> (!) the returned values are converted to numeric values if
+all assigned (even though string) values "look like" numeric values, such
+as "1", "2", "3.4", "5.67".</p></dd>
 </dl></div>
     <div id="value">
     <h2>Value</h2>
@@ -85,12 +96,25 @@ in the vector \&lt;values\&gt; of a \&lt;key\&gt; = \&lt;values\&gt; assignment 
 <span class="r-in">  <span class="st">"CD"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"C"</span>, <span class="st">"D"</span><span class="op">)</span></span>
 <span class="r-in"><span class="op">)</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "AB" "AB" "CD" "CD"</span>
-<span class="r-in">  </span>
-<span class="r-in"><span class="fu">regroup</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"E"</span>, <span class="st">"A"</span><span class="op">)</span>, assignments <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
-<span class="r-in">  <span class="st">"AB"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span><span class="op">)</span>,</span>
-<span class="r-in">  <span class="st">"CD"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"C"</span>, <span class="st">"D"</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "AB" "AB" "CD" "CD" NA   "AB"</span>
+<span class="r-in"></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"E"</span>, <span class="st">"A"</span><span class="op">)</span></span>
+<span class="r-in"><span class="va">assignments</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span class="r-in"> <span class="st">"1"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span><span class="op">)</span>,</span>
+<span class="r-in"> <span class="st">"2"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"C"</span>, <span class="st">"D"</span><span class="op">)</span></span>
+<span class="r-in"><span class="op">)</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="fu">regroup</span><span class="op">(</span><span class="va">x</span>, <span class="va">assignments</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1]  1  1  2  2 NA  1</span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># to.factor is ignored...</span></span>
+<span class="r-in"><span class="fu">regroup</span><span class="op">(</span><span class="va">x</span>, <span class="va">assignments</span>, to.factor <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1]  1  1  2  2 NA  1</span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># ... unless to.numeric is FALSE!</span></span>
+<span class="r-in"><span class="fu">regroup</span><span class="op">(</span><span class="va">x</span>, <span class="va">assignments</span>, to.factor <span class="op">=</span> <span class="cn">TRUE</span>, to.numeric <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1    1    2    2    &lt;NA&gt; 1   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Levels: 1 2</span>
 <span class="r-in"></span>
 </code></pre></div>
     </div>

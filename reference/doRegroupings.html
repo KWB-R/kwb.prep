@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">kwb.prep</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
       </span>
     </div>
 
@@ -60,6 +60,7 @@
   settings <span class="op">=</span> <span class="cn">NULL</span>,
   checkRemaining <span class="op">=</span> <span class="cn">TRUE</span>,
   to.factor <span class="op">=</span> <span class="cn">FALSE</span>,
+  to.numeric <span class="op">=</span> <span class="cn">TRUE</span>,
   dbg <span class="op">=</span> <span class="cn">TRUE</span>
 <span class="op">)</span></code></pre></div>
     </div>
@@ -81,6 +82,9 @@ occurred in a column to be regrouped have been considered in the regrouping</p><
 <dt>to.factor</dt>
 <dd><p>if <code>TRUE</code> the new values are converted to
 <code>factor</code>. The default is <code>FALSE</code>.</p></dd>
+<dt>to.numeric</dt>
+<dd><p>(default: <code>TRUE</code>, overrides <code>to.factor</code>!), passed
+to <code><a href="regroup.html">regroup</a></code></p></dd>
 <dt>dbg</dt>
 <dd><p>if <code>TRUE</code> (default) debug messages are shown</p></dd>
 </dl></div>
