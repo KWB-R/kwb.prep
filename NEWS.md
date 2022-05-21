@@ -3,6 +3,7 @@
 * Add argument "to.numeric" to doRegroupings(), applyRegrouping(),
   regroupedValues(), regroup(), typeConverted()
 * Let replaceByCondition() ignore lines starting with "#" in config file
+* Document and export fieldSummary()
 
 # kwb.prep 0.2.0 (2022-01-24)
 
