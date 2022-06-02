@@ -55,7 +55,7 @@ safe_merge_metadata <- function(x, y, by.x, by.y, name_x, name_y)
   in.x <- all_names %in% names_x
   in.y <- all_names %in% names_y
   
-  types <- function(d) unname(sapply(d, main_class))
+  types <- function(d) unname(sapply(d, kwb.utils::mainClass))
   type_if <- function(d, check) ifelse(check, types(d), "")
   col_names <- function(b, i) c(b, ifelse(i, all_names, ""))
   type_names <- function(d, b, i) c(types(d[b]), type_if(x, i))

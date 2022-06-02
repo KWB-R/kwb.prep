@@ -1,6 +1,3 @@
-# cat_if -----------------------------------------------------------------------
-cat_if <- kwb.utils::catIf
-
 # cat_text ---------------------------------------------------------------------
 cat_text <- function(x, ...)
 {
@@ -139,12 +136,6 @@ log_console <- function(file, expr, width = 1000L, ..., append = TRUE)
   result
 }
 
-# main_class -------------------------------------------------------------------
-main_class <- function(x)
-{
-  class(x)[1L]
-}
-
 # message_if -------------------------------------------------------------------
 message_if <- function(check, ...)
 {
@@ -159,23 +150,10 @@ message_text <- function(x, ...)
   message(get_text(x, ...))
 }
 
-# n_na: Number of NA values ----------------------------------------------------
-n_na <- function(x)
-{
-  # TODO: kwb.sema:::numNaInColumn() still required?
-  sum(is.na(x))
-}
-
-# n_unique: Number of unique values --------------------------------------------
-n_unique <- function(x)
-{
-  length(unique(x))
-}
-
 # n_unique_in_column: Number of unique values in a data frame column -----------
 n_unique_in_column <- function(df, column)
 {
-  n_unique(kwb.utils::selectColumns(df, column))
+  kwb.utils::nUnique(kwb.utils::selectColumns(df, column))
 }
 
 # named_seq_along --------------------------------------------------------------

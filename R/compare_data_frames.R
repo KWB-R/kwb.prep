@@ -144,13 +144,12 @@ compare_columns <- function(a, b, columns)
 # compare_vectors --------------------------------------------------------------
 compare_vectors <- function(x, y)
 {
-  n_na <- function(xx) sum(is.na(xx))
   both_numeric <- is.numeric(x) && is.numeric(y)
   
   kwb.utils::noFactorDataFrame(
     ident = identical(x, y),
     same_mode = identical(mode(x), mode(y)),
-    diff_n_na = n_na(y) - n_na(x),
+    diff_n_na = kwb.utils::nNA(y) - kwb.utils::nNA(x),
     max_abs_diff = if (both_numeric) {
       as.numeric(max(abs(x - y), na.rm = TRUE))
     } else {
