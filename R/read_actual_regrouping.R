@@ -26,7 +26,7 @@ read_actual_regrouping <- function(
   #name_actual="regroup_actual";group=NULL;columns=NULL;as_list=TRUE
   
   if (! is.null(group) && ! is.null(columns)) {
-    stop_(
+    clean_stop(
       "Please set either 'group' or 'columns' but not both in ", 
       "read_actual_regrouping()"
     )

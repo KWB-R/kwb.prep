@@ -1,5 +1,8 @@
-# cat_if -----------------------------------------------------------------------
-cat_if <- kwb.utils::catIf
+# app_file ----------------------------------------------------------------------
+app_file <- function(...)
+{
+  extdata_file(...)
+}
 
 # cat_text ---------------------------------------------------------------------
 cat_text <- function(x, ...)
@@ -43,6 +46,9 @@ current_year <- function()
   as.integer(format(Sys.Date(), "%Y"))
 }
 
+# extdata_file -----------------------------------------------------------------
+extdata_file <- kwb.utils::createFunctionExtdataFile("kwb.prep")
+
 # flatten_data_frame_lists -----------------------------------------------------
 flatten_data_frame_lists <- function(x, prefix = NULL)
 {
@@ -63,6 +69,15 @@ get_year_number <- function(x)
   stopifnot(inherits(x, "Date") || inherits(x, "POSIXct"))
 
   as.integer(format(x, "%Y"))
+}
+
+# get_separator ----------------------------------------------------------------
+get_separator <- function(name, config, element = "sep")
+{
+  kwb.utils::defaultIfNULL(
+    kwb.utils::getListNode(config, name)[[element]],
+    default = get_default_element(config, element)
+  )
 }
 
 # getname ----------------------------------------------------------------------
@@ -139,12 +154,6 @@ log_console <- function(file, expr, width = 1000L, ..., append = TRUE)
   result
 }
 
-# main_class -------------------------------------------------------------------
-main_class <- function(x)
-{
-  class(x)[1L]
-}
-
 # message_if -------------------------------------------------------------------
 message_if <- function(check, ...)
 {
@@ -159,23 +168,10 @@ message_text <- function(x, ...)
   message(get_text(x, ...))
 }
 
-# n_na: Number of NA values ----------------------------------------------------
-n_na <- function(x)
-{
-  # TODO: kwb.sema:::numNaInColumn() still required?
-  sum(is.na(x))
-}
-
-# n_unique: Number of unique values --------------------------------------------
-n_unique <- function(x)
-{
-  length(unique(x))
-}
-
 # n_unique_in_column: Number of unique values in a data frame column -----------
 n_unique_in_column <- function(df, column)
 {
-  n_unique(kwb.utils::selectColumns(df, column))
+  kwb.utils::nUnique(kwb.utils::selectColumns(df, column))
 }
 
 # named_seq_along --------------------------------------------------------------
@@ -305,6 +301,12 @@ set_dbg <- function(dbg = 1L)
   options(sema_prep_app_dbg = dbg)
 }
 
+# temp_import_dir --------------------------------------------------------------
+temp_import_dir <- function()
+{
+  kwb.utils::tempSubdirectory("kwb.prep")
+}
+
 # find_string_constants --------------------------------------------------------
 
 #' Show String Constants Used in R Scripts
@@ -330,13 +332,16 @@ read_yaml_file <- function(file, dbg = TRUE)
   )
 }
 
-# stop_ ------------------------------------------------------------------------
-stop_ <- function(...) stop(..., call. = FALSE)
+# clean_stop -------------------------------------------------------------------
+clean_stop <- function(...) stop(..., call. = FALSE)
 
 # stopf ------------------------------------------------------------------------
-stopf <- function(fmt, ...)
+stopf <- kwb.utils::stopFormatted
+
+# stop_no_more_msaccess_support ------------------------------------------------
+stop_no_more_msaccess_support <- function()
 {
-  stop_(sprintf(fmt, ...))
+  clean_stop("MS Access databases are not supported any more.")
 }
 
 # table_any_na -----------------------------------------------------------------

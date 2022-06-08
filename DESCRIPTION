@@ -23,8 +23,10 @@ Suggests:
     kwb.file,
     testthat
 Imports: 
+    archive,
     data.table,
     dplyr,
+    fs,
     knitr,
     kwb.utils,
     magrittr,

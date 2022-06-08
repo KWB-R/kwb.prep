@@ -385,7 +385,7 @@ groupByBreaks <- function(
   }
   
   groups <- data.frame(
-    row = seq_len(length(x)),
+    row = seq_along(x),
     groupnumber = cut(x = x, breaks = breaks, labels = FALSE, right = right)
   )
   

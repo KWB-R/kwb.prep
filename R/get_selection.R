@@ -33,7 +33,7 @@ get_selection <- function(
   
   if (nrow(x) == 0) {
     
-    stop_(
+    clean_stop(
       "There are no numbers in column '", column, "' of the selection table. ",
       "The column must be formatted as 'numeric' in Excel!"
     )

@@ -292,7 +292,7 @@ replaceByCondition <- function(
 )
 {
   if (is.null(file) && is.null(config)) {
-    stop_("Either 'file' or 'config' must be given.")
+    clean_stop("Either 'file' or 'config' must be given.")
   }
   
   if (is.null(config)) {
@@ -423,7 +423,7 @@ stopIfNotIn <- function(
     )
     
     if (do_stop) {
-      stop_(msg)
+      clean_stop(msg)
     } else {
       message(msg)
     }

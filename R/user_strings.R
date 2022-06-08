@@ -31,7 +31,7 @@ check_user_strings <- function(x)
   #kwb.prep::assign_objects()
   if (length(common <- intersect(names(x), names(read_string_definition())))) {
     
-    stop_(
+    clean_stop(
       "The following string constant keys are not allowed. ", 
       "They are for internal use only:\n- ", 
       kwb.utils::stringList(common, collapse = "\n- ")

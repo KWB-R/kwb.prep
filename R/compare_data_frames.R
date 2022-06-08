@@ -6,16 +6,18 @@ compare_data_frames <- function(a, b, level = 3L)
   
   diffs <- compare_data_frames_1(a, b)
   
-  if (level == 1L)
+  if (level == 1L) {
     return(set_class(diffs))
+  }
 
   diffs <- c(
     kwb.utils::removeElements(diffs, "modified"),
     split_modified(kwb.utils::selectElements(diffs, "modified"))
   )
   
-  if (level == 2L)
+  if (level == 2L) {
     return(set_class(diffs))
+  }
   
   compare <- function(x) merge(
     x, compare_columns(a, b, x[["column"]]), by = "column"
@@ -24,10 +26,11 @@ compare_data_frames <- function(a, b, level = 3L)
   diffs[["modified_value"]] <- compare(diffs[["modified_value"]])
   diffs[["modified_type"]] <- compare(diffs[["modified_type"]])
 
-  if (level == 3L)
+  if (level == 3L) {
     return(set_class(diffs))
+  }
 
-  stop_("Currently only level = 1 or level = 2 or level = 3 is implemented.")
+  clean_stop("Currently only level = 1 or level = 2 or level = 3 is implemented.")
 }
 
 # print.data_frame_diff --------------------------------------------------------
@@ -144,13 +147,19 @@ compare_columns <- function(a, b, columns)
 # compare_vectors --------------------------------------------------------------
 compare_vectors <- function(x, y)
 {
-  n_na <- function(xx) sum(is.na(xx))
+  if (length(x) != length(y)) {
+    stopf(
+      "Length of x (%d) must be the same as the length of b (%d)!",
+      length(x), length(y)
+    )
+  }
+  
   both_numeric <- is.numeric(x) && is.numeric(y)
   
   kwb.utils::noFactorDataFrame(
     ident = identical(x, y),
     same_mode = identical(mode(x), mode(y)),
-    diff_n_na = n_na(y) - n_na(x),
+    diff_n_na = kwb.utils::nNA(y) - kwb.utils::nNA(x),
     max_abs_diff = if (both_numeric) {
       as.numeric(max(abs(x - y), na.rm = TRUE))
     } else {
