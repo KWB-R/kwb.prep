@@ -5,10 +5,10 @@
 # so that real cases are tested. You should then delete this comment.
 #
 
-test_that("stop_() works", {
+test_that("clean_stop() works", {
 
   expect_error(
-    kwb.prep:::stop_()
+    kwb.prep:::clean_stop()
     # 
   )
 

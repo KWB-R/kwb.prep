@@ -1,3 +1,9 @@
+# app_file ----------------------------------------------------------------------
+app_file <- function(...)
+{
+  extdata_file(...)
+}
+
 # cat_text ---------------------------------------------------------------------
 cat_text <- function(x, ...)
 {
@@ -40,6 +46,9 @@ current_year <- function()
   as.integer(format(Sys.Date(), "%Y"))
 }
 
+# extdata_file -----------------------------------------------------------------
+extdata_file <- kwb.utils::createFunctionExtdataFile("kwb.prep")
+
 # flatten_data_frame_lists -----------------------------------------------------
 flatten_data_frame_lists <- function(x, prefix = NULL)
 {
@@ -60,6 +69,15 @@ get_year_number <- function(x)
   stopifnot(inherits(x, "Date") || inherits(x, "POSIXct"))
 
   as.integer(format(x, "%Y"))
+}
+
+# get_separator ----------------------------------------------------------------
+get_separator <- function(name, config, element = "sep")
+{
+  kwb.utils::defaultIfNULL(
+    kwb.utils::getListNode(config, name)[[element]],
+    default = get_default_element(config, element)
+  )
 }
 
 # getname ----------------------------------------------------------------------
@@ -283,6 +301,12 @@ set_dbg <- function(dbg = 1L)
   options(sema_prep_app_dbg = dbg)
 }
 
+# temp_import_dir --------------------------------------------------------------
+temp_import_dir <- function()
+{
+  kwb.utils::tempSubdirectory("kwb.prep")
+}
+
 # find_string_constants --------------------------------------------------------
 
 #' Show String Constants Used in R Scripts
@@ -308,13 +332,16 @@ read_yaml_file <- function(file, dbg = TRUE)
   )
 }
 
-# stop_ ------------------------------------------------------------------------
-stop_ <- function(...) stop(..., call. = FALSE)
+# clean_stop -------------------------------------------------------------------
+clean_stop <- function(...) stop(..., call. = FALSE)
 
 # stopf ------------------------------------------------------------------------
-stopf <- function(fmt, ...)
+stopf <- kwb.utils::stopFormatted
+
+# stop_no_more_msaccess_support ------------------------------------------------
+stop_no_more_msaccess_support <- function()
 {
-  stop_(sprintf(fmt, ...))
+  clean_stop("MS Access databases are not supported any more.")
 }
 
 # table_any_na -----------------------------------------------------------------

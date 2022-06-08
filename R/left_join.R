@@ -33,7 +33,7 @@ left_join <- function(
   n_result <- nrow(result)
   
   if (check && n_result != n_x) {
-    stop_(get_text("merging_failed", name_x, name_y, n_result - n_x))
+    clean_stop(get_text("merging_failed", name_x, name_y, n_result - n_x))
   }
   
   if (dbg) {
