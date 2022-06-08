@@ -37,6 +37,15 @@
     <loc>/reference/checkNumberOfUnique.html</loc>
   </url>
   <url>
+    <loc>/reference/check_table_name.html</loc>
+  </url>
+  <url>
+    <loc>/reference/check_zip_extension.html</loc>
+  </url>
+  <url>
+    <loc>/reference/collect.html</loc>
+  </url>
+  <url>
     <loc>/reference/create_text_getter.html</loc>
   </url>
   <url>
@@ -61,10 +70,19 @@
     <loc>/reference/getYearFromColumn.html</loc>
   </url>
   <url>
+    <loc>/reference/get_csv_filenames.html</loc>
+  </url>
+  <url>
     <loc>/reference/get_lower_extension.html</loc>
   </url>
   <url>
+    <loc>/reference/get_path.html</loc>
+  </url>
+  <url>
     <loc>/reference/get_renamings.html</loc>
+  </url>
+  <url>
+    <loc>/reference/get_renamings_from_config.html</loc>
   </url>
   <url>
     <loc>/reference/get_selection.html</loc>
@@ -76,7 +94,16 @@
     <loc>/reference/get_user_strings.html</loc>
   </url>
   <url>
+    <loc>/reference/get_zipped_paths.html</loc>
+  </url>
+  <url>
     <loc>/reference/groupByBreaks.html</loc>
+  </url>
+  <url>
+    <loc>/reference/has_zip_extension.html</loc>
+  </url>
+  <url>
+    <loc>/reference/import_db.html</loc>
   </url>
   <url>
     <loc>/reference/index.html</loc>
@@ -149,6 +176,12 @@
   </url>
   <url>
     <loc>/reference/stopOnDuplicates.html</loc>
+  </url>
+  <url>
+    <loc>/reference/stop_text.html</loc>
+  </url>
+  <url>
+    <loc>/reference/unzip_archive.html</loc>
   </url>
   <url>
     <loc>/reference/writeStandardCsv.html</loc>
