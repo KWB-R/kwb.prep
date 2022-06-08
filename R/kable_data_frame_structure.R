@@ -21,9 +21,9 @@ get_data_frame_structure <- function(df, wide = TRUE, top_n = 3L)
 
   backbone <- kwb.utils::noFactorDataFrame(
     column = names(df),
-    data_type = unnamed_sapply(df, main_class),
-    n_na = unnamed_sapply(df, n_na),
-    n_distinct = unnamed_sapply(df, n_unique)
+    data_type = unnamed_sapply(df, kwb.utils::mainClass),
+    n_na = unnamed_sapply(df, kwb.utils::nNA),
+    n_distinct = unnamed_sapply(df, kwb.utils::nUnique)
   )
 
   if (wide) {

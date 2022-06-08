@@ -4,7 +4,13 @@
 \alias{regroup}
 \title{Assign Values to Groups of Values}
 \usage{
-regroup(x, assignments, ignore.case = NULL, to.factor = FALSE)
+regroup(
+  x,
+  assignments,
+  ignore.case = NULL,
+  to.factor = FALSE,
+  to.numeric = TRUE
+)
 }
 \arguments{
 \item{x}{vector of values}
@@ -17,6 +23,11 @@ replaced with \<key\> in the output vector}
 
 \item{to.factor}{if \code{TRUE} the new values are converted to
 \code{factor}. The default is \code{FALSE}.}
+
+\item{to.numeric}{if \code{TRUE} (the default!) and independent of
+\code{to.factor} (!) the returned values are converted to numeric values if
+all assigned (even though string) values "look like" numeric values, such
+as "1", "2", "3.4", "5.67".}
 }
 \value{
 vector with as many elements as there are elements in \code{x}. The
@@ -32,10 +43,20 @@ regroup(c("A", "B", "C", "D"), assignments = list(
   "AB" = c("A", "B"),
   "CD" = c("C", "D")
 ))
-  
-regroup(c("A", "B", "C", "D", "E", "A"), assignments = list(
-  "AB" = c("A", "B"),
-  "CD" = c("C", "D")
-))
+
+
+x <- c("A", "B", "C", "D", "E", "A")
+assignments <- list(
+ "1" = c("A", "B"),
+ "2" = c("C", "D")
+)
+
+regroup(x, assignments)
+
+# to.factor is ignored...
+regroup(x, assignments, to.factor = TRUE)
+
+# ... unless to.numeric is FALSE!
+regroup(x, assignments, to.factor = TRUE, to.numeric = FALSE)
 
 }

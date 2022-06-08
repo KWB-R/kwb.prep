@@ -1,37 +1,37 @@
 Package: kwb.prep
 Title: Markdown-Documented Data Preparation
-Version: 0.2.0
-Authors@R: 
-    c(person(given = "Hauke",
-             family = "Sonnenberg",
-             role = c("aut", "cre"),
-             email = "hauke.sonnenberg@kompetenz-wasser.de",
-             comment = c(ORCID = "0000-0001-9134-2871")),
-      person(given = "Kompetenzzentrum Wasser Berlin gGmbH (KWB)",
-             role = "cph"))
+Version: 0.3.0
+Authors@R: c(
+    person("Hauke", "Sonnenberg", , "hauke.sonnenberg@kompetenz-wasser.de", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0001-9134-2871")),
+    person("SEMA-BERLIN-2", role = "fnd"),
+    person("Kompetenzzentrum Wasser Berlin gGmbH (KWB)", role = "cph")
+  )
 Description: R Package for Markdown-documented data preparation.
 License: MIT + file LICENSE
 URL: https://github.com/KWB-R/kwb.prep
 BugReports: https://github.com/KWB-R/kwb.prep/issues
-Encoding: UTF-8
-LazyData: true
-Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.2
-Suggests: 
-    covr,
-    kwb.code,
-    kwb.file,
-    testthat
 Imports: 
+    archive,
     data.table,
     dplyr,
+    fs,
     knitr,
     kwb.utils,
     magrittr,
     methods,
     rmarkdown,
     yaml
+Suggests: 
+    covr,
+    kwb.code,
+    kwb.file,
+    testthat
 Remotes: 
     github::KWB-R/kwb.code,
     github::KWB-R/kwb.file,
     github::KWB-R/kwb.utils
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2

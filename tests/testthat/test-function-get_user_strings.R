@@ -1,6 +1,6 @@
 test_that("get_user_strings() works", {
 
-  result <- kwb.prep:::get_user_strings()
-  
+  kwb.prep:::set_global("user_strings", NULL)
+  result <- kwb.prep::get_user_strings()
   expect_null(result)
 })

@@ -8,7 +8,7 @@
 #' @param print print
 #' @param msg msg
 #' @export
-#' @importFrom kwb.utils defaultIfNULL repeated
+#' @importFrom kwb.utils catIf defaultIfNULL repeated
 md_header <- function(
   level, caption_key = "key?", caption = NULL, print = TRUE, msg = TRUE
 )
@@ -26,7 +26,7 @@ md_header <- function(
   header <- paste0(get_text("new_line"), raw_header)
   
   message_if(msg, raw_header)
-  cat_if(print, header, get_text("new_line"), get_text("new_line"))
+  kwb.utils::catIf(print, header, get_text("new_line"), get_text("new_line"))
   
   # For convenience: return the next debug level to allow for:
   # dbg <- md_header(dbg, ...)

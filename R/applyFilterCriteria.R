@@ -37,7 +37,7 @@
 applyFilterCriteria <- function(x, criteria = NULL, lengthColumn = NULL, ...)
 {
   if (! is.data.frame(x)) {
-    stop_("x must be a data frame!")
+    clean_stop("x must be a data frame!")
   }
   
   if (is.null(criteria)) {
@@ -149,7 +149,34 @@ keepOrGoSummary <- function(i, lengthColumn, x.base, y.base, criteriaNames)
 }
 
 # fieldSummary -----------------------------------------------------------------
-fieldSummary <- function(x, groupBy, lengthColumn = "", na = "Unknown")
+
+#' Frequency of Value Combinations in Data Frame Columns
+#' 
+#' @param x data frame
+#' @param groupBy vector of character naming the columns (fields) in \code{x}
+#'   to be included in the evaluation. Default: names of all columns in \code{x}
+#'   except the first one (assuming it could be an ID column).
+#' @param lengthColumn optional. Name of column in \code{x} to be summed up
+#' @param na optional. Value to be treated as \code{NA}. Default: "Unknown"
+#' @export
+#' @examples 
+#' n <- 1000L
+#' sample_replace <- function(x, ...) sample(x, size = n, replace = TRUE, ...)
+#' x <- data.frame(
+#'   pipe_id = 1:n,
+#'   material = sample_replace(c("clay", "concrete", "other")),
+#'   age_cat = sample_replace(c("young", "old")),
+#'   length = as.integer(rnorm(n, 50)),
+#'   stringsAsFactors = FALSE
+#' )
+#' 
+#' fieldSummary(x)
+#' fieldSummary(x, "age_cat")
+#' fieldSummary(x, "material")
+#' fieldSummary(x, "material", lengthColumn = "length")
+fieldSummary <- function(
+  x, groupBy = names(x)[-1L], lengthColumn = "", na = "Unknown"
+)
 {
   stopifnot(is.data.frame(x))
   kwb.utils::checkForMissingColumns(x, groupBy)
@@ -165,7 +192,6 @@ fieldSummary <- function(x, groupBy, lengthColumn = "", na = "Unknown")
   }
   
   for (column in groupBy) {
-    
     values <- kwb.utils::selectColumns(x, column)
     levels(values) <- c(levels(values), na)
     x[[column]] <- kwb.utils::defaultIfNA(values, na)
@@ -173,7 +199,7 @@ fieldSummary <- function(x, groupBy, lengthColumn = "", na = "Unknown")
   
   y <- stats::aggregate(
     kwb.utils::toFormula("Count", groupBy), 
-    data = cbind(x, Count = 1), 
+    data = cbind(x, Count = 1L), 
     FUN = length
   )
   

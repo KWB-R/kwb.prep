@@ -148,7 +148,7 @@ read_config <- function(file_name, dbg = FALSE, file = NULL)
     
     read_csv_file(file, dbg = dbg, encoding = "Latin-1")
     
-  } else stop_(
+  } else clean_stop(
     
     "Configuration file does not have extension .yml or .csv:\n",
     file

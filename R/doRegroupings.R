@@ -11,6 +11,8 @@
 #'   occurred in a column to be regrouped have been considered in the regrouping
 #' @param to.factor if \code{TRUE} the new values are converted to
 #'   \code{factor}. The default is \code{FALSE}.
+#' @param to.numeric (default: \code{TRUE}, overrides \code{to.factor}!), passed
+#'  to \code{\link{regroup}}
 #' @param dbg if \code{TRUE} (default) debug messages are shown
 #'   
 #' @export
@@ -18,7 +20,8 @@
 doRegroupings <- function(
   Data, regroup.actual = kwb.utils::selectElements(settings, "regroup.actual"),
   regroup.config = kwb.utils::selectElements(settings, "regroup.config"),
-  settings = NULL, checkRemaining = TRUE, to.factor = FALSE, dbg = TRUE
+  settings = NULL, checkRemaining = TRUE, to.factor = FALSE, to.numeric = TRUE,
+  dbg = TRUE
 )
 {
   #checkRemaining=TRUE;dbg=TRUE
@@ -39,7 +42,14 @@ doRegroupings <- function(
     if (actual$from %in% names(Data)) {
       
       message_if(dbg, sprintf("%02d. %s", i, actual$to))
-      Data <- applyRegrouping(Data, actual, regroup.config, to.factor, dbg)
+      Data <- applyRegrouping(
+        Data, 
+        actual, 
+        regroup.config, 
+        to.factor = to.factor, 
+        to.numeric = to.numeric,
+        dbg = dbg
+      )
       
     } else {
       
@@ -59,7 +69,9 @@ doRegroupings <- function(
 }
 
 # applyRegrouping --------------------------------------------------------------
-applyRegrouping <- function(Data, actual, regroup.config, to.factor, dbg)
+applyRegrouping <- function(
+  Data, actual, regroup.config, to.factor, to.numeric, dbg
+)
 {
   kwb.utils::catIf(dbg, sprintf(
     paste(
@@ -80,7 +92,8 @@ applyRegrouping <- function(Data, actual, regroup.config, to.factor, dbg)
       values = values, 
       config = c(config, list(checkRemaining = dbg)),
       labels = actual$labels, 
-      to.factor = to.factor, 
+      to.factor = to.factor,
+      to.numeric = to.numeric,
       dbg = dbg
     )
     
@@ -113,12 +126,15 @@ applyRegrouping <- function(Data, actual, regroup.config, to.factor, dbg)
 #' @param labels default: "labels1"
 #' @param to.factor if \code{TRUE} the new values are converted to
 #'   \code{factor}. The default is \code{FALSE}.
+#' @param to.numeric (default: \code{TRUE}, overrides \code{to.factor}!), passed
+#'  to \code{\link{regroup}}
 #' @param dbg if \code{TRUE} (default) debug messages are shown
 #' 
 #' @export
 #' 
 regroupedValues <- function(
-  values, config = NULL, labels = "labels1", to.factor = FALSE, dbg = TRUE
+  values, config = NULL, labels = "labels1", to.factor = FALSE, 
+  to.numeric = TRUE, dbg = TRUE
 )
 {
   # If config is NULL or an empty list, return the original values
@@ -143,7 +159,8 @@ regroupedValues <- function(
       x = values, 
       assignments = assignments$assignments, 
       ignore.case = config$ignore.case, # may be NULL
-      to.factor = to.factor
+      to.factor = to.factor,
+      to.numeric = to.numeric
     )
     
     # check for untreated values if not specified differently
@@ -195,7 +212,10 @@ toAssignments2 <- function(values, labels)
 #' @param ignore.case if \code{TRUE} the case is ignored when comparing values
 #' @param to.factor if \code{TRUE} the new values are converted to
 #'   \code{factor}. The default is \code{FALSE}.
-#'   
+#' @param to.numeric if \code{TRUE} (the default!) and independent of
+#'   \code{to.factor} (!) the returned values are converted to numeric values if
+#'   all assigned (even though string) values "look like" numeric values, such
+#'   as "1", "2", "3.4", "5.67".
 #' @return vector with as many elements as there are elements in \code{x}. The
 #'   vector contains \<key\> at positions where the elements in \code{x} appeared
 #'   in the vector \<values\> of a \<key\> = \<values\> assignment of
@@ -208,13 +228,25 @@ toAssignments2 <- function(values, labels)
 #'   "AB" = c("A", "B"),
 #'   "CD" = c("C", "D")
 #' ))
-#'   
-#' regroup(c("A", "B", "C", "D", "E", "A"), assignments = list(
-#'   "AB" = c("A", "B"),
-#'   "CD" = c("C", "D")
-#' ))
+#'
+#'
+#' x <- c("A", "B", "C", "D", "E", "A")
+#' assignments <- list(
+#'  "1" = c("A", "B"),
+#'  "2" = c("C", "D")
+#' )
 #' 
-regroup <- function(x, assignments, ignore.case = NULL, to.factor = FALSE)
+#' regroup(x, assignments)
+#' 
+#' # to.factor is ignored...
+#' regroup(x, assignments, to.factor = TRUE)
+#' 
+#' # ... unless to.numeric is FALSE!
+#' regroup(x, assignments, to.factor = TRUE, to.numeric = FALSE)
+#' 
+regroup <- function(
+  x, assignments, ignore.case = NULL, to.factor = FALSE, to.numeric = TRUE
+)
 {
   # Set default for ignore.case
   ignore.case <- kwb.utils::defaultIfNULL(ignore.case, FALSE)
@@ -240,17 +272,18 @@ regroup <- function(x, assignments, ignore.case = NULL, to.factor = FALSE)
     }
   }
   
-  typeConverted(xnew, to.factor, factorLevels = keys)
+  typeConverted(xnew, to.factor, factorLevels = keys, to.numeric = to.numeric)
 }
 
 # typeConverted ----------------------------------------------------------------
-typeConverted <- function(x, to.factor, factorLevels)
+typeConverted <- function(x, to.factor, factorLevels, to.numeric = TRUE)
 {
   # Convert "<NA>" to NA
   x[x == "<NA>"] <- NA
   
   # If all new values look like numeric convert to numeric
-  if (all(kwb.utils::hsValidValue(kwb.utils::hsTrim(x), lng = "en"))) {
+  if (isTRUE(to.numeric) &&
+      all(kwb.utils::hsValidValue(kwb.utils::hsTrim(x), lng = "en"))) {
     
     as.numeric(x)
     
@@ -352,7 +385,7 @@ groupByBreaks <- function(
   }
   
   groups <- data.frame(
-    row = seq_len(length(x)),
+    row = seq_along(x),
     groupnumber = cut(x = x, breaks = breaks, labels = FALSE, right = right)
   )
   

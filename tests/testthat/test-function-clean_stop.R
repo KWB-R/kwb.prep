@@ -5,11 +5,11 @@
 # so that real cases are tested. You should then delete this comment.
 #
 
-test_that("n_unique() works", {
+test_that("clean_stop() works", {
 
   expect_error(
-    kwb.prep:::n_unique()
-    # Argument "x" fehlt (ohne Standardwert)
+    kwb.prep:::clean_stop()
+    # 
   )
 
 })
