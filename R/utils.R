@@ -67,7 +67,7 @@ flatten_data_frame_lists <- function(x, prefix = NULL)
 # get_dbg ----------------------------------------------------------------------
 get_dbg <- function(default = 1L)
 {
-  getOption("sema_prep_app_dbg", default)
+  getOption("kwb_prep_dbg", default)
 }
 
 # get_year_number --------------------------------------------------------------
@@ -330,7 +330,7 @@ save_as_if <- function(x, do_save, name, file = NULL)
 # set_dbg ----------------------------------------------------------------------
 set_dbg <- function(dbg = 1L)
 {
-  options(sema_prep_app_dbg = dbg)
+  options(kwb_prep_dbg = dbg)
 }
 
 # temp_import_dir --------------------------------------------------------------
