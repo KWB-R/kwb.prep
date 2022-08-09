@@ -1,195 +1,207 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>/LICENSE-text.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/LICENSE-text.html</loc>
   </url>
   <url>
-    <loc>/LICENSE.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/LICENSE.html</loc>
   </url>
   <url>
-    <loc>/authors.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/authors.html</loc>
   </url>
   <url>
-    <loc>/index.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/index.html</loc>
   </url>
   <url>
-    <loc>/news/index.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/news/index.html</loc>
   </url>
   <url>
-    <loc>/reference/applyFilter.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/applyFilter.html</loc>
   </url>
   <url>
-    <loc>/reference/applyFilterCriteria.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/applyFilterCriteria.html</loc>
   </url>
   <url>
-    <loc>/reference/apply_filters.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/apply_filters.html</loc>
   </url>
   <url>
-    <loc>/reference/assign_objects.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/assign_objects.html</loc>
   </url>
   <url>
-    <loc>/reference/breaksToIntervalLabels.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/breaksToIntervalLabels.html</loc>
   </url>
   <url>
-    <loc>/reference/checkGrouping.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/checkGrouping.html</loc>
   </url>
   <url>
-    <loc>/reference/checkNumberOfUnique.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/checkNumberOfUnique.html</loc>
   </url>
   <url>
-    <loc>/reference/check_table_name.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/check_table_name.html</loc>
   </url>
   <url>
-    <loc>/reference/check_zip_extension.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/check_zip_extension.html</loc>
   </url>
   <url>
-    <loc>/reference/collect.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/collect.html</loc>
   </url>
   <url>
-    <loc>/reference/create_text_getter.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/contained_tables.html</loc>
   </url>
   <url>
-    <loc>/reference/dataFramesToTextMatrix.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/create_text_getter.html</loc>
   </url>
   <url>
-    <loc>/reference/doRegroupings.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/dataFramesToTextMatrix.html</loc>
   </url>
   <url>
-    <loc>/reference/fieldSummary.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/doRegroupings.html</loc>
   </url>
   <url>
-    <loc>/reference/fillUpNA.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/extdata_file.html</loc>
   </url>
   <url>
-    <loc>/reference/find_string_constants.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/fieldSummary.html</loc>
   </url>
   <url>
-    <loc>/reference/getChangesOfDuplicates.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/fillUpNA.html</loc>
   </url>
   <url>
-    <loc>/reference/getYearFromColumn.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/getChangesOfDuplicates.html</loc>
   </url>
   <url>
-    <loc>/reference/get_csv_filenames.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/getYearFromColumn.html</loc>
   </url>
   <url>
-    <loc>/reference/get_lower_extension.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/get_column_classes2.html</loc>
   </url>
   <url>
-    <loc>/reference/get_path.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/get_csv_filenames.html</loc>
   </url>
   <url>
-    <loc>/reference/get_renamings.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/get_lower_extension.html</loc>
   </url>
   <url>
-    <loc>/reference/get_renamings_from_config.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/get_path.html</loc>
   </url>
   <url>
-    <loc>/reference/get_selection.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/get_renamings.html</loc>
   </url>
   <url>
-    <loc>/reference/get_text.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/get_renamings_from_config.html</loc>
   </url>
   <url>
-    <loc>/reference/get_user_strings.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/get_selection.html</loc>
   </url>
   <url>
-    <loc>/reference/get_zipped_paths.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/get_text.html</loc>
   </url>
   <url>
-    <loc>/reference/groupByBreaks.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/get_user_strings.html</loc>
   </url>
   <url>
-    <loc>/reference/has_zip_extension.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/get_zipped_paths.html</loc>
   </url>
   <url>
-    <loc>/reference/import_db.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/groupByBreaks.html</loc>
   </url>
   <url>
-    <loc>/reference/index.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/has_zip_extension.html</loc>
   </url>
   <url>
-    <loc>/reference/intervalLabel.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/import_db.html</loc>
   </url>
   <url>
-    <loc>/reference/kable_no_rows.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/index.html</loc>
   </url>
   <url>
-    <loc>/reference/kable_translated.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/intervalLabel.html</loc>
   </url>
   <url>
-    <loc>/reference/logicalToYesNo.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/invalid_zip.html</loc>
   </url>
   <url>
-    <loc>/reference/md_header.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/kable_no_rows.html</loc>
   </url>
   <url>
-    <loc>/reference/overwriteIfNotNA.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/kable_translated.html</loc>
   </url>
   <url>
-    <loc>/reference/pipe.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/logicalToYesNo.html</loc>
   </url>
   <url>
-    <loc>/reference/print.data_frame_diff.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/md_header.html</loc>
   </url>
   <url>
-    <loc>/reference/printNumberOfNA.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/overwriteIfNotNA.html</loc>
   </url>
   <url>
-    <loc>/reference/printTableForColumn.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/pipe.html</loc>
   </url>
   <url>
-    <loc>/reference/read_actual_regrouping.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/print.data_frame_diff.html</loc>
   </url>
   <url>
-    <loc>/reference/read_csv_file.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/printNumberOfNA.html</loc>
   </url>
   <url>
-    <loc>/reference/regroup.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/printTableForColumn.html</loc>
   </url>
   <url>
-    <loc>/reference/regroupedValues.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/read_actual_regrouping.html</loc>
   </url>
   <url>
-    <loc>/reference/regrouping_is_used.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/read_csv_file.html</loc>
   </url>
   <url>
-    <loc>/reference/removeRowsThatAreNaInColumn.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/regroup.html</loc>
   </url>
   <url>
-    <loc>/reference/replaceByCondition.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/regroupedValues.html</loc>
   </url>
   <url>
-    <loc>/reference/replaceUnlessNA.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/regrouping_is_used.html</loc>
   </url>
   <url>
-    <loc>/reference/reportNA.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/removeRowsThatAreNaInColumn.html</loc>
   </url>
   <url>
-    <loc>/reference/set_column.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/replaceByCondition.html</loc>
   </url>
   <url>
-    <loc>/reference/set_user_strings.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/replaceUnlessNA.html</loc>
   </url>
   <url>
-    <loc>/reference/stopIfNotIn.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/reportNA.html</loc>
   </url>
   <url>
-    <loc>/reference/stopOnDuplicates.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/set_column.html</loc>
   </url>
   <url>
-    <loc>/reference/stop_text.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/set_user_config_dir.html</loc>
   </url>
   <url>
-    <loc>/reference/unzip_archive.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/set_user_strings.html</loc>
   </url>
   <url>
-    <loc>/reference/writeStandardCsv.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/stopIfNotIn.html</loc>
   </url>
   <url>
-    <loc>/reference/write_filter_info.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/stopOnDuplicates.html</loc>
   </url>
   <url>
-    <loc>/reference/write_markdown_chapter.html</loc>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/stop_text.html</loc>
+  </url>
+  <url>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/unzip_archive.html</loc>
+  </url>
+  <url>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/writeStandardCsv.html</loc>
+  </url>
+  <url>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/write_filter_info.html</loc>
+  </url>
+  <url>
+    <loc>https://kwb-r.github.io/kwb.prep/dev/reference/write_markdown_chapter.html</loc>
   </url>
 </urlset>
