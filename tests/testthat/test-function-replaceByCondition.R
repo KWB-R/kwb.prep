@@ -16,14 +16,14 @@ test_that("replaceByCondition() works", {
     "g2,j,i <= 2,NA"
   ))
   
-  writeLines(readLines(file))
+  #writeLines(readLines(file))
   #x <- read.csv(file, comment.char = "#")
   #str(x)
   
   df <- data.frame(i = 1:4, j = 2:5)
   
-  result_1 <- f(df, file, group = "g1")
-  result_2 <- f(df, file, group = "g2")
+  result_1 <- f(df, file, group = "g1", dbg = FALSE)
+  result_2 <- f(df, file, group = "g2", dbg = FALSE)
   
   expect_identical(result_1$i, c(NA, NA, 44L, 4L))
   expect_identical(result_2$j, c(NA, NA, 4L, 5L))
