@@ -161,6 +161,12 @@ log_console <- function(file, expr, width = 1000L, ..., append = TRUE)
   result
 }
 
+# lower_file_extension ---------------------------------------------------------
+lower_file_extension <- function(file)
+{
+  tolower(kwb.utils::fileExtension(file))
+}
+
 # message_if -------------------------------------------------------------------
 message_if <- function(check, ...)
 {
@@ -229,6 +235,19 @@ print_to_string <- function(x)
 remove_prefix <- function(x, prefix)
 {
   gsub(paste0("^", prefix, "_"), "", x)
+}
+
+# replace_na_strings_with_na ---------------------------------------------------
+replace_na_strings_with_na <- function(data, na.strings)
+{
+  is_character <- sapply(data, is.character)
+
+  data[is_character] <- lapply(data[is_character], function(x) {
+    x[x %in% na.strings] <- NA
+    x
+  })
+ 
+  data 
 }
 
 # round_numeric ----------------------------------------------------------------
