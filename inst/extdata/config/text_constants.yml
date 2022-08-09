@@ -4,18 +4,25 @@ by: verkn<ue>pft
 calculating_new_columns: Berechnen neuer Spalten
 calculating_new_columns_in: Berechnen neuer Spalten in '%s'
 column: Spalte
+column_name: Spaltenname
 columns_removed: Die folgenden %d Spalten wurden aus '%s' entfernt:<nl><nl>%s<nl>
 columns_removed_reason: Die folgenden %d Spalten wurden aus '%s' entfernt (%s):<nl><nl>%s<nl>
 column_x: Spalte links
 column_y: Spalte rechts
 common_columns: The following columns are in '%s' as well as in '%s':<nl>- %s
 condition: wenn
+converting: Converting column '%s' from '%s' to '%s'
+copying_csv_from_to: Kopieren der CSV-Dateien in<nl>  '%s'<nl>nach<nl>  '%s'
 creating_missing_column: Creating missing column '%s'
+current_type: aktueller Typ
+data_type: Datentyp
 deleting_constant_columns: Deleting 'constant' columns
 duplicate_check: Duplikatpr<ue>fung
 file: Datei
 frequency: H<ae>ufigkeit
 hello: sch<oe>ne Gr<ue>sse
+import_dir_exists: Das Importverzeichnis existiert bereits:<nl>'%s'<nl>Es werden die darin
+  enthaltenen Daten verwendet.
 internal_field: Spaltenname intern
 key_columns: Schl<ue>sselspalte(n)
 left_joining: Tabellen verbinden (Left Join)
@@ -23,8 +30,17 @@ left_table: Linke Tabelle
 loading_from_file_cache: Laden von '%s' aus dem Datei-Cache (.RData-Datei)
 merging: 'Verbinden zweier Tabellen: ''%s'' x ''%s'''
 merging_failed: Merging %s with %s led to %d more rows!
+missing_fields_in_csv: |-
+  Die folgenden Felder (Spalten) fehlen in den CSV-Dateien.
+  Haben Sie die richtige CSV-Konfiguration ausgew<ae>hlt?
+
+  %s
+missing_tables: Die folgenden Tabellen (CSV-Dateien) fehlen:<nl>%s
 modified: zuletzt ge<ae>ndert
+most_frequent: h<ae>ufigste Werte
 n_differences: There are %d differences between %s and %s!
+n_distinct: distinkt
+n_na: NA
 n_replaced: Anzahl
 n_rows: Anzahl Zeilen
 name: Name
@@ -33,6 +49,7 @@ nrow_x: Zeilen links
 nrow_y: Zeilen rechts
 no_columns_removed: Es wurden keine Spalten entfernt.
 no_duplicates: 'Keine Duplikate in (Wertekombinationen der) Spalte(n): %s'
+no_type_info_found: Keine Typinformation gefunden
 not_in_file_cache: Ermitteln von '%s' (nicht im .RData-Datei-Cache gefunden)...
 object_cached_in_file: Speichern von '%s' im Datei-Cache (.RData-Datei).
 original_column: (umbenannt von)
@@ -67,6 +84,7 @@ unique_rows: Duplikatzeilen entfernen
 unknown_columns_in_selection: |-
   Folgende Spalten der Auswahl '%s' (spezifiziert in '%s'), sind nicht im data frame enthalten, der an reorder_columns() <ue>bergeben wurde:
   %s
+unzipping: Entzippen von<nl>  '%s'<nl>nach<nl>  '%s'
 using_option_value: Using option value %s = '%s'
 value: Wert
 writing_csv: Schreiben von `%s`

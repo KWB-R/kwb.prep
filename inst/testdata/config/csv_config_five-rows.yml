@@ -1,0 +1,36 @@
+default:
+  sep: ';'
+pipes:
+  file: DatenCO_Haltungen_utf8.csv
+  fields: # "OID_H";"Haltung";"Bez";"OT";"Entw";"Mat";"Prof";"ProfH";"ProfB";"Laenge";"Betr";"Best";"Bauj";"BauDat";"Wsz";"WszChr";"Eigtm";"EigtmRef";"EigtmNam";"BetreibRef";"BetreibNam";"Dueker";"AuslBW";"StrKl";"RuekSt";"LR";"GrL";"Tram";"KS_AS";"KS_ES";"DH_AS";"DH_ES";"ReWert_AS";"HoWert_AS";"ReWert_ES";"HoWert_ES";"b1";"s1";"b2";"s2";"HIST"
+  PipeID:
+    field: OID_H
+  PipeNr:
+    field: Haltung
+  SewerType:
+    field: Entw
+  Material:
+    field: Mat
+  Shape:
+    field: Prof
+damages:
+  file: DatenCO_Schaden_utf8.csv
+  fields:
+inspections:
+  file: DatenCO_Untersuchungen_utf8.csv
+  fields:
+trees:
+  file: Haltungen_Baeume_utf8.csv
+  fields:
+soil:
+  file: Haltungen_Boden_utf8.csv
+  fields:
+groundwater:
+  file: Haltungen_GW_utf8.csv
+  fields:
+rehabilitation:
+  file: Haltungen_SAN_utf8.csv
+  fields:
+liner:
+  file: LinerBWB_utf8.csv
+  fields:
