@@ -107,9 +107,3 @@ field_list_to_data_frame <- function(fields)
 
   translate_columns(info)
 }
-
-# file_to_import_name ----------------------------------------------------------
-file_to_import_name <- function(x)
-{
-  kwb.utils::removeExtension(basename(x))
-}
