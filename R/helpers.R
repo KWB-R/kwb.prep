@@ -231,6 +231,15 @@ split_by_columns <- function(df, columns, ...)
   split(df, kwb.utils::selectColumns(df, columns, drop = FALSE), ...)
 }
 
+# stop_file_format_not_supported -----------------------------------------------
+stop_file_format_not_supported <- function(extension, where)
+{
+  kwb.utils::stopFormatted(
+    "File format (file extension '%s') not supported in %s", 
+    extension, where
+  )
+}
+
 # summary_with_forced_na -------------------------------------------------------
 summary_with_forced_na <- function(x)
 {
