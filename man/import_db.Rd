@@ -4,19 +4,15 @@
 \alias{import_db}
 \title{Import CSV Files from ZIP File}
 \usage{
-import_db(zip_file, config, base_name = basename(zip_file), import_dir = NULL)
+import_db(zip_file, config, import_dir)
 }
 \arguments{
 \item{zip_file}{path to zip file containing csv files}
 
 \item{config}{configuration object (list) describing the csv files}
 
-\item{base_name}{base name of the folder to be created. The current date will
-also be encoded in the folder name. By default the base name of the zip
-file (file name without file extension) is used.}
-
-\item{import_dir}{optional. Path to folder into which to finally copy the
-extracted files. By default a folder is created.}
+\item{import_dir}{Path to folder into which to finally copy the extracted
+files.}
 }
 \description{
 The function stops with an error message if the \code{file} does not have the
