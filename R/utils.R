@@ -304,21 +304,6 @@ temp_import_dir <- function()
   kwb.utils::tempSubdirectory("kwb.prep")
 }
 
-# find_string_constants --------------------------------------------------------
-
-#' Show String Constants Used in R Scripts
-#'
-#' @export
-find_string_constants <- function()
-{
-  #remotes::install_github("kwb-r/kwb.code@dev")
-  kwb.file::add_file_info(
-    kwb.code::get_string_constants_in_scripts(
-      root = "./R", FUN = kwb.code:::fetch_string_constants_2
-    )
-  )
-}
-
 # read_yaml_file ---------------------------------------------------------------
 read_yaml_file <- function(file, dbg = TRUE)
 {
