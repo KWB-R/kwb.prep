@@ -46,9 +46,6 @@ current_year <- function()
   as.integer(format(Sys.Date(), "%Y"))
 }
 
-# extdata_file -----------------------------------------------------------------
-extdata_file <- kwb.utils::createFunctionExtdataFile("kwb.prep")
-
 # flatten_data_frame_lists -----------------------------------------------------
 flatten_data_frame_lists <- function(x, prefix = NULL)
 {
