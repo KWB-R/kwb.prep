@@ -4,6 +4,16 @@ app_file <- function(...)
   extdata_file(...)
 }
 
+# assign_objects ---------------------------------------------------------------
+#' Assign Package Functions to the Global Environment
+#' 
+#' This function provides all (also non-exported) function definitions of this 
+#' package in the Global environment. This is useful for debugging the code
+#' of a function that calls non-exported functions.
+#' 
+#' @export
+assign_objects <- kwb.utils::createFunctionAssignObjects("kwb.prep")
+
 # cat_text ---------------------------------------------------------------------
 cat_text <- function(x, ...)
 {
@@ -187,6 +197,12 @@ names_which <- function(x)
 eol_collapsed <- function(...)
 {
   paste0(..., collapse = "\n")
+}
+
+# package_file -----------------------------------------------------------------
+package_file <- function(...)
+{
+  system.file(..., package = "kwb.prep")
 }
 
 # prefix_names -----------------------------------------------------------------

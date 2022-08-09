@@ -1,7 +1,7 @@
 # missing_tables ---------------------------------------------------------------
 missing_tables <- function(zip_file, config)
 {
-  #sema.prep.app:::assign_objects()
+  #kwb.prep::assign_objects()
   setdiff(expected_tables(config), contained_tables(zip_file, config))
 }
 
