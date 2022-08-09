@@ -88,3 +88,4 @@ unzipping: Entzippen von<nl>  '%s'<nl>nach<nl>  '%s'
 using_option_value: Using option value %s = '%s'
 value: Wert
 writing_csv: Schreiben von `%s`
+zip_expected: Die Datei ('%s') hat nicht die erwartete Dateiendung (.zip oder .7z).
