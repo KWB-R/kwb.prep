@@ -29,7 +29,7 @@ get_data_frame_structure <- function(df, wide = TRUE, top_n = 3L)
   if (wide) {
     return(cbind(
       backbone,
-      most_frequent = unnamed_sapply(df, main_n, top_n),
+      most_frequent = unnamed_sapply(df, main_n, top_n, useNA = "ifany"),
       stringsAsFactors = FALSE
     ))
   }
@@ -37,27 +37,28 @@ get_data_frame_structure <- function(df, wide = TRUE, top_n = 3L)
   table_columns <- c("value", "frequency")
 
   top_x <- lapply(df, function(x) {
-    freq <- main_n(x, top_n, collapsed = FALSE)
-    if (length(freq)) {
-      stats::setNames(as.data.frame(freq), table_columns)
+    freq <- main_n(x, top_n, collapsed = FALSE, useNA = "ifany")
+    stats::setNames(nm = table_columns, object = if (length(freq)) {
+      kwb.utils::namedVectorToDataFrame(freq)
     } else {
-      do.call(data.frame, as.list(stats::setNames(rep(NA, 2L), table_columns)))
-    }
+      do.call(data.frame, as.list(c(NA, NA)))
+    })
   })
 
   left_join(
     x = backbone,
     y = kwb.utils::rbindAll(top_x, "column"),
     by = "column",
-    check = FALSE
+    check = FALSE,
+    dbg = FALSE
   ) %>%
     hide_non_changing("column", keep = table_columns)
 }
 
 # main_n -----------------------------------------------------------------------
-main_n <- function(x, n, collapsed = TRUE)
+main_n <- function(x, n, collapsed = TRUE, useNA = "no")
 {
-  freq <- sort(table(x), decreasing = TRUE)
+  freq <- sort(table(x, useNA = useNA), decreasing = TRUE)
   freq_n <- freq[seq_len(min(n, length(freq)))]
 
   if (! collapsed) {
