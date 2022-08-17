@@ -360,12 +360,10 @@ groupByBreaks <- function(
   if (is.data.frame(x)) {
     
     basis <- if (! is.null(keyFields)) {
-      
       kwb.utils::selectColumns(x, keyFields, drop = FALSE)
     }
     
     if (is.null(columns)) {
-      
       columns <- names(which(sapply(x, is.numeric)))
     }
     
@@ -380,7 +378,6 @@ groupByBreaks <- function(
   }
   
   if (add.Inf.limits) {
-    
     breaks <- c(-Inf, breaks, Inf)    
   }
   
@@ -394,8 +391,7 @@ groupByBreaks <- function(
   ### cut gives a warning if there are duplicated values in "labels"...
   duplicates <- values[duplicated(values)]
   
-  if (length(duplicates) > 0) {
-    
+  if (length(duplicates) > 0L) {
     message(
       "groupByBreaks: There are duplicated values (", 
       kwb.utils::stringList(duplicates), ") in the labels to be given: ", 
