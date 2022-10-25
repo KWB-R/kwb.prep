@@ -4,6 +4,16 @@ app_file <- function(...)
   extdata_file(...)
 }
 
+# assign_objects ---------------------------------------------------------------
+#' Assign Package Functions to the Global Environment
+#' 
+#' This function provides all (also non-exported) function definitions of this 
+#' package in the Global environment. This is useful for debugging the code
+#' of a function that calls non-exported functions.
+#' 
+#' @export
+assign_objects <- kwb.utils::createFunctionAssignObjects("kwb.prep")
+
 # cat_text ---------------------------------------------------------------------
 cat_text <- function(x, ...)
 {
@@ -46,9 +56,6 @@ current_year <- function()
   as.integer(format(Sys.Date(), "%Y"))
 }
 
-# extdata_file -----------------------------------------------------------------
-extdata_file <- kwb.utils::createFunctionExtdataFile("kwb.prep")
-
 # flatten_data_frame_lists -----------------------------------------------------
 flatten_data_frame_lists <- function(x, prefix = NULL)
 {
@@ -60,7 +67,7 @@ flatten_data_frame_lists <- function(x, prefix = NULL)
 # get_dbg ----------------------------------------------------------------------
 get_dbg <- function(default = 1L)
 {
-  getOption("sema_prep_app_dbg", default)
+  getOption("kwb_prep_dbg", default)
 }
 
 # get_year_number --------------------------------------------------------------
@@ -154,6 +161,12 @@ log_console <- function(file, expr, width = 1000L, ..., append = TRUE)
   result
 }
 
+# lower_file_extension ---------------------------------------------------------
+lower_file_extension <- function(file)
+{
+  tolower(kwb.utils::fileExtension(file))
+}
+
 # message_if -------------------------------------------------------------------
 message_if <- function(check, ...)
 {
@@ -192,6 +205,12 @@ eol_collapsed <- function(...)
   paste0(..., collapse = "\n")
 }
 
+# package_file -----------------------------------------------------------------
+package_file <- function(...)
+{
+  system.file(..., package = "kwb.prep")
+}
+
 # prefix_names -----------------------------------------------------------------
 prefix_names <- function(x, prefix = NULL)
 {
@@ -216,6 +235,19 @@ print_to_string <- function(x)
 remove_prefix <- function(x, prefix)
 {
   gsub(paste0("^", prefix, "_"), "", x)
+}
+
+# replace_na_strings_with_na ---------------------------------------------------
+replace_na_strings_with_na <- function(data, na.strings)
+{
+  is_character <- sapply(data, is.character)
+
+  data[is_character] <- lapply(data[is_character], function(x) {
+    x[x %in% na.strings] <- NA
+    x
+  })
+ 
+  data 
 }
 
 # round_numeric ----------------------------------------------------------------
@@ -298,28 +330,13 @@ save_as_if <- function(x, do_save, name, file = NULL)
 # set_dbg ----------------------------------------------------------------------
 set_dbg <- function(dbg = 1L)
 {
-  options(sema_prep_app_dbg = dbg)
+  options(kwb_prep_dbg = dbg)
 }
 
 # temp_import_dir --------------------------------------------------------------
 temp_import_dir <- function()
 {
   kwb.utils::tempSubdirectory("kwb.prep")
-}
-
-# find_string_constants --------------------------------------------------------
-
-#' Show String Constants Used in R Scripts
-#'
-#' @export
-find_string_constants <- function()
-{
-  #remotes::install_github("kwb-r/kwb.code@dev")
-  kwb.file::add_file_info(
-    kwb.code::get_string_constants_in_scripts(
-      root = "./R", FUN = kwb.code:::fetch_string_constants_2
-    )
-  )
 }
 
 # read_yaml_file ---------------------------------------------------------------

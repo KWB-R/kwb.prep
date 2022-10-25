@@ -38,7 +38,7 @@
 #' yaml::write_yaml(criteria, file.path(tdir, "filter_criteria.yml"))
 #' 
 #' # Set path to temporary "config" folder so that kwb.prep knows about it
-#' kwb.prep:::set_user_config_dir(tdir)
+#' set_user_config_dir(tdir)
 #' 
 #' # Apply filter groups "sepal" and "petal" to the iris dataset
 #' result <- apply_filters(iris, c("sepal", "petal"))

@@ -7,10 +7,9 @@
 
 test_that("get_lower_extension() works", {
 
-  expect_error(
-    sema.prep.app:::get_lower_extension()
-    # Argument "file" fehlt (ohne Standardwert)
-  )
+  f <- kwb.prep:::get_lower_extension
+    
+  expect_error(f())
 
 })
 

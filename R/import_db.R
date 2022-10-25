@@ -5,23 +5,20 @@
 #' The function stops with an error message if the \code{file} does not have the
 #' file extension ".zip" or if the zip file does not contain the expected csv
 #' files or if a csv file does not contain all expected fields (columns).
-#' Expected file names and field names are provided \code{config}). If
+#' Expected file names and field names are provided in \code{config}). If
 #' everything looks ok, the csv files in the zip file are extracted into a (new)
-#' folder in the app's "run" directory. The app directory is provided in the
-#' environment variable SEMA_BERLIN_PREP_APP_DIR.
+#' folder.
 #'
 #' @param zip_file path to zip file containing csv files
 #' @param config configuration object (list) describing the csv files
-#' @param base_name base name of the folder to be created. The current date will
-#'   also be encoded in the folder name. By default the base name of the zip
-#'   file (file name without file extension) is used.
+#' @param import_dir Path to folder into which to finally copy the extracted 
+#'   files.
 #' @export
-import_db <- function(zip_file, config, base_name = basename(zip_file))
+import_db <- function(zip_file, config, import_dir)
 {
-  #sema.prep.app::assign_objects();target_dir=NULL
+  #kwb.prep::assign_objects();target_dir=NULL
 
   check_zip_extension(zip_file)
-
   check_missing_tables(zip_file, config)
 
   temp_dir <- temp_import_dir()
@@ -32,23 +29,6 @@ import_db <- function(zip_file, config, base_name = basename(zip_file))
 
   # Check for missing fields
   check_missing_fields(temp_dir, config)
-
-  import_dir <- get_path(
-    "input_dir",
-    app_dir = app_file(),
-    date = Sys.Date(),
-    import_name = file_to_import_name(base_name)
-  )
-
-  stopifnot(import_dir != "")
-
-  run_dir <- kwb.utils::directoryName(import_dir)
-
-  if (dir.exists(run_dir)) {
-    cat(get_text("import_dir_exists", run_dir), "\n")
-    return(import_dir)
-    #stop_text("import_dir_exists", kwb.utils::fullWinPath(run_dir))
-  }
 
   kwb.utils::createDirectory(import_dir, dbg = FALSE)
 
@@ -126,10 +106,4 @@ field_list_to_data_frame <- function(fields)
   )
 
   translate_columns(info)
-}
-
-# file_to_import_name ----------------------------------------------------------
-file_to_import_name <- function(x)
-{
-  kwb.utils::removeExtension(basename(x))
 }

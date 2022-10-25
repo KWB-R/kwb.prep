@@ -1,6 +1,6 @@
 Package: kwb.prep
 Title: Markdown-Documented Data Preparation
-Version: 0.3.0
+Version: 0.3.0.9000
 Authors@R: c(
     person("Hauke", "Sonnenberg", , "hauke.sonnenberg@kompetenz-wasser.de", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-9134-2871")),
@@ -13,8 +13,10 @@ URL: https://github.com/KWB-R/kwb.prep
 BugReports: https://github.com/KWB-R/kwb.prep/issues
 Imports: 
     archive,
+    bit64,
     data.table,
     dplyr,
+    foreign,
     fs,
     knitr,
     kwb.utils,
@@ -34,4 +36,4 @@ Remotes:
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.0

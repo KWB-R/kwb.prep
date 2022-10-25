@@ -1,3 +1,4 @@
+#library(testthat)
 test_that("apply_filter() works", {
 
   #source("tests/testthat/helpers_test.R");library(testthat)

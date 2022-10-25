@@ -170,10 +170,16 @@ read_filter_criteria <- function(
 # read_internal_types ----------------------------------------------------------
 read_internal_types <- function(file = NULL, dbg = FALSE)
 {
+  if (kwb.utils::defaultIfNULL(file, "") == "") {
+    clean_stop(
+      "The file path passed to read_internal_types() is an empty string!"
+    )
+  }
+  
   if (is.null(file)) {
     file <- config_file("internal-types.csv", in_package = FALSE)
   }
-  
+
   result <- read_csv_file(file, dbg = dbg)
 
   fetch <- kwb.utils::createAccessor(result)
@@ -219,16 +225,19 @@ set_origin <- function(data, origin = kwb.utils::getAttribute(data, "origin"))
   cbind(data, origin = origin, stringsAsFactors = FALSE)
 }
 
-# set_user_config_dir ----------------------------------------------------------
-set_user_config_dir <- function(path)
-{
-  set_global("user_config_dir", kwb.utils::safePath(path))
-}
-
 # split_by_columns -------------------------------------------------------------
 split_by_columns <- function(df, columns, ...)
 {
   split(df, kwb.utils::selectColumns(df, columns, drop = FALSE), ...)
+}
+
+# stop_file_format_not_supported -----------------------------------------------
+stop_file_format_not_supported <- function(extension, where)
+{
+  kwb.utils::stopFormatted(
+    "File format (file extension '%s') not supported in %s", 
+    extension, where
+  )
 }
 
 # summary_with_forced_na -------------------------------------------------------
