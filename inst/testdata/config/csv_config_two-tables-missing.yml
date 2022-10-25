@@ -1,0 +1,16 @@
+regions:
+  file: Bez_OT_utf8.csv
+pipes:
+  file: DatenCO_Haltungen_utf8.csv
+damages:
+  file: DatenCO_Schaden_utf8.csv
+inspections:
+  file: DatenCO_Untersuchungen_utf8.csv
+trees:
+  file: Haltungen_Baeume_utf8.csv
+soil:
+  file: Haltungen_Boden_utf8.csv
+groundwater:
+  file: Haltungen_GW_utf8.csv
+rehabilitation:
+  file: Haltungen_SAN_utf8.csv

@@ -1,0 +1,174 @@
+default:
+  sep: ;
+  required: true
+liner:
+  file: LinerBWB_utf8.csv
+  required: false
+pipes:
+  file: DatenCO_Haltungen_utf8.csv
+  fields:
+    ConstructionYear_raw:
+      field: Baujahr
+      type: integer
+    GroundLevelDownstream:
+      field: Deckelhoehe_ES
+      type: numeric
+    GroundLevelUpstream:
+      field: Deckelhoehe_AS
+      type: numeric
+    Height_raw:
+      field: Profilhoehe
+      type: integer
+    Historical_raw:
+      field: Historisierte_Haltung
+      type: character
+    InvertLevelDownstream:
+      field: Hoehe_KS_ES
+      type: numeric
+    InvertLevelUpstream:
+      field: Hoehe_KS_AS
+      type: numeric
+    Length_raw:
+      field: Laenge
+      type: numeric
+    Material_raw:
+      field: Material
+      type: character
+    PipeID:
+      field: OID_Haltung
+      type: integer64
+    PipeNr:
+      field: Haltungsnummer
+      type: character
+    Sewerage_raw:
+      field: Entwaesserungssystem
+      type: character
+    Shape_raw:
+      field: Profiltyp
+      type: character
+damages:
+  file: DatenCO_Schaden_utf8.csv
+  fields:
+    DefectClass:
+      field: HSCHKLAS
+      type: numeric
+    DefectClass_Construction:
+      field: STANDSICHERHEIT
+      type: numeric
+    DefectClass_Density:
+      field: DICHTHEIT
+      type: numeric
+    DefectClass_Operation:
+      field: BETRIEBSSICHERHEIT
+      type: numeric
+    DefectComment:
+      field: HSCHKOMM
+      type: character
+    DefectDate:
+      field: HSCHDAT
+      type: character
+    DefectDirection:
+      field: HSCHRCHT
+      type: character
+    DefectMeasure:
+      field: HSCHMASS
+      type: numeric
+    DefectPosition:
+      field: HSCHLAG1
+      type: character
+    DefectType1:
+      field: HSCHTYP
+      type: character
+    DefectType2:
+      field: HSCHART
+      type: character
+    DefectType3:
+      field: HSCHZUS
+      type: character
+    DefectUnit:
+      field: HSCHEINH
+      type: character
+inspections:
+  file: DatenCO_Untersuchungen_utf8.csv
+  fields:
+    Camera_raw:
+      field: TV_UART
+      type: character
+    CC_raw:
+      field: Z_KLASSE
+      type: integer
+    Height_Insp:
+      field: C_PROFILHOEHE
+      type: integer
+    InspectionDateTime:
+      field: TV_DATUM
+      type: character
+    Material_Insp:
+      field: C_MATERIAL
+      type: character
+    PipeID:
+      field: OBJECTIDHALTUNG
+      type: integer64
+    Sewerage_Insp:
+      field: A_ENTWKZ
+      type: character
+    Shape_Insp:
+      field: C_PROFILSCHLUESSEL
+      type: character
+    Width_Insp:
+      field: C_PROFILBREITE
+      type: integer
+trees:
+  file: Haltungen_Baeume_utf8.csv
+  fields:
+    PipeID:
+      field: OID
+      type: integer64
+    Trees_raw:
+      field: AnzBaeume
+      type: integer
+soil:
+  file: Haltungen_Boden_utf8.csv
+  fields:
+    PipeID:
+      field: OID
+      type: integer64
+groundwater:
+  file: Haltungen_GW_utf8.csv
+  fields:
+    GroundwaterCoverage_raw:
+      field: gw_ueberdeckung
+      type: numeric
+    PipeID:
+      field: OID
+      type: integer64
+rehabilitation:
+  file: Haltungen_SAN_utf8.csv
+  fields:
+    PipeNr:
+      field: HALTBEZN
+      type: character
+    RehabConstrType:
+      field: BAUWEISE
+      type: character
+    RehabDate:
+      field: Baudatum
+      type: character
+    RehabDirection:
+      field: FliessRi
+      type: character
+    RehabEnd:
+      field: Ende
+      type: numeric
+    RehabStart:
+      field: Beginn
+      type: numeric
+    RehabType1:
+      field: SANIERUNGSTYP
+      type: character
+    RehabType2:
+      field: SANIERUNGSVERFAHREN
+      type: character
+    RehabType3:
+      field: VERFAHREN
+      type: character

@@ -1,5 +1,5 @@
 # read_regrouping_configs ------------------------------------------------------
-read_regrouping_configs <- function(config_dir)
+read_regrouping_configs <- function(config_dir, ...)
 {
   # Helper function to read all csv files in a directory
   read_all_csv <- function(path) {
@@ -9,7 +9,8 @@ read_regrouping_configs <- function(config_dir)
       utils::read.table, 
       sep = ";", 
       header = TRUE, 
-      stringsAsFactors = FALSE
+      stringsAsFactors = FALSE,
+      ...
     )
   }
   

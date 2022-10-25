@@ -1,0 +1,28 @@
+default:
+  sep: ';'
+pipes:
+  file: DatenCO_Haltungen_utf8.csv
+  fields:
+    missing:
+      field: my_missing
+damages:
+  file: DatenCO_Schaden_utf8.csv
+  fields:
+inspections:
+  file: DatenCO_Untersuchungen_utf8.csv
+  fields:
+trees:
+  file: Haltungen_Baeume_utf8.csv
+  fields:
+soil:
+  file: Haltungen_Boden_utf8.csv
+  fields:
+groundwater:
+  file: Haltungen_GW_utf8.csv
+  fields:
+rehabilitation:
+  file: Haltungen_SAN_utf8.csv
+  fields:
+liner:
+  file: LinerBWB_utf8.csv
+  fields:

@@ -15,7 +15,8 @@ reorder_columns <- function(
   }
 
   # Names of columns to appear first
-  first <- get_selection(file = config_file(filename), column = selection)
+  first <- get_selection(file = config_file(filename), column = selection, 
+                         dbg = dbg)
 
   if (length(missing <- setdiff(first, all_columns))) {
 

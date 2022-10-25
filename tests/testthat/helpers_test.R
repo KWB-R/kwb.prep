@@ -1,6 +1,8 @@
-package_config_dir <- system.file("extdata", "config", package = "kwb.prep")
+# Make sure that error messages appear in German (TODO: better English?)
+Sys.setenv(LANGUAGE = "DE")
 
-kwb.prep:::set_user_config_dir(package_config_dir)
+# Set the configuration directory to extdata/config in this (installed) package 
+set_user_config_dir(extdata_file("config", dbg = FALSE))
 
 is_character_list <- function(x) {
   is.list(x) && all(sapply(x, class) == "character")

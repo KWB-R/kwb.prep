@@ -4,23 +4,21 @@
 \alias{import_db}
 \title{Import CSV Files from ZIP File}
 \usage{
-import_db(zip_file, config, base_name = basename(zip_file))
+import_db(zip_file, config, import_dir)
 }
 \arguments{
 \item{zip_file}{path to zip file containing csv files}
 
 \item{config}{configuration object (list) describing the csv files}
 
-\item{base_name}{base name of the folder to be created. The current date will
-also be encoded in the folder name. By default the base name of the zip
-file (file name without file extension) is used.}
+\item{import_dir}{Path to folder into which to finally copy the extracted
+files.}
 }
 \description{
 The function stops with an error message if the \code{file} does not have the
 file extension ".zip" or if the zip file does not contain the expected csv
 files or if a csv file does not contain all expected fields (columns).
-Expected file names and field names are provided \code{config}). If
+Expected file names and field names are provided in \code{config}). If
 everything looks ok, the csv files in the zip file are extracted into a (new)
-folder in the app's "run" directory. The app directory is provided in the
-environment variable SEMA_BERLIN_PREP_APP_DIR.
+folder.
 }

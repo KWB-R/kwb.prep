@@ -5,7 +5,7 @@ missing_fields <- function(
   table_names = expected_tables(config)
 )
 {
-  #sema.prep.app::assign_objects()
+  #kwb.prep::assign_objects()
 
   if (kwb.utils::hasZeroLength(table_names)) {
     return(list())
@@ -24,11 +24,6 @@ missing_fields <- function(
 # missing_fields_one -----------------------------------------------------------
 missing_fields_one <- function(path_db, config, table_name)
 {
-  #sema.prep.app:::assign_objects()
-  #path_db <- "~/tmp/sema-berlin_tool-prep/runs/2021-02-02_210108_semadaten_v1.0"
-  #config <- kwb.prep:::read_config("csv_config.yml")
-  #table_name <- "pipes"
-  #kwb.prep:::set_global("user_config_dir", config_file())
   check_table_name(table_name)
 
   # Names of available fields in the table/csv file of given name
