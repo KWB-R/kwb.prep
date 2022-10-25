@@ -66,7 +66,7 @@ folder.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">import_db</span><span class="op">(</span><span class="va">zip_file</span>, <span class="va">config</span>, base_name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/basename.html" class="external-link">basename</a></span><span class="op">(</span><span class="va">zip_file</span><span class="op">)</span>, import_dir <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">import_db</span><span class="op">(</span><span class="va">zip_file</span>, <span class="va">config</span>, <span class="va">import_dir</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -79,15 +79,9 @@ folder.</p>
 <dd><p>configuration object (list) describing the csv files</p></dd>
 
 
-<dt>base_name</dt>
-<dd><p>base name of the folder to be created. The current date will
-also be encoded in the folder name. By default the base name of the zip
-file (file name without file extension) is used.</p></dd>
-
-
 <dt>import_dir</dt>
-<dd><p>optional. Path to folder into which to finally copy the
-extracted files. By default a folder is created.</p></dd>
+<dd><p>Path to folder into which to finally copy the extracted
+files.</p></dd>
 
 </dl></div>
 
